@@ -1,0 +1,3 @@
+rootProject.name = 'MultiConfig'
+
+include ':app'
