@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/configurationFragment">
+
+
+    <fragment
+        android:id="@+id/configurationFragment"
+        android:name="configuration.ConfigurationFragment"
+        android:label="ConfigurationFragment">
+        <action
+            android:id="@+id/action_configurationFragment_to_configurationDetailFragment"
+            app:destination="@id/configurationDetailFragment">
+            <argument
+                android:name="environment"
+                app:argType="string" />
+        </action>
+
+    </fragment>
+    <fragment
+        android:id="@+id/configurationDetailFragment"
+        android:name="configuration.ConfigurationDetailFragment"
+        android:label="ConfigurationDetail">
+        <argument
+            android:name="environment"
+            app:argType="string" />
+    </fragment>
+</navigation>
