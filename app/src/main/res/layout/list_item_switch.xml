@@ -27,7 +27,8 @@
             android:layout_marginTop="16dp"
             android:text="@{model.description}"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginLeft="16dp" />
 
         <TextView
             android:id="@+id/switch_content"
@@ -39,7 +40,8 @@
             android:text="@{model.switchStatus}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/switch_overline" />
+            app:layout_constraintTop_toBottomOf="@+id/switch_overline"
+            android:layout_marginLeft="16dp" />
 
         <Switch
             android:id="@+id/switch_flag"
@@ -50,6 +52,7 @@
             android:checked="@{model.switchValue}"
             android:onClick="@{() -> viewModel.toggleConfiguration(model.key, model.switchValue)}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginRight="16dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

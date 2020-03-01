@@ -17,7 +17,7 @@ class ConfigurationFragment : Fragment() {
 
     private val mainActivityViewModel: MainActivityViewModel by viewModel()
 
-    lateinit var adapter: ConfigurationAdapter
+    private lateinit var adapter: ConfigurationAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

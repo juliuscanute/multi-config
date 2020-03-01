@@ -16,31 +16,47 @@ class ConfigurationRepository(
     }
 
     private val store: MutableMap<String, StoreValue>
+    private var savedConfiguration: EnvironmentConfigurationImmutable
 
     init {
         store = HashMap()
-        configs.forEach {
+        savedConfiguration = configs.map {
             when (it) {
                 is UiControlsModel.Switch -> {
                     val key = PREFIX + it.key
-                    if (settings.hasKey(key))
-                        store[key] = StoreValue.BooleanValue(value = settings.getBoolean(key))
-                    else
-                        store[key] = StoreValue.BooleanValue(value = it.switchValue)
+                    var newValue: Boolean = false
+                    if (settings.hasKey(key)) {
+                        newValue = settings.getBoolean(key)
+                        store[key] = StoreValue.BooleanValue(value = newValue)
+                    } else {
+                        newValue = it.switchValue
+                        store[key] = StoreValue.BooleanValue(value = newValue)
+                    }
+                    it.copy(switchValue = newValue)
                 }
                 is UiControlsModel.Range -> {
                     val key = PREFIX + it.key
-                    if (settings.hasKey(key))
-                        store[key] = StoreValue.IntValue(value = settings.getInt(key))
-                    else
+                    var newValue: Int = 0
+                    if (settings.hasKey(key)) {
+                        newValue = settings.getInt(key)
+                        store[key] = StoreValue.IntValue(value = newValue)
+                    } else {
+                        newValue = it.currentValue
                         store[key] = StoreValue.IntValue(value = it.currentValue)
+                    }
+                    it.copy(currentValue = newValue)
                 }
                 is UiControlsModel.Editable -> {
                     val key = PREFIX + it.key
-                    if (settings.hasKey(key))
-                        store[key] = StoreValue.StringValue(value = settings.getString(key))
-                    else
-                        store[key] = StoreValue.StringValue(value = it.currentValue)
+                    var newValue: String = ""
+                    if (settings.hasKey(key)) {
+                        newValue = settings.getString(key)
+                        store[key] = StoreValue.StringValue(value = newValue)
+                    } else {
+                        newValue = it.currentValue
+                        store[key] = StoreValue.StringValue(value = newValue)
+                    }
+                    it.copy(currentValue = newValue)
                 }
                 is UiControlsModel.Choice -> {
                     val key = PREFIX + it.key
@@ -48,30 +64,37 @@ class ConfigurationRepository(
                     val keyInt = PREFIX + it.key + PAIR_SUFFIX_INT
                     check(it.currentChoiceIndex < it.items.size) { "Choice mush be less than the available items" }
                     val item = it.items[it.currentChoiceIndex]
-
+                    var newIntValue: Int = 0
+                    var newStringValue: String = ""
                     val keyPresent =
                         settings.hasKey(keyString) and settings.hasKey(
                             keyInt
                         )
 
-                    if (keyPresent)
+                    if (keyPresent) {
+                        newStringValue = settings.getString(keyString)
+                        newIntValue = settings.getInt(keyInt)
                         store[key] =
                             StoreValue.KeyValue(
-                                key = settings.getString(keyString),
-                                value = settings.getInt(keyInt)
+                                key = newStringValue,
+                                value = newIntValue
                             )
-                    else
+                    } else {
+                        newStringValue = item.description
+                        newIntValue = it.currentChoiceIndex
                         store[key] =
                             StoreValue.KeyValue(
                                 key = item.description,
                                 value = it.currentChoiceIndex
                             )
+                    }
+                    it.copy(currentChoiceIndex = newIntValue, description = newStringValue)
                 }
             }
-        }
+        }.toList()
     }
 
-    fun getEnvironmentConfiguration(): EnvironmentConfigurationImmutable = configs.toList()
+    fun getEnvironmentConfiguration(): EnvironmentConfigurationImmutable = savedConfiguration
 
     fun getConfigInt(userKey: String): Int {
         val key = PREFIX + userKey
