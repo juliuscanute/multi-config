@@ -27,18 +27,12 @@ class MainActivityViewModel(private val configManager: ConfigurationManager) : V
         state.postValue(Event(ConfigurationState.LoadEnvironmentConfigurationState(updatedConfig.mapState())))
     }
 
-    fun toggleConfiguration(key: String, currentValue: Boolean) {
+    fun saveBooleanConfiguration(key: String, currentValue: Boolean) {
         manager.saveConfig(key, !currentValue)
-        val updatedConfig = manager.getEnvironmentConfiguration()
-        state.postValue(Event(ConfigurationState.LoadEnvironmentConfigurationState(updatedConfig.mapState())))
     }
 
-    fun configUpdateWithoutCommit(key: String, value: Int, isUser: Boolean) {
-        if (isUser) {
-            manager.saveConfig(key, value)
-            val updatedConfig = manager.getEnvironmentConfiguration()
-            state.postValue(Event(ConfigurationState.LoadEnvironmentConfigurationState(updatedConfig.mapState())))
-        }
+    fun saveIntConfiguration(key: String, currentValue: Int){
+        manager.saveConfig(key, currentValue)
     }
 }
 

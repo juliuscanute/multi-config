@@ -2,6 +2,7 @@ package configuration
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.SeekBar
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -82,6 +83,18 @@ class ConfigurationDetailAdapter(private val viewModel: MainActivityViewModel) :
             (item is ItemState.RangeState) && (holder is ListItemRangeHolder) -> {
                 holder.binding.model = item
                 holder.binding.viewModel = viewModel
+                holder.binding.rangeSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+                    var currentProgress: Int = item.currentValue
+                    override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                        holder.binding.rangeCurrentValue.text = progress.toString()
+                        currentProgress = progress
+                    }
+
+                    override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+                    override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                        viewModel.saveIntConfiguration(item.key, currentProgress)
+                    }
+                })
             }
             (item is ItemState.EditableState) && (holder is ListItemEditableHolder) -> {
                 holder.binding.model = item

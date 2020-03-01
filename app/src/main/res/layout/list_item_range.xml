@@ -28,7 +28,8 @@
             android:text="@{model.description}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="overline" />
+            tools:text="overline"
+            android:layout_marginLeft="16dp" />
 
         <TextView
             android:id="@+id/range_current_value"
@@ -38,7 +39,8 @@
             android:layout_marginTop="8dp"
             android:text="@{model.getValueString()}"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/range_overline" />
+            app:layout_constraintTop_toBottomOf="@+id/range_overline"
+            android:layout_marginLeft="16dp" />
 
         <SeekBar
             android:id="@+id/range_seek_bar"
@@ -48,7 +50,6 @@
             android:layout_marginTop="4dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:onProgressChanged="@{(_,value,isUser) -> viewModel.configUpdateWithoutCommit(model.key, value, isUser)}"
             android:progress="@{model.currentValue}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -64,7 +65,8 @@
             android:layout_marginTop="4dp"
             android:text="@{model.minString}"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/range_current_value" />
+            app:layout_constraintTop_toBottomOf="@+id/range_current_value"
+            android:layout_marginLeft="16dp" />
 
         <TextView
             android:id="@+id/range_max_value"
@@ -74,7 +76,8 @@
             android:layout_marginEnd="16dp"
             android:text="@{model.maxString}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/range_current_value" />
+            app:layout_constraintTop_toBottomOf="@+id/range_current_value"
+            android:layout_marginRight="16dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
