@@ -16,7 +16,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> viewModel.showDialog(model.description, model.items, model.currentChoiceIndex, model.key)}">
 
         <TextView
             android:id="@+id/choice_overline"
@@ -26,7 +27,8 @@
             android:layout_marginTop="16dp"
             android:text="@{model.description}"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginLeft="16dp" />
 
         <TextView
             android:id="@+id/choice_content"
@@ -38,6 +40,7 @@
             android:text="@{model.getSelectedItem()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/choice_overline" />
+            app:layout_constraintTop_toBottomOf="@+id/choice_overline"
+            android:layout_marginLeft="16dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

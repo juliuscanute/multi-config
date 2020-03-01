@@ -131,6 +131,7 @@ class ConfigurationDetailDiffUtil : DiffUtil.ItemCallback<ItemState>() {
         return when {
             oldItem is ItemState.SwitchState && newItem is ItemState.SwitchState -> oldItem.switchValue == newItem.switchValue
             oldItem is ItemState.ChoiceState && newItem is ItemState.ChoiceState -> oldItem.currentChoiceIndex == newItem.currentChoiceIndex
+                    && oldItem.description == newItem.description
             oldItem is ItemState.EditableState && newItem is ItemState.EditableState -> oldItem.currentValue == newItem.currentValue
             oldItem is ItemState.RangeState && newItem is ItemState.RangeState -> oldItem.currentValue == newItem.currentValue
             else -> false

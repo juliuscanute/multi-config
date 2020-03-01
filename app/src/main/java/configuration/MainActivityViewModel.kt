@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import builder.EnvironmentConfigurationImmutable
 import model.ConfigurationManager
 import model.ConfigurationRepository
+import model.Item
 import model.UiControlsModel
 
 class MainActivityViewModel(private val configManager: ConfigurationManager) : ViewModel() {
@@ -23,16 +24,40 @@ class MainActivityViewModel(private val configManager: ConfigurationManager) : V
 
     fun loadEnvironmentConfiguration(environment: String) {
         manager = configManager.getConfiguration(environment)
-        val updatedConfig = manager.getEnvironmentConfiguration()
-        state.postValue(Event(ConfigurationState.LoadEnvironmentConfigurationState(updatedConfig.mapState())))
+        loadUpdatedState()
+    }
+
+    fun showDialog(description: String, items: ArrayList<Item>, currentSelection: Int, key: String) {
+        state.postValue(
+            Event(
+                ConfigurationState.ShowChoiceConfigurationState(
+                    description = description,
+                    items = items,
+                    currentSelection = currentSelection,
+                    key = key
+                )
+            )
+        )
     }
 
     fun saveBooleanConfiguration(key: String, currentValue: Boolean) {
         manager.saveConfig(key, !currentValue)
+        loadUpdatedState()
     }
 
-    fun saveIntConfiguration(key: String, currentValue: Int){
+    fun saveIntConfiguration(key: String, currentValue: Int) {
         manager.saveConfig(key, currentValue)
+        loadUpdatedState()
+    }
+
+    fun savePairConfiguration(key: String, currentValue: Pair<String, Int>) {
+        manager.saveConfig(key, currentValue)
+        loadUpdatedState()
+    }
+
+    private fun loadUpdatedState() {
+        val updatedConfig = manager.getEnvironmentConfiguration()
+        state.postValue(Event(ConfigurationState.LoadEnvironmentConfigurationState(updatedConfig.mapState())))
     }
 }
 
