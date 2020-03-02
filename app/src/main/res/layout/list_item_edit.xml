@@ -15,8 +15,10 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="?android:selectableItemBackground"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> viewModel.showEditableDialog(model.description, model.currentValue, model.key)}">
 
         <TextView
             android:id="@+id/edit_overline"
@@ -26,7 +28,8 @@
             android:layout_marginTop="16dp"
             android:text="@{model.description}"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginLeft="16dp" />
 
         <TextView
             android:id="@+id/edit_content"
@@ -38,6 +41,7 @@
             android:text="@{model.currentValue}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_overline" />
+            app:layout_constraintTop_toBottomOf="@+id/edit_overline"
+            android:layout_marginLeft="16dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

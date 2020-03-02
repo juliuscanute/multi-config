@@ -16,4 +16,8 @@ sealed class ConfigurationState {
         val key: String
     ) :
         ConfigurationState()
+
+    data class ShowEditableState(
+        val description: String, val value: String, val key: String
+    ) : ConfigurationState()
 }

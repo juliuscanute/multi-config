@@ -27,7 +27,7 @@ class MainActivityViewModel(private val configManager: ConfigurationManager) : V
         loadUpdatedState()
     }
 
-    fun showDialog(description: String, items: ArrayList<Item>, currentSelection: Int, key: String) {
+    fun showChoiceDialog(description: String, items: ArrayList<Item>, currentSelection: Int, key: String) {
         state.postValue(
             Event(
                 ConfigurationState.ShowChoiceConfigurationState(
@@ -40,12 +40,29 @@ class MainActivityViewModel(private val configManager: ConfigurationManager) : V
         )
     }
 
+    fun showEditableDialog(description: String, value: String, key: String){
+        state.postValue(
+            Event(
+                ConfigurationState.ShowEditableState(
+                    description = description,
+                    value = value,
+                    key = key
+                )
+            )
+        )
+    }
+
     fun saveBooleanConfiguration(key: String, currentValue: Boolean) {
         manager.saveConfig(key, !currentValue)
         loadUpdatedState()
     }
 
     fun saveIntConfiguration(key: String, currentValue: Int) {
+        manager.saveConfig(key, currentValue)
+        loadUpdatedState()
+    }
+
+    fun saveStringConfiguration(key: String, currentValue: String) {
         manager.saveConfig(key, currentValue)
         loadUpdatedState()
     }

@@ -15,9 +15,10 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="?android:selectableItemBackground"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{() -> viewModel.showDialog(model.description, model.items, model.currentChoiceIndex, model.key)}">
+        android:onClick="@{() -> viewModel.showChoiceDialog(model.description, model.items, model.currentChoiceIndex, model.key)}">
 
         <TextView
             android:id="@+id/choice_overline"

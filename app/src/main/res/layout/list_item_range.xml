@@ -16,6 +16,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="?android:selectableItemBackground"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -42,7 +43,7 @@
             app:layout_constraintTop_toBottomOf="@+id/range_overline"
             android:layout_marginLeft="16dp" />
 
-        <SeekBar
+        <androidx.appcompat.widget.AppCompatSeekBar
             android:id="@+id/range_seek_bar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
