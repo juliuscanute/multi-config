@@ -83,17 +83,22 @@ class ConfigurationDetailAdapter(private val viewModel: MainActivityViewModel) :
             (item is ItemState.RangeState) && (holder is ListItemRangeHolder) -> {
                 holder.binding.model = item
                 holder.binding.viewModel = viewModel
+                holder.binding.rangeSeekBar.max = (item.max - item.min) / item.step
                 holder.binding.rangeSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
                     var currentProgress: Int = item.currentValue
                     override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                        holder.binding.rangeCurrentValue.text = progress.toString()
-                        currentProgress = progress
+                        if(fromUser) {
+                            currentProgress = getEstimatedValue(progress = progress)
+                            holder.binding.rangeCurrentValue.text = currentProgress.toString()
+                        }
                     }
 
                     override fun onStartTrackingTouch(seekBar: SeekBar?) {}
                     override fun onStopTrackingTouch(seekBar: SeekBar?) {
                         viewModel.saveIntConfiguration(item.key, currentProgress)
                     }
+
+                    private fun getEstimatedValue(progress: Int) = item.min + (progress * item.step)
                 })
             }
             (item is ItemState.EditableState) && (holder is ListItemEditableHolder) -> {

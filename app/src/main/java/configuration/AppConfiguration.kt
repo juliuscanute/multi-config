@@ -18,7 +18,7 @@ fun setup() = appConfig {
             key = "B"
             description = "B-D"
             min = 1
-            max = 100
+            max = 1000
             step = 2
             currentValue = 50
         }
