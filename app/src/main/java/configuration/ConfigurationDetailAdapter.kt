@@ -12,6 +12,7 @@ import configuration.databinding.ListItemEditBinding
 import configuration.databinding.ListItemRangeBinding
 import configuration.databinding.ListItemSwitchBinding
 import model.Item
+import model.Projection
 
 class ConfigurationDetailAdapter(private val viewModel: MainActivityViewModel) :
     ListAdapter<ItemState, RecyclerView.ViewHolder>(ConfigurationDetailDiffUtil()) {
@@ -82,23 +83,22 @@ class ConfigurationDetailAdapter(private val viewModel: MainActivityViewModel) :
             }
             (item is ItemState.RangeState) && (holder is ListItemRangeHolder) -> {
                 holder.binding.model = item
+                val projection = Projection(userMax = item.max, userMin = item.min)
+                projection.userValue = item.currentValue
                 holder.binding.viewModel = viewModel
-                holder.binding.rangeSeekBar.max = (item.max - item.min) / item.step
+                holder.binding.rangeSeekBar.progress = projection.progressValue
                 holder.binding.rangeSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-                    var currentProgress: Int = item.currentValue
                     override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                        if(fromUser) {
-                            currentProgress = getEstimatedValue(progress = progress)
-                            holder.binding.rangeCurrentValue.text = currentProgress.toString()
+                        if (fromUser) {
+                            projection.progressValue = progress
+                            holder.binding.rangeCurrentValue.text = projection.userValue.toString()
                         }
                     }
 
                     override fun onStartTrackingTouch(seekBar: SeekBar?) {}
                     override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                        viewModel.saveIntConfiguration(item.key, currentProgress)
+                        viewModel.saveIntConfiguration(item.key, projection.userValue)
                     }
-
-                    private fun getEstimatedValue(progress: Int) = item.min + (progress * item.step)
                 })
             }
             (item is ItemState.EditableState) && (holder is ListItemEditableHolder) -> {
