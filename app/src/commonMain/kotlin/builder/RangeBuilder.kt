@@ -14,14 +14,12 @@ class RangeBuilder : Builder<UiControlsModel> {
         check(key.isNotBlank()) { "Key must not be empty" }
         check(description.isNotBlank()) { "Description must not be empty" }
         check(max > min) { "Max should be greater than Min" }
-        check(step != 0) { "Step must not be zero" }
         check(currentValue in min..max) { "Current value must be between Max & Min" }
         return UiControlsModel.Range(
             key = key,
             description = description,
             min = min,
             max = max,
-            step = step,
             currentValue = currentValue
         )
     }

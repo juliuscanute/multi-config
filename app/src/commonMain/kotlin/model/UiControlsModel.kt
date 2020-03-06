@@ -10,7 +10,6 @@ sealed class UiControlsModel {
         val description: String,
         val min: Int,
         val max: Int,
-        val step: Int,
         var currentValue: Int
     ) : UiControlsModel()
 

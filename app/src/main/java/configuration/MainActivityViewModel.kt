@@ -91,7 +91,6 @@ fun EnvironmentConfigurationImmutable.mapState(): List<ItemState> {
                 description = it.description,
                 min = it.min,
                 max = it.max,
-                step = it.step,
                 currentValue = it.currentValue
             )
             is UiControlsModel.Editable -> ItemState.EditableState(

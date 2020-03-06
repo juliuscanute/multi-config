@@ -83,7 +83,9 @@ class ConfigurationDetailAdapter(private val viewModel: MainActivityViewModel) :
             }
             (item is ItemState.RangeState) && (holder is ListItemRangeHolder) -> {
                 holder.binding.model = item
-                val projection = Projection(userMax = item.max, userMin = item.min)
+                val offsetMax = item.max - item.min
+                val projection =
+                    Projection(userMax = item.max, userMin = item.min)
                 projection.userValue = item.currentValue
                 holder.binding.viewModel = viewModel
                 holder.binding.rangeSeekBar.progress = projection.progressValue
@@ -155,7 +157,6 @@ sealed class ItemState(val id: String) {
         val description: String,
         val min: Int,
         val max: Int,
-        val step: Int,
         var currentValue: Int
     ) : ItemState(id = key) {
 

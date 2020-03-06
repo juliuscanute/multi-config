@@ -67,7 +67,6 @@ class ConfigurationBuilderTest {
                     Assert.assertEquals("B-D", it.description)
                     Assert.assertEquals(1, it.min)
                     Assert.assertEquals(100, it.max)
-                    Assert.assertEquals(2, it.step)
                     Assert.assertEquals(50, it.currentValue)
                 }
                 is UiControlsModel.Editable -> {
