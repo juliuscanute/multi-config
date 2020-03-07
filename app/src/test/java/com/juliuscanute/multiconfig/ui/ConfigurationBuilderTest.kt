@@ -25,7 +25,6 @@ class ConfigurationBuilderTest {
                     description = "B-D"
                     min = 1
                     max = 100
-                    step = 2
                     currentValue = 50
                 }
 
@@ -103,7 +102,6 @@ class ConfigurationBuilderTest {
                     description = "B-D"
                     min = 1
                     max = 100
-                    step = 2
                     currentValue = 50
                 }
 
@@ -246,23 +244,6 @@ class ConfigurationBuilderTest {
                     description = "B-D"
                     min = 100
                     max = 100
-                    step = 2
-                    currentValue = 50
-                }
-            }
-        }
-    }
-
-    @Test(expected = IllegalStateException::class)
-    fun `verify zero step`() {
-        appConfig {
-            config("DEV") {
-                range {
-                    key = "B"
-                    description = "B-D"
-                    min = 1
-                    max = 100
-                    step = 0
                     currentValue = 50
                 }
             }
@@ -278,7 +259,6 @@ class ConfigurationBuilderTest {
                     description = "B-D"
                     min = 1
                     max = 100
-                    step = 1
                     currentValue = 0
                 }
             }
@@ -294,7 +274,6 @@ class ConfigurationBuilderTest {
                     description = "B-D"
                     min = 1
                     max = 100
-                    step = 1
                     currentValue = 101
                 }
             }
@@ -317,7 +296,6 @@ class ConfigurationBuilderTest {
                     description = "B-D"
                     min = 1
                     max = 100
-                    step = 2
                     currentValue = 50
                 }
 

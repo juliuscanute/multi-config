@@ -5,9 +5,8 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
-import androidx.test.runner.AndroidJUnit4
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import builder.appConfig
-import configuration.R
 import org.junit.After
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -16,6 +15,7 @@ import org.koin.core.context.loadKoinModules
 import org.koin.core.context.stopKoin
 import org.koin.dsl.module
 import org.koin.test.KoinTest
+import com.juliuscanute.multiconfig.R
 
 @RunWith(AndroidJUnit4::class)
 class MainActivityTest : KoinTest {

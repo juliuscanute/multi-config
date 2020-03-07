@@ -19,6 +19,7 @@ class ConfigurationRepository(
 
     init {
         store = HashMap()
+        loadConfiguration()
     }
 
     fun getEnvironmentConfiguration(): EnvironmentConfigurationImmutable = loadConfiguration()
