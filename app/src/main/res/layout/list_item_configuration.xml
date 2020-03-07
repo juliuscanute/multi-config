@@ -7,7 +7,7 @@
 
         <variable
             name="configuration"
-            type="builder.Configuration" />
+            type="com.juliuscanute.multiconfig.ui.adapter.ConfigurationViewDataModel" />
 
         <variable
             name="model"
@@ -15,11 +15,13 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/config_item_layout"
         android:background="?android:selectableItemBackground"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="@{() -> model.moveToConfigurationDetail(configuration.environment)}"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:itemSelectedState="@{configuration.selected}">
 
         <TextView
             android:textAppearance="?attr/subtitle"
@@ -35,7 +37,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginLeft="16dp"
-            tools:text="Dev"/>
+            tools:text="Dev" />
 
         <ImageView
             android:layout_width="wrap_content"

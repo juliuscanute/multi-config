@@ -3,10 +3,12 @@ package com.juliuscanute.multiconfig.ui
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import builder.ApplicationConfiguration
 import builder.EnvironmentConfigurationImmutable
-import com.juliuscanute.multiconfig.ui.state.ConfigurationState
 import com.juliuscanute.multiconfig.base.Event
+import com.juliuscanute.multiconfig.ui.adapter.ConfigurationViewDataModel
 import com.juliuscanute.multiconfig.ui.adapter.ItemState
+import com.juliuscanute.multiconfig.ui.state.ConfigurationState
 import model.ConfigurationManager
 import model.ConfigurationRepository
 import model.Item
@@ -27,11 +29,19 @@ class MainActivityViewModel(private val configManager: ConfigurationManager) : V
         )
     }
 
+    fun selectNewConfiguration(selected: Int) {
+        configManager.saveConfig(selected)
+        loadApplicationConfiguration()
+    }
+
     fun loadApplicationConfiguration() {
+        val applicationConfiguration = configManager.getApplicationConfiguration()
+        val selectedConfig = configManager.getConfig()
+        val selectedIndex = if (selectedConfig < 0) 0 else selectedConfig
         state.postValue(
             Event(
                 ConfigurationState.LoadApplicationConfigurationState(
-                    configManager.getApplicationConfiguration()
+                    applicationConfiguration.mapState(selectedIndex)
                 )
             )
         )
@@ -55,7 +65,7 @@ class MainActivityViewModel(private val configManager: ConfigurationManager) : V
         )
     }
 
-    fun showEditableDialog(description: String, value: String, key: String){
+    fun showEditableDialog(description: String, value: String, key: String) {
         state.postValue(
             Event(
                 ConfigurationState.ShowEditableState(
@@ -96,6 +106,15 @@ class MainActivityViewModel(private val configManager: ConfigurationManager) : V
                 )
             )
         )
+    }
+}
+
+fun ApplicationConfiguration.mapState(selectedIndex: Int = 0): List<ConfigurationViewDataModel> {
+    return this.mapIndexed { index, configuration ->
+        if (selectedIndex == index)
+            ConfigurationViewDataModel(index = index, environment = configuration.environment, selected = true)
+        else
+            ConfigurationViewDataModel(index = index, environment = configuration.environment, selected = false)
     }
 }
 

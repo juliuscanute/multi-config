@@ -6,7 +6,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import builder.Configuration
 import com.juliuscanute.multiconfig.R
 import com.juliuscanute.multiconfig.databinding.ListItemConfigurationBinding
 import com.juliuscanute.multiconfig.ui.MainActivityViewModel
@@ -14,7 +13,7 @@ import com.juliuscanute.multiconfig.ui.MainActivityViewModel
 class ConfigurationAdapter(
     private val viewModel: MainActivityViewModel
 ) :
-    ListAdapter<Configuration, ConfigurationAdapter.ConfigurationHolder>(
+    ListAdapter<ConfigurationViewDataModel, ConfigurationAdapter.ConfigurationHolder>(
         ConfigurationDiffUtil()
     ) {
 
@@ -30,7 +29,8 @@ class ConfigurationAdapter(
     }
 
     override fun onBindViewHolder(holder: ConfigurationHolder, position: Int) {
-        holder.binding.configuration = getItem(position)
+        val config = getItem(position)
+        holder.binding.configuration = config
         holder.binding.model = viewModel
     }
 
@@ -39,14 +39,16 @@ class ConfigurationAdapter(
 
 }
 
-class ConfigurationDiffUtil : DiffUtil.ItemCallback<Configuration>() {
-    override fun areItemsTheSame(oldItem: Configuration, newItem: Configuration): Boolean {
+class ConfigurationDiffUtil : DiffUtil.ItemCallback<ConfigurationViewDataModel>() {
+    override fun areItemsTheSame(oldItem: ConfigurationViewDataModel, newItem: ConfigurationViewDataModel): Boolean {
         return oldItem.environment == newItem.environment
 
     }
 
-    override fun areContentsTheSame(oldItem: Configuration, newItem: Configuration): Boolean {
+    override fun areContentsTheSame(oldItem: ConfigurationViewDataModel, newItem: ConfigurationViewDataModel): Boolean {
         return oldItem == newItem
     }
 
 }
+
+data class ConfigurationViewDataModel(val index: Int, val environment: String, var selected: Boolean = false)
