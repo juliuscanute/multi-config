@@ -7,11 +7,11 @@
 
         <variable
             name="model"
-            type="configuration.ItemState.RangeState" />
+            type="com.juliuscanute.multiconfig.ui.adapter.ItemState" />
 
         <variable
             name="viewModel"
-            type="configuration.MainActivityViewModel" />
+            type="com.juliuscanute.multiconfig.ui.MainActivityViewModel" />
 
     </data>
 
