@@ -5,8 +5,9 @@ import com.juliuscanute.multiconfig.ui.adapter.ItemState
 import model.Item
 
 sealed class ConfigurationState {
+    data class ButtonConfigurationState(val environment: String) : ConfigurationState()
     data class SelectedConfigurationState(val environment: String) : ConfigurationState()
-    data class LoadApplicationConfigurationState(val items: List<ConfigurationViewDataModel>, val selected: String = "") :
+    data class LoadApplicationConfigurationState(val items: List<ConfigurationViewDataModel>) :
         ConfigurationState()
 
     data class LoadEnvironmentConfigurationState(val items: List<ItemState>) : ConfigurationState()

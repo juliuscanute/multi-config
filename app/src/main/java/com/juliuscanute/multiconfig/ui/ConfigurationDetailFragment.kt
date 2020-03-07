@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
 import com.juliuscanute.multiconfig.R
-import com.juliuscanute.multiconfig.base.observeEvent
+import com.juliuscanute.multiconfig.base.observeSingleEvent
 import com.juliuscanute.multiconfig.databinding.ConfigurationDetailFragmentBinding
 import com.juliuscanute.multiconfig.ui.adapter.ConfigurationDetailAdapter
 import com.juliuscanute.multiconfig.ui.state.ConfigurationState
@@ -44,7 +44,7 @@ class ConfigurationDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mainActivityViewModel.loadEnvironmentConfiguration(args.environment)
-        mainActivityViewModel.actions.observeEvent(this) { state ->
+        mainActivityViewModel.privateActions.observeSingleEvent(this) { state ->
             when (state) {
                 is ConfigurationState.LoadEnvironmentConfigurationState -> {
                     adapter.submitList(state.items)

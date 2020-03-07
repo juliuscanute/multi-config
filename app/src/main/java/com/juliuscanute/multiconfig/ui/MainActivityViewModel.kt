@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import builder.ApplicationConfiguration
 import builder.EnvironmentConfigurationImmutable
-import com.juliuscanute.multiconfig.base.Event
 import com.juliuscanute.multiconfig.base.MultiObserverEvent
 import com.juliuscanute.multiconfig.base.SingleObserverEvent
 import com.juliuscanute.multiconfig.ui.adapter.ConfigurationViewDataModel
@@ -17,15 +16,25 @@ import model.Item
 import model.UiControlsModel
 
 class MainActivityViewModel(private val configManager: ConfigurationManager) : ViewModel() {
-    private val state = MutableLiveData<Event<ConfigurationState>>()
+    private val privateState = MutableLiveData<SingleObserverEvent<ConfigurationState>>()
+    private val commonState = MutableLiveData<MultiObserverEvent<ConfigurationState>>()
     private lateinit var manager: ConfigurationRepository
-    val actions: LiveData<Event<ConfigurationState>> = state
+
+    val privateActions: LiveData<SingleObserverEvent<ConfigurationState>> = privateState
+    val commonActions: LiveData<MultiObserverEvent<ConfigurationState>> = commonState
 
     fun moveToConfigurationDetail(environment: String) {
-        state.postValue(
+        privateState.postValue(
             SingleObserverEvent(
                 ConfigurationState.SelectedConfigurationState(
                     environment = environment
+                )
+            )
+        )
+        commonState.postValue(
+            MultiObserverEvent(
+                ConfigurationState.ButtonConfigurationState(
+                    environment
                 )
             )
         )
@@ -41,10 +50,16 @@ class MainActivityViewModel(private val configManager: ConfigurationManager) : V
         val applicationConfiguration = configManager.getApplicationConfiguration()
         val selectedConfig = configManager.getConfig()
         val selectedIndex = if (selectedConfig < 0) 0 else selectedConfig
-        state.postValue(
-            MultiObserverEvent(
+        privateState.postValue(
+            SingleObserverEvent(
                 ConfigurationState.LoadApplicationConfigurationState(
-                    applicationConfiguration.mapState(selectedIndex),
+                    applicationConfiguration.mapState(selectedIndex)
+                )
+            )
+        )
+        commonState.postValue(
+            MultiObserverEvent(
+                ConfigurationState.ButtonConfigurationState(
                     applicationConfiguration[selectedIndex].environment
                 )
             )
@@ -57,7 +72,7 @@ class MainActivityViewModel(private val configManager: ConfigurationManager) : V
     }
 
     fun showChoiceDialog(description: String, items: ArrayList<Item>, currentSelection: Int, key: String) {
-        state.postValue(
+        privateState.postValue(
             SingleObserverEvent(
                 ConfigurationState.ShowChoiceConfigurationState(
                     description = description,
@@ -70,7 +85,7 @@ class MainActivityViewModel(private val configManager: ConfigurationManager) : V
     }
 
     fun showEditableDialog(description: String, value: String, key: String) {
-        state.postValue(
+        privateState.postValue(
             SingleObserverEvent(
                 ConfigurationState.ShowEditableState(
                     description = description,
@@ -103,7 +118,7 @@ class MainActivityViewModel(private val configManager: ConfigurationManager) : V
 
     private fun loadUpdatedState() {
         val updatedConfig = manager.getEnvironmentConfiguration()
-        state.postValue(
+        privateState.postValue(
             SingleObserverEvent(
                 ConfigurationState.LoadEnvironmentConfigurationState(
                     updatedConfig.mapState()

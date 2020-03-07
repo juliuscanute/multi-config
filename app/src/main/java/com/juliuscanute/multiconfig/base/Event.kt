@@ -28,11 +28,11 @@ open class MultiObserverEvent<out T>(private val content: T) : Event<T> {
 }
 
 @MainThread
-inline fun <T> LiveData<Event<T>>.observeEvent(
+inline fun <T> LiveData<SingleObserverEvent<T>>.observeSingleEvent(
     owner: LifecycleOwner,
     crossinline onChanged: (T) -> Unit
-): Observer<Event<T>> {
-    val wrappedObserver = Observer<Event<T>> { t ->
+): Observer<SingleObserverEvent<T>> {
+    val wrappedObserver = Observer<SingleObserverEvent<T>> { t ->
         t.getContent()?.let {
             onChanged.invoke(it)
         }
@@ -40,3 +40,18 @@ inline fun <T> LiveData<Event<T>>.observeEvent(
     observe(owner, wrappedObserver)
     return wrappedObserver
 }
+
+@MainThread
+inline fun <T> LiveData<MultiObserverEvent<T>>.observeMultiEvent(
+    owner: LifecycleOwner,
+    crossinline onChanged: (T) -> Unit
+): Observer<MultiObserverEvent<T>> {
+    val wrappedObserver = Observer<MultiObserverEvent<T>> { t ->
+        t.getContent()?.let {
+            onChanged.invoke(it)
+        }
+    }
+    observe(owner, wrappedObserver)
+    return wrappedObserver
+}
+
