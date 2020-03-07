@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -21,6 +22,7 @@
         android:onClick="@{() -> viewModel.showChoiceDialog(model.description, model.items, model.currentChoiceIndex, model.key)}">
 
         <TextView
+            android:textAppearance="?attr/textAppearanceOverline"
             android:id="@+id/choice_overline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -29,9 +31,11 @@
             android:text="@{model.description}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginLeft="16dp" />
+            android:layout_marginLeft="16dp"
+            tools:text="Night Mode" />
 
         <TextView
+            android:textAppearance="?attr/textAppearanceSubtitle1"
             android:id="@+id/choice_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -42,6 +46,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/choice_overline"
-            android:layout_marginLeft="16dp" />
+            android:layout_marginLeft="16dp"
+            tools:text="On"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

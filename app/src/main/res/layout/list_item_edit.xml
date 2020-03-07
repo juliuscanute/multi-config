@@ -21,6 +21,7 @@
         android:onClick="@{() -> viewModel.showEditableDialog(model.description, model.currentValue, model.key)}">
 
         <TextView
+            android:textAppearance="?attr/textAppearanceOverline"
             android:id="@+id/edit_overline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -32,6 +33,7 @@
             android:layout_marginLeft="16dp" />
 
         <TextView
+            android:textAppearance="?attr/textAppearanceSubtitle1"
             android:id="@+id/edit_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
