@@ -38,6 +38,7 @@ class ConfigurationDetailFragment : Fragment() {
         binding.configurationDetailList.layoutManager = LinearLayoutManager(requireContext())
         adapter = ConfigurationDetailAdapter(mainActivityViewModel)
         binding.configurationDetailList.adapter = adapter
+        binding.configurationDetailList.addItemDecoration(ItemDivider(requireContext(), R.drawable.item_divider))
         return binding.root
     }
 

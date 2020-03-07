@@ -18,15 +18,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:checkable="true"
-        android:layout_margin="4dp">
+        android:layout_margin="4dp"
+        android:onClick="@{() -> model.moveToConfigurationDetail(configuration.environment)}"
+        android:onLongClick="@{() -> model.selectNewConfiguration(configuration.index)}"
+        app:rippleColor="?attr/colorSecondary">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/config_item_layout"
-            android:background="?android:selectableItemBackground"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="@{() -> model.moveToConfigurationDetail(configuration.environment)}"
-            android:onLongClick="@{() -> model.selectNewConfiguration(configuration.index)}"
             android:orientation="vertical"
             app:itemSelectedState="@{configuration.selected}">
 
