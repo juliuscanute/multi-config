@@ -1,4 +1,4 @@
-package com.juliuscanute.multiconfig.ui
+package com.juliuscanute.multiconfig.ui.configdetail
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,14 +15,18 @@ import com.google.android.material.textfield.TextInputEditText
 import com.juliuscanute.multiconfig.R
 import com.juliuscanute.multiconfig.base.observeSingleEvent
 import com.juliuscanute.multiconfig.databinding.ConfigurationDetailFragmentBinding
+import com.juliuscanute.multiconfig.ui.ConfigurationDetailFragmentArgs
+import com.juliuscanute.multiconfig.ui.ItemDivider
+import com.juliuscanute.multiconfig.ui.host.MainActivityViewModel
 import com.juliuscanute.multiconfig.ui.adapter.ConfigurationDetailAdapter
-import com.juliuscanute.multiconfig.ui.state.ConfigurationState
 import model.Item
+import org.koin.android.viewmodel.ext.android.viewModel
 
 
 class ConfigurationDetailFragment : Fragment() {
 
     private val mainActivityViewModel: MainActivityViewModel by activityViewModels()
+    private val configurationDetailViewModel: ConfigurationDetailViewModel by viewModel()
     lateinit var adapter: ConfigurationDetailAdapter
     private val args: ConfigurationDetailFragmentArgs by navArgs()
     override fun onCreateView(
@@ -36,21 +40,26 @@ class ConfigurationDetailFragment : Fragment() {
             false
         )
         binding.configurationDetailList.layoutManager = LinearLayoutManager(requireContext())
-        adapter = ConfigurationDetailAdapter(mainActivityViewModel)
+        adapter = ConfigurationDetailAdapter(configurationDetailViewModel)
         binding.configurationDetailList.adapter = adapter
-        binding.configurationDetailList.addItemDecoration(ItemDivider(requireContext(), R.drawable.item_divider))
+        binding.configurationDetailList.addItemDecoration(
+            ItemDivider(
+                requireContext(),
+                R.drawable.item_divider
+            )
+        )
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mainActivityViewModel.loadEnvironmentConfiguration(args.environment)
-        mainActivityViewModel.privateActions.observeSingleEvent(this) { state ->
+        configurationDetailViewModel.loadEnvironmentConfiguration(args.environment)
+        configurationDetailViewModel.privateActions.observeSingleEvent(this) { state ->
             when (state) {
-                is ConfigurationState.LoadEnvironmentConfigurationState -> {
+                is ConfigurationDetailState.LoadEnvironmentConfigurationState -> {
                     adapter.submitList(state.items)
                 }
-                is ConfigurationState.ShowChoiceConfigurationState -> {
+                is ConfigurationDetailState.ShowChoiceConfigurationState -> {
                     showChoiceItems(
                         description = state.description,
                         items = state.items,
@@ -58,7 +67,7 @@ class ConfigurationDetailFragment : Fragment() {
                         key = state.key
                     )
                 }
-                is ConfigurationState.ShowEditableState -> {
+                is ConfigurationDetailState.ShowEditableState -> {
                     showEditable(description = state.description, value = state.value, key = state.key)
                 }
             }
@@ -70,7 +79,10 @@ class ConfigurationDetailFragment : Fragment() {
             items.map { it.description }.toTypedArray(),
             currentSelection
         ) { dialog, which ->
-            mainActivityViewModel.savePairConfiguration(key = key, currentValue = items[which].description to which)
+            configurationDetailViewModel.savePairConfiguration(
+                key = key,
+                currentValue = items[which].description to which
+            )
             dialog.dismiss()
         }.setTitle(description).setNegativeButton(android.R.string.cancel) { dialog, _ -> dialog.dismiss() }.show()
     }
@@ -86,7 +98,7 @@ class ConfigurationDetailFragment : Fragment() {
             .setView(view)
             .setNegativeButton(android.R.string.cancel) { dialog, _ -> dialog.dismiss() }
             .setPositiveButton(android.R.string.ok) { dialog, _ ->
-                mainActivityViewModel.saveStringConfiguration(key, textInput.text.toString())
+                configurationDetailViewModel.saveStringConfiguration(key, textInput.text.toString())
                 dialog.dismiss()
             }.show()
     }

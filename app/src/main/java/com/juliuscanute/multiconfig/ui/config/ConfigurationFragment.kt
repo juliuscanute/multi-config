@@ -1,4 +1,4 @@
-package com.juliuscanute.multiconfig.ui
+package com.juliuscanute.multiconfig.ui.config
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,13 +12,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.juliuscanute.multiconfig.R
 import com.juliuscanute.multiconfig.base.observeSingleEvent
 import com.juliuscanute.multiconfig.databinding.ConfigurationFragmentBinding
+import com.juliuscanute.multiconfig.ui.ConfigurationFragmentDirections
+import com.juliuscanute.multiconfig.ui.host.MainActivityViewModel
 import com.juliuscanute.multiconfig.ui.adapter.ConfigurationAdapter
-import com.juliuscanute.multiconfig.ui.state.ConfigurationState
+import org.koin.android.viewmodel.ext.android.viewModel
 
 
 class ConfigurationFragment : Fragment() {
 
     private val mainActivityViewModel: MainActivityViewModel by activityViewModels()
+    private val configurationViewModel: ConfigurationViewModel by viewModel()
 
     private lateinit var adapter: ConfigurationAdapter
 
@@ -33,17 +36,18 @@ class ConfigurationFragment : Fragment() {
             false
         )
         binding.configurationList.layoutManager = LinearLayoutManager(requireContext())
-        adapter = ConfigurationAdapter(mainActivityViewModel)
+        adapter = ConfigurationAdapter(configurationViewModel)
         binding.configurationList.adapter = adapter
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mainActivityViewModel.loadApplicationConfiguration()
-        mainActivityViewModel.privateActions.observeSingleEvent(this) { state ->
+        configurationViewModel.loadApplicationConfiguration()
+        configurationViewModel.privateActions.observeSingleEvent(this) { state ->
             when (state) {
                 is ConfigurationState.SelectedConfigurationState -> {
+                    mainActivityViewModel.selectConfiguration(environment = state.environment)
                     val action =
                         ConfigurationFragmentDirections.actionConfigurationFragmentToConfigurationDetailFragment(
                             environment = state.environment
@@ -51,6 +55,7 @@ class ConfigurationFragment : Fragment() {
                     findNavController().navigate(action)
                 }
                 is ConfigurationState.LoadApplicationConfigurationState -> {
+                    mainActivityViewModel.selectConfiguration(environment = state.environment)
                     adapter.submitList(state.items)
                 }
             }

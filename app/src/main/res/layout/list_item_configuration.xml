@@ -11,7 +11,7 @@
 
         <variable
             name="model"
-            type="com.juliuscanute.multiconfig.ui.MainActivityViewModel" />
+            type="com.juliuscanute.multiconfig.ui.config.ConfigurationViewModel" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

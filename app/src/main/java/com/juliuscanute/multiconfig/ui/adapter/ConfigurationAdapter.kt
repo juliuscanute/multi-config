@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.juliuscanute.multiconfig.R
 import com.juliuscanute.multiconfig.databinding.ListItemConfigurationBinding
-import com.juliuscanute.multiconfig.ui.MainActivityViewModel
+import com.juliuscanute.multiconfig.ui.config.ConfigurationViewModel
 
 class ConfigurationAdapter(
-    private val viewModel: MainActivityViewModel
+    private val viewModel: ConfigurationViewModel
 ) :
     ListAdapter<ConfigurationViewDataModel, ConfigurationAdapter.ConfigurationHolder>(
         ConfigurationDiffUtil()

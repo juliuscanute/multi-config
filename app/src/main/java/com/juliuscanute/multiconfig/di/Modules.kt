@@ -1,7 +1,9 @@
 package com.juliuscanute.multiconfig.di
 
-import com.juliuscanute.multiconfig.ui.MainActivityViewModel
 import com.juliuscanute.multiconfig.setup
+import com.juliuscanute.multiconfig.ui.configdetail.ConfigurationDetailViewModel
+import com.juliuscanute.multiconfig.ui.config.ConfigurationViewModel
+import com.juliuscanute.multiconfig.ui.host.MainActivityViewModel
 import model.ConfigurationManager
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.viewmodel.dsl.viewModel
@@ -12,5 +14,7 @@ val dependencyModule = module {
     single { setup() }
     single { UserSettings().userSettings(androidContext()) }
     single { ConfigurationManager(get(), get()) }
-    viewModel { MainActivityViewModel(get()) }
+    viewModel { ConfigurationDetailViewModel(get()) }
+    viewModel { ConfigurationViewModel(get()) }
+    viewModel { MainActivityViewModel() }
 }

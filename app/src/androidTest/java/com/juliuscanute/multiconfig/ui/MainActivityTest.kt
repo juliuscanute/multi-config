@@ -16,6 +16,8 @@ import org.koin.core.context.stopKoin
 import org.koin.dsl.module
 import org.koin.test.KoinTest
 import com.juliuscanute.multiconfig.R
+import com.juliuscanute.multiconfig.ui.host.MainActivity
+import com.juliuscanute.multiconfig.ui.host.MainActivityViewModel
 
 @RunWith(AndroidJUnit4::class)
 class MainActivityTest : KoinTest {

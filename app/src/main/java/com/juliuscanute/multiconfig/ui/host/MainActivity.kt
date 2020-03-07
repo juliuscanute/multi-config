@@ -28,7 +28,7 @@
  * THE SOFTWARE.
  */
 
-package com.juliuscanute.multiconfig.ui
+package com.juliuscanute.multiconfig.ui.host
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -36,7 +36,6 @@ import androidx.databinding.DataBindingUtil
 import com.juliuscanute.multiconfig.R
 import com.juliuscanute.multiconfig.base.observeMultiEvent
 import com.juliuscanute.multiconfig.databinding.ActivityMainBinding
-import com.juliuscanute.multiconfig.ui.state.ConfigurationState
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
@@ -48,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         val binding = DataBindingUtil.inflate<ActivityMainBinding>(layoutInflater, R.layout.activity_main, null, false)
         mainActivityViewModel.commonActions.observeMultiEvent(this) { state ->
             when (state) {
-                is ConfigurationState.ButtonConfigurationState -> {
+                is CommonState.ButtonConfigurationState -> {
                     binding.materialButton.text = getString(R.string.launch_with, state.environment)
                     binding.toolbar.title = getString(R.string.app_name_with, state.environment)
                 }

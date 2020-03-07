@@ -1,70 +1,21 @@
-package com.juliuscanute.multiconfig.ui
+package com.juliuscanute.multiconfig.ui.configdetail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import builder.ApplicationConfiguration
 import builder.EnvironmentConfigurationImmutable
-import com.juliuscanute.multiconfig.base.MultiObserverEvent
 import com.juliuscanute.multiconfig.base.SingleObserverEvent
-import com.juliuscanute.multiconfig.ui.adapter.ConfigurationViewDataModel
 import com.juliuscanute.multiconfig.ui.adapter.ItemState
-import com.juliuscanute.multiconfig.ui.state.ConfigurationState
 import model.ConfigurationManager
 import model.ConfigurationRepository
 import model.Item
 import model.UiControlsModel
 
-class MainActivityViewModel(private val configManager: ConfigurationManager) : ViewModel() {
-    private val privateState = MutableLiveData<SingleObserverEvent<ConfigurationState>>()
-    private val commonState = MutableLiveData<MultiObserverEvent<ConfigurationState>>()
+class ConfigurationDetailViewModel(private val configManager: ConfigurationManager) : ViewModel() {
+    private val privateState = MutableLiveData<SingleObserverEvent<ConfigurationDetailState>>()
     private lateinit var manager: ConfigurationRepository
 
-    val privateActions: LiveData<SingleObserverEvent<ConfigurationState>> = privateState
-    val commonActions: LiveData<MultiObserverEvent<ConfigurationState>> = commonState
-
-    fun moveToConfigurationDetail(environment: String) {
-        privateState.postValue(
-            SingleObserverEvent(
-                ConfigurationState.SelectedConfigurationState(
-                    environment = environment
-                )
-            )
-        )
-        commonState.postValue(
-            MultiObserverEvent(
-                ConfigurationState.ButtonConfigurationState(
-                    environment
-                )
-            )
-        )
-    }
-
-    fun selectNewConfiguration(selected: Int): Boolean {
-        configManager.saveConfig(selected)
-        loadApplicationConfiguration()
-        return true
-    }
-
-    fun loadApplicationConfiguration() {
-        val applicationConfiguration = configManager.getApplicationConfiguration()
-        val selectedConfig = configManager.getConfig()
-        val selectedIndex = if (selectedConfig < 0) 0 else selectedConfig
-        privateState.postValue(
-            SingleObserverEvent(
-                ConfigurationState.LoadApplicationConfigurationState(
-                    applicationConfiguration.mapState(selectedIndex)
-                )
-            )
-        )
-        commonState.postValue(
-            MultiObserverEvent(
-                ConfigurationState.ButtonConfigurationState(
-                    applicationConfiguration[selectedIndex].environment
-                )
-            )
-        )
-    }
+    val privateActions: LiveData<SingleObserverEvent<ConfigurationDetailState>> = privateState
 
     fun loadEnvironmentConfiguration(environment: String) {
         manager = configManager.getConfiguration(environment)
@@ -74,7 +25,7 @@ class MainActivityViewModel(private val configManager: ConfigurationManager) : V
     fun showChoiceDialog(description: String, items: ArrayList<Item>, currentSelection: Int, key: String) {
         privateState.postValue(
             SingleObserverEvent(
-                ConfigurationState.ShowChoiceConfigurationState(
+                ConfigurationDetailState.ShowChoiceConfigurationState(
                     description = description,
                     items = items,
                     currentSelection = currentSelection,
@@ -87,7 +38,7 @@ class MainActivityViewModel(private val configManager: ConfigurationManager) : V
     fun showEditableDialog(description: String, value: String, key: String) {
         privateState.postValue(
             SingleObserverEvent(
-                ConfigurationState.ShowEditableState(
+                ConfigurationDetailState.ShowEditableState(
                     description = description,
                     value = value,
                     key = key
@@ -120,20 +71,11 @@ class MainActivityViewModel(private val configManager: ConfigurationManager) : V
         val updatedConfig = manager.getEnvironmentConfiguration()
         privateState.postValue(
             SingleObserverEvent(
-                ConfigurationState.LoadEnvironmentConfigurationState(
+                ConfigurationDetailState.LoadEnvironmentConfigurationState(
                     updatedConfig.mapState()
                 )
             )
         )
-    }
-}
-
-fun ApplicationConfiguration.mapState(selectedIndex: Int = 0): List<ConfigurationViewDataModel> {
-    return this.mapIndexed { index, configuration ->
-        if (selectedIndex == index)
-            ConfigurationViewDataModel(index = index, environment = configuration.environment, selected = true)
-        else
-            ConfigurationViewDataModel(index = index, environment = configuration.environment, selected = false)
     }
 }
 

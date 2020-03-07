@@ -12,11 +12,11 @@ import com.juliuscanute.multiconfig.databinding.ListItemChoiceBinding
 import com.juliuscanute.multiconfig.databinding.ListItemEditBinding
 import com.juliuscanute.multiconfig.databinding.ListItemRangeBinding
 import com.juliuscanute.multiconfig.databinding.ListItemSwitchBinding
-import com.juliuscanute.multiconfig.ui.MainActivityViewModel
+import com.juliuscanute.multiconfig.ui.configdetail.ConfigurationDetailViewModel
 import model.Item
 import model.Projection
 
-class ConfigurationDetailAdapter(private val viewModel: MainActivityViewModel) :
+class ConfigurationDetailAdapter(private val viewModel: ConfigurationDetailViewModel) :
     ListAdapter<ItemState, RecyclerView.ViewHolder>(ConfigurationDetailDiffUtil()) {
 
     enum class UiType(val type: Int) { SWITCH(0), RANGE(1), EDITABLE(2), CHOICE(3) }

@@ -11,7 +11,7 @@
 
         <variable
             name="viewModel"
-            type="com.juliuscanute.multiconfig.ui.MainActivityViewModel" />
+            type="com.juliuscanute.multiconfig.ui.configdetail.ConfigurationDetailViewModel" />
 
     </data>
 
