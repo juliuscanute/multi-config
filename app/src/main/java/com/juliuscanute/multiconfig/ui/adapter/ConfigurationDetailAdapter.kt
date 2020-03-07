@@ -85,7 +85,6 @@ class ConfigurationDetailAdapter(private val viewModel: MainActivityViewModel) :
             }
             (item is ItemState.RangeState) && (holder is ListItemRangeHolder) -> {
                 holder.binding.model = item
-                val offsetMax = item.max - item.min
                 val projection =
                     Projection(userMax = item.max, userMin = item.min)
                 projection.userValue = item.currentValue

@@ -6,7 +6,7 @@
 
         <variable
             name="model"
-            type="com.juliuscanute.multiconfig.ui.adapter.ItemState" />
+            type="com.juliuscanute.multiconfig.ui.adapter.ItemState.ChoiceState" />
 
         <variable
             name="viewModel"
