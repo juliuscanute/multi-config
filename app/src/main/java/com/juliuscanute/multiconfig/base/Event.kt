@@ -1,16 +1,19 @@
 package com.juliuscanute.multiconfig.base
 
-/**
- * Used as a wrapper for data that is exposed via a LiveData that represents an event.
- */
-open class Event<out T>(private val content: T) {
+import androidx.annotation.MainThread
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
+
+
+interface Event<out T> {
+    fun getContent(): T?
+}
+
+open class SingleObserverEvent<out T>(private val content: T) : Event<T> {
 
     private var hasBeenHandled = false
-
-    /**
-     * Returns the content and prevents its use again.
-     */
-    fun getContentIfNotHandled(): T? {
+    override fun getContent(): T? {
         return if (hasBeenHandled) {
             null
         } else {
@@ -18,9 +21,22 @@ open class Event<out T>(private val content: T) {
             content
         }
     }
+}
 
-    /**
-     * Returns the content, even if it's already been handled.
-     */
-    fun peekContent(): T = content
+open class MultiObserverEvent<out T>(private val content: T) : Event<T> {
+    override fun getContent(): T? = content
+}
+
+@MainThread
+inline fun <T> LiveData<Event<T>>.observeEvent(
+    owner: LifecycleOwner,
+    crossinline onChanged: (T) -> Unit
+): Observer<Event<T>> {
+    val wrappedObserver = Observer<Event<T>> { t ->
+        t.getContent()?.let {
+            onChanged.invoke(it)
+        }
+    }
+    observe(owner, wrappedObserver)
+    return wrappedObserver
 }

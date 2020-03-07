@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel
 import builder.ApplicationConfiguration
 import builder.EnvironmentConfigurationImmutable
 import com.juliuscanute.multiconfig.base.Event
+import com.juliuscanute.multiconfig.base.MultiObserverEvent
+import com.juliuscanute.multiconfig.base.SingleObserverEvent
 import com.juliuscanute.multiconfig.ui.adapter.ConfigurationViewDataModel
 import com.juliuscanute.multiconfig.ui.adapter.ItemState
 import com.juliuscanute.multiconfig.ui.state.ConfigurationState
@@ -21,7 +23,7 @@ class MainActivityViewModel(private val configManager: ConfigurationManager) : V
 
     fun moveToConfigurationDetail(environment: String) {
         state.postValue(
-            Event(
+            SingleObserverEvent(
                 ConfigurationState.SelectedConfigurationState(
                     environment = environment
                 )
@@ -29,9 +31,10 @@ class MainActivityViewModel(private val configManager: ConfigurationManager) : V
         )
     }
 
-    fun selectNewConfiguration(selected: Int) {
+    fun selectNewConfiguration(selected: Int): Boolean {
         configManager.saveConfig(selected)
         loadApplicationConfiguration()
+        return true
     }
 
     fun loadApplicationConfiguration() {
@@ -39,9 +42,10 @@ class MainActivityViewModel(private val configManager: ConfigurationManager) : V
         val selectedConfig = configManager.getConfig()
         val selectedIndex = if (selectedConfig < 0) 0 else selectedConfig
         state.postValue(
-            Event(
+            MultiObserverEvent(
                 ConfigurationState.LoadApplicationConfigurationState(
-                    applicationConfiguration.mapState(selectedIndex)
+                    applicationConfiguration.mapState(selectedIndex),
+                    applicationConfiguration[selectedIndex].environment
                 )
             )
         )
@@ -54,7 +58,7 @@ class MainActivityViewModel(private val configManager: ConfigurationManager) : V
 
     fun showChoiceDialog(description: String, items: ArrayList<Item>, currentSelection: Int, key: String) {
         state.postValue(
-            Event(
+            SingleObserverEvent(
                 ConfigurationState.ShowChoiceConfigurationState(
                     description = description,
                     items = items,
@@ -67,7 +71,7 @@ class MainActivityViewModel(private val configManager: ConfigurationManager) : V
 
     fun showEditableDialog(description: String, value: String, key: String) {
         state.postValue(
-            Event(
+            SingleObserverEvent(
                 ConfigurationState.ShowEditableState(
                     description = description,
                     value = value,
@@ -100,7 +104,7 @@ class MainActivityViewModel(private val configManager: ConfigurationManager) : V
     private fun loadUpdatedState() {
         val updatedConfig = manager.getEnvironmentConfiguration()
         state.postValue(
-            Event(
+            SingleObserverEvent(
                 ConfigurationState.LoadEnvironmentConfigurationState(
                     updatedConfig.mapState()
                 )

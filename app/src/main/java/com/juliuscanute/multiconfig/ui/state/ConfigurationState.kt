@@ -6,7 +6,7 @@ import model.Item
 
 sealed class ConfigurationState {
     data class SelectedConfigurationState(val environment: String) : ConfigurationState()
-    data class LoadApplicationConfigurationState(val items: List<ConfigurationViewDataModel>) :
+    data class LoadApplicationConfigurationState(val items: List<ConfigurationViewDataModel>, val selected: String = "") :
         ConfigurationState()
 
     data class LoadEnvironmentConfigurationState(val items: List<ItemState>) : ConfigurationState()

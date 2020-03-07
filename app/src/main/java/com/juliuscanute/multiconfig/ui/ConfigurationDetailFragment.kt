@@ -7,22 +7,22 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.observe
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
 import com.juliuscanute.multiconfig.R
+import com.juliuscanute.multiconfig.base.observeEvent
 import com.juliuscanute.multiconfig.databinding.ConfigurationDetailFragmentBinding
 import com.juliuscanute.multiconfig.ui.adapter.ConfigurationDetailAdapter
 import com.juliuscanute.multiconfig.ui.state.ConfigurationState
 import model.Item
-import org.koin.android.viewmodel.ext.android.viewModel
 
 
 class ConfigurationDetailFragment : Fragment() {
 
-    private val mainActivityViewModel: MainActivityViewModel by viewModel()
+    private val mainActivityViewModel: MainActivityViewModel by activityViewModels()
     lateinit var adapter: ConfigurationDetailAdapter
     private val args: ConfigurationDetailFragmentArgs by navArgs()
     override fun onCreateView(
@@ -44,8 +44,8 @@ class ConfigurationDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mainActivityViewModel.loadEnvironmentConfiguration(args.environment)
-        mainActivityViewModel.actions.observe(this) {
-            when (val state = it.getContentIfNotHandled()) {
+        mainActivityViewModel.actions.observeEvent(this) { state ->
+            when (state) {
                 is ConfigurationState.LoadEnvironmentConfigurationState -> {
                     adapter.submitList(state.items)
                 }

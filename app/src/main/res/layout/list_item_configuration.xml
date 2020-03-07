@@ -20,6 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="@{() -> model.moveToConfigurationDetail(configuration.environment)}"
+        android:onLongClick="@{() -> model.selectNewConfiguration(configuration.index)}"
         android:orientation="vertical"
         app:itemSelectedState="@{configuration.selected}">
 

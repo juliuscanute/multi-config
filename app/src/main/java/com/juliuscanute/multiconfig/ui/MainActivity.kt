@@ -30,14 +30,24 @@
 
 package com.juliuscanute.multiconfig.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import com.juliuscanute.multiconfig.R
+import com.juliuscanute.multiconfig.base.observeEvent
+import com.juliuscanute.multiconfig.databinding.ActivityMainBinding
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
+    private val mainActivityViewModel: MainActivityViewModel by viewModel()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        val binding = DataBindingUtil.inflate<ActivityMainBinding>(layoutInflater, R.layout.activity_main, null, false)
+        mainActivityViewModel.actions.observeEvent(this) {
+
+        }
+        setContentView(binding.root)
     }
 }
