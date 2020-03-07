@@ -14,42 +14,49 @@
             type="com.juliuscanute.multiconfig.ui.MainActivityViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/config_item_layout"
-        android:background="?android:selectableItemBackground"
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{() -> model.moveToConfigurationDetail(configuration.environment)}"
-        android:onLongClick="@{() -> model.selectNewConfiguration(configuration.index)}"
-        android:orientation="vertical"
-        app:itemSelectedState="@{configuration.selected}">
+        android:checkable="true"
+        android:layout_margin="4dp">
 
-        <TextView
-            android:textAppearance="?attr/subtitle"
-            android:id="@+id/environment"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/config_item_layout"
+            android:background="?android:selectableItemBackground"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:text="@{configuration.environment}"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginLeft="16dp"
-            tools:text="Dev" />
+            android:onClick="@{() -> model.moveToConfigurationDetail(configuration.environment)}"
+            android:onLongClick="@{() -> model.selectNewConfiguration(configuration.index)}"
+            android:orientation="vertical"
+            app:itemSelectedState="@{configuration.selected}">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginBottom="16dp"
-            android:src="@drawable/ic_chevron_right_black_24dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginRight="4dp" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:textAppearance="?attr/subtitle"
+                android:id="@+id/environment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:text="@{configuration.environment}"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginLeft="16dp"
+                tools:text="Dev" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="16dp"
+                android:src="@drawable/ic_chevron_right_black_24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginRight="4dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
 </layout>
