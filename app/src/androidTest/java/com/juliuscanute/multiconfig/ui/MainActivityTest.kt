@@ -6,51 +6,17 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import builder.appConfig
-import org.junit.After
+import com.juliuscanute.multiconfig.R
+import com.juliuscanute.multiconfig.ui.host.MainActivity
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.koin.android.viewmodel.dsl.viewModel
-import org.koin.core.context.loadKoinModules
-import org.koin.core.context.stopKoin
-import org.koin.dsl.module
 import org.koin.test.KoinTest
-import com.juliuscanute.multiconfig.R
-import com.juliuscanute.multiconfig.ui.config.ConfigurationViewModel
-import com.juliuscanute.multiconfig.ui.configdetail.ConfigurationDetailViewModel
-import com.juliuscanute.multiconfig.ui.host.MainActivity
-import com.juliuscanute.multiconfig.ui.host.MainActivityViewModel
 
 @RunWith(AndroidJUnit4::class)
 class MainActivityTest : KoinTest {
 
-    @After
-    fun afterTestsRun() {
-        stopKoin()
-    }
-
     @Test
     fun showConfigurationList() {
-        loadKoinModules(module(override = true) {
-            single {
-                appConfig {
-                    config("DEV") {
-
-                    }
-                    config("SIT") {
-
-                    }
-                    config("UAT") {
-
-                    }
-                    config("PROD") {
-
-                    }
-                }
-            }
-            viewModel { ConfigurationDetailViewModel(get()) }
-            viewModel { ConfigurationViewModel(get()) }
-        })
         ActivityScenario.launch(MainActivity::class.java)
         isItemDisplayed(0, "DEV", R.id.environment)
         isItemDisplayed(1, "SIT", R.id.environment)

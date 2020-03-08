@@ -30,7 +30,9 @@
 
 package com.juliuscanute.multiconfig.ui.host
 
+import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -38,14 +40,12 @@ import com.juliuscanute.multiconfig.MultiConfig
 import com.juliuscanute.multiconfig.R
 import com.juliuscanute.multiconfig.base.observeMultiEvent
 import com.juliuscanute.multiconfig.databinding.ActivityMainBinding
-import model.ConfigurationManager
-import org.koin.android.ext.android.inject
-import org.koin.android.viewmodel.ext.android.viewModel
+import com.juliuscanute.multiconfig.utils.IntentInitializer
 
 class MainActivity : AppCompatActivity() {
 
-    private val mainActivityViewModel: MainActivityViewModel by viewModel()
-    private val configManager: ConfigurationManager by inject()
+    private val mainActivityViewModel: MainActivityViewModel by viewModels()
+    private val startIntent: Intent by IntentInitializer()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,9 +58,9 @@ class MainActivity : AppCompatActivity() {
                     binding.toolbar.title = getString(R.string.app_name_with, state.environment)
                 }
                 is CommonState.ButtonTapState -> {
-                    MultiConfig.configuration = configManager.getConfiguration(state.environment)
+                    MultiConfig.environment = state.environment
                     try {
-                        startActivity(MultiConfig.intent)
+                        startActivity(startIntent)
                         finish()
                     } catch (e: Exception) {
                         MaterialAlertDialogBuilder(this)

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -17,12 +18,11 @@ import com.juliuscanute.multiconfig.databinding.ConfigurationDetailFragmentBindi
 import com.juliuscanute.multiconfig.ui.ItemDivider
 import com.juliuscanute.multiconfig.ui.adapter.ConfigurationDetailAdapter
 import model.Item
-import org.koin.android.viewmodel.ext.android.viewModel
 
 
 class ConfigurationDetailFragment : Fragment() {
 
-    private val configurationDetailViewModel: ConfigurationDetailViewModel by viewModel()
+    private val configurationDetailViewModel: ConfigurationDetailViewModel by viewModels()
     lateinit var adapter: ConfigurationDetailAdapter
     private val args: ConfigurationDetailFragmentArgs by navArgs()
     override fun onCreateView(

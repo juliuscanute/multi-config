@@ -6,9 +6,11 @@ import androidx.lifecycle.ViewModel
 import builder.ApplicationConfiguration
 import com.juliuscanute.multiconfig.base.SingleObserverEvent
 import com.juliuscanute.multiconfig.ui.adapter.ConfigurationViewDataModel
+import com.juliuscanute.multiconfig.utils.ConfigManagerInitializer
 import model.ConfigurationManager
 
-class ConfigurationViewModel(private val configManager: ConfigurationManager) : ViewModel() {
+class ConfigurationViewModel : ViewModel() {
+    private val configManager: ConfigurationManager by ConfigManagerInitializer()
     private val privateState = MutableLiveData<SingleObserverEvent<ConfigurationState>>()
 
     val privateActions: LiveData<SingleObserverEvent<ConfigurationState>> = privateState

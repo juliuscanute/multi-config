@@ -6,12 +6,14 @@ import androidx.lifecycle.ViewModel
 import builder.EnvironmentConfigurationImmutable
 import com.juliuscanute.multiconfig.base.SingleObserverEvent
 import com.juliuscanute.multiconfig.ui.adapter.ItemState
+import com.juliuscanute.multiconfig.utils.ConfigManagerInitializer
 import model.ConfigurationManager
 import model.ConfigurationRepository
 import model.Item
 import model.UiControlsModel
 
-class ConfigurationDetailViewModel(private val configManager: ConfigurationManager) : ViewModel() {
+class ConfigurationDetailViewModel : ViewModel() {
+    private val configManager: ConfigurationManager by ConfigManagerInitializer()
     private val privateState = MutableLiveData<SingleObserverEvent<ConfigurationDetailState>>()
     private lateinit var manager: ConfigurationRepository
 

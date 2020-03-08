@@ -1,16 +1,14 @@
 package com.juliuscanute.multiconfig
 
 import android.app.Application
-import com.juliuscanute.multiconfig.di.dependencyModule
-import org.koin.android.ext.koin.androidContext
-import org.koin.core.context.startKoin
+import android.content.Intent
+import com.juliuscanute.multiconfig.di.DependencyHandler
 
 class ConfigurationApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-        startKoin {
-            androidContext(this@ConfigurationApplication)
-            modules(dependencyModule)
+        DependencyHandler(context = this) {
+            appConfig(configuration = setup(), intent = Intent())
         }
     }
 }
