@@ -3,16 +3,13 @@
     package="com.juliuscanute.multiconfig">
 
     <application
-        android:name="com.juliuscanute.multiconfig.ConfigurationApplication"
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.ConfigurationTheme">
         <activity android:name="com.juliuscanute.multiconfig.ui.host.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-                <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
