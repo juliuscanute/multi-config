@@ -16,6 +16,8 @@ import org.koin.core.context.stopKoin
 import org.koin.dsl.module
 import org.koin.test.KoinTest
 import com.juliuscanute.multiconfig.R
+import com.juliuscanute.multiconfig.ui.config.ConfigurationViewModel
+import com.juliuscanute.multiconfig.ui.configdetail.ConfigurationDetailViewModel
 import com.juliuscanute.multiconfig.ui.host.MainActivity
 import com.juliuscanute.multiconfig.ui.host.MainActivityViewModel
 
@@ -46,7 +48,8 @@ class MainActivityTest : KoinTest {
                     }
                 }
             }
-            viewModel { MainActivityViewModel(get()) }
+            viewModel { ConfigurationDetailViewModel(get()) }
+            viewModel { ConfigurationViewModel(get()) }
         })
         ActivityScenario.launch(MainActivity::class.java)
         isItemDisplayed(0, "DEV", R.id.environment)

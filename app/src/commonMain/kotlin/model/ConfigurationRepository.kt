@@ -7,7 +7,7 @@ import com.russhwolf.settings.Settings
 class ConfigurationRepository(
     private val configs: EnvironmentConfiguration,
     private val settings: Settings
-) {
+) : ConfigurationGetter {
 
     companion object {
         const val PREFIX = "ConfigurationRepository"
@@ -24,7 +24,7 @@ class ConfigurationRepository(
 
     fun getEnvironmentConfiguration(): EnvironmentConfigurationImmutable = loadConfiguration()
 
-    fun getConfigInt(userKey: String): Int {
+    override fun getConfigInt(userKey: String): Int {
         val key = PREFIX + userKey
         val storeValue: StoreValue? = store[key]
         checkNotNull(storeValue, { "Unable to find the key" })
@@ -51,7 +51,7 @@ class ConfigurationRepository(
         settings.putInt(userKey, value)
     }
 
-    fun getConfigString(userKey: String): String {
+    override fun getConfigString(userKey: String): String {
         val key = PREFIX + userKey
         val storeValue: StoreValue? = store[key]
         checkNotNull(storeValue, { "Unable to find the key" })
@@ -78,7 +78,7 @@ class ConfigurationRepository(
         settings.putString(userKey, value)
     }
 
-    fun getConfigBoolean(userKey: String): Boolean {
+    override fun getConfigBoolean(userKey: String): Boolean {
         val key = PREFIX + userKey
         val storeValue: StoreValue? = store[key]
         checkNotNull(storeValue, { "Unable to find the key" })
@@ -105,7 +105,7 @@ class ConfigurationRepository(
         settings.putBoolean(userKey, value)
     }
 
-    fun getConfigPair(userKey: String): Pair<String, Int> {
+    override fun getConfigPair(userKey: String): Pair<String, Int> {
         val key = PREFIX + userKey
         val storeValue: StoreValue? = store[key]
         checkNotNull(storeValue, { "Unable to find the key" })
@@ -135,76 +135,76 @@ class ConfigurationRepository(
     }
 
     private fun loadConfiguration() = configs.map {
-            when (it) {
-                is UiControlsModel.Switch -> {
-                    val key = PREFIX + it.key
-                    var newValue: Boolean = false
-                    if (settings.hasKey(key)) {
-                        newValue = settings.getBoolean(key)
-                        store[key] = StoreValue.BooleanValue(value = newValue)
-                    } else {
-                        newValue = it.switchValue
-                        store[key] = StoreValue.BooleanValue(value = newValue)
-                    }
-                    it.copy(switchValue = newValue)
+        when (it) {
+            is UiControlsModel.Switch -> {
+                val key = PREFIX + it.key
+                var newValue: Boolean = false
+                if (settings.hasKey(key)) {
+                    newValue = settings.getBoolean(key)
+                    store[key] = StoreValue.BooleanValue(value = newValue)
+                } else {
+                    newValue = it.switchValue
+                    store[key] = StoreValue.BooleanValue(value = newValue)
                 }
-                is UiControlsModel.Range -> {
-                    val key = PREFIX + it.key
-                    var newValue: Int = 0
-                    if (settings.hasKey(key)) {
-                        newValue = settings.getInt(key)
-                        store[key] = StoreValue.IntValue(value = newValue)
-                    } else {
-                        newValue = it.currentValue
-                        store[key] = StoreValue.IntValue(value = it.currentValue)
-                    }
-                    it.copy(currentValue = newValue)
-                }
-                is UiControlsModel.Editable -> {
-                    val key = PREFIX + it.key
-                    var newValue: String = ""
-                    if (settings.hasKey(key)) {
-                        newValue = settings.getString(key)
-                        store[key] = StoreValue.StringValue(value = newValue)
-                    } else {
-                        newValue = it.currentValue
-                        store[key] = StoreValue.StringValue(value = newValue)
-                    }
-                    it.copy(currentValue = newValue)
-                }
-                is UiControlsModel.Choice -> {
-                    val key = PREFIX + it.key
-                    val keyString = PREFIX + it.key + PAIR_SUFFIX_STRING
-                    val keyInt = PREFIX + it.key + PAIR_SUFFIX_INT
-                    check(it.currentChoiceIndex < it.items.size) { "Choice mush be less than the available items" }
-                    val item = it.items[it.currentChoiceIndex]
-                    var newIntValue: Int = 0
-                    var newStringValue: String = ""
-                    val keyPresent =
-                        settings.hasKey(keyString) and settings.hasKey(
-                            keyInt
-                        )
-
-                    if (keyPresent) {
-                        newStringValue = settings.getString(keyString)
-                        newIntValue = settings.getInt(keyInt)
-                        store[key] =
-                            StoreValue.KeyValue(
-                                key = newStringValue,
-                                value = newIntValue
-                            )
-                    } else {
-                        newIntValue = it.currentChoiceIndex
-                        store[key] =
-                            StoreValue.KeyValue(
-                                key = item.description,
-                                value = it.currentChoiceIndex
-                            )
-                    }
-                    it.copy(currentChoiceIndex = newIntValue)
-                }
+                it.copy(switchValue = newValue)
             }
-        }.toList()
+            is UiControlsModel.Range -> {
+                val key = PREFIX + it.key
+                var newValue: Int = 0
+                if (settings.hasKey(key)) {
+                    newValue = settings.getInt(key)
+                    store[key] = StoreValue.IntValue(value = newValue)
+                } else {
+                    newValue = it.currentValue
+                    store[key] = StoreValue.IntValue(value = it.currentValue)
+                }
+                it.copy(currentValue = newValue)
+            }
+            is UiControlsModel.Editable -> {
+                val key = PREFIX + it.key
+                var newValue: String = ""
+                if (settings.hasKey(key)) {
+                    newValue = settings.getString(key)
+                    store[key] = StoreValue.StringValue(value = newValue)
+                } else {
+                    newValue = it.currentValue
+                    store[key] = StoreValue.StringValue(value = newValue)
+                }
+                it.copy(currentValue = newValue)
+            }
+            is UiControlsModel.Choice -> {
+                val key = PREFIX + it.key
+                val keyString = PREFIX + it.key + PAIR_SUFFIX_STRING
+                val keyInt = PREFIX + it.key + PAIR_SUFFIX_INT
+                check(it.currentChoiceIndex < it.items.size) { "Choice mush be less than the available items" }
+                val item = it.items[it.currentChoiceIndex]
+                var newIntValue: Int = 0
+                var newStringValue: String = ""
+                val keyPresent =
+                    settings.hasKey(keyString) and settings.hasKey(
+                        keyInt
+                    )
+
+                if (keyPresent) {
+                    newStringValue = settings.getString(keyString)
+                    newIntValue = settings.getInt(keyInt)
+                    store[key] =
+                        StoreValue.KeyValue(
+                            key = newStringValue,
+                            value = newIntValue
+                        )
+                } else {
+                    newIntValue = it.currentChoiceIndex
+                    store[key] =
+                        StoreValue.KeyValue(
+                            key = item.description,
+                            value = it.currentChoiceIndex
+                        )
+                }
+                it.copy(currentChoiceIndex = newIntValue)
+            }
+        }
+    }.toList()
 }
 
 sealed class StoreValue {

@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.juliuscanute.multiconfig.R
 import com.juliuscanute.multiconfig.base.observeSingleEvent
 import com.juliuscanute.multiconfig.databinding.ConfigurationFragmentBinding
-import com.juliuscanute.multiconfig.ui.ConfigurationFragmentDirections
 import com.juliuscanute.multiconfig.ui.host.MainActivityViewModel
 import com.juliuscanute.multiconfig.ui.adapter.ConfigurationAdapter
 import org.koin.android.viewmodel.ext.android.viewModel

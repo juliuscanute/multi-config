@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -15,9 +14,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.juliuscanute.multiconfig.R
 import com.juliuscanute.multiconfig.base.observeSingleEvent
 import com.juliuscanute.multiconfig.databinding.ConfigurationDetailFragmentBinding
-import com.juliuscanute.multiconfig.ui.ConfigurationDetailFragmentArgs
 import com.juliuscanute.multiconfig.ui.ItemDivider
-import com.juliuscanute.multiconfig.ui.host.MainActivityViewModel
 import com.juliuscanute.multiconfig.ui.adapter.ConfigurationDetailAdapter
 import model.Item
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -25,7 +22,6 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class ConfigurationDetailFragment : Fragment() {
 
-    private val mainActivityViewModel: MainActivityViewModel by activityViewModels()
     private val configurationDetailViewModel: ConfigurationDetailViewModel by viewModel()
     lateinit var adapter: ConfigurationDetailAdapter
     private val args: ConfigurationDetailFragmentArgs by navArgs()
