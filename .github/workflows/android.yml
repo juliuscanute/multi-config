@@ -21,3 +21,10 @@ jobs:
         run: ./gradlew testReleaseUnitTest -b app/build.gradle
       - name: Build with Gradle
         run:  ./gradlew assembleRelease -b app/build.gradle
+      - name: Publish artifact
+        env:
+          NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
+          NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
+          ORG_GRADLE_PROJECT_signingKey: ${{ secrets.ORG_GRADLE_PROJECT_signingKey }}
+          ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.ORG_GRADLE_PROJECT_signingPassword }}
+          run: ./gradlew uploadArchives -b app/build.gradle
