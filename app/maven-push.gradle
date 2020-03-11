@@ -31,6 +31,10 @@ def getGpgPassword() {
     return hasProperty('signingPassword') ? signingPassword : ""
 }
 
+def isCIBuild(String signingKey, String signingPassword) {
+    return !(signingKey.isEmpty() || signingPassword.isEmpty())
+}
+
 afterEvaluate { project ->
     uploadArchives {
         repositories {
@@ -83,7 +87,9 @@ afterEvaluate { project ->
         required { isReleaseBuild() && gradle.taskGraph.hasTask("uploadArchives") }
         def signingKey = getGpgKey()
         def signingPassword = getGpgPassword()
-        useInMemoryPgpKeys(signingKey, signingPassword)
+        if (isCIBuild(signingKey, signingPassword)) {
+            useInMemoryPgpKeys(signingKey, signingPassword)
+        }
         sign configurations.archives
     }
 
