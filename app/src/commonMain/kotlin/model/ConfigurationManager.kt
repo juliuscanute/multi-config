@@ -1,7 +1,7 @@
 package model
 
 import builder.ApplicationConfiguration
-import com.russhwolf.settings.Settings
+import settings.Settings
 
 class ConfigurationManager(
     private val repository: ApplicationConfiguration,

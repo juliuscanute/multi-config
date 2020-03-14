@@ -3,8 +3,8 @@ package com.juliuscanute.multiconfig.di
 import android.content.Context
 import android.content.Intent
 import builder.ApplicationConfiguration
-import com.russhwolf.settings.Settings
 import model.ConfigurationManager
+import settings.Settings
 import settings.UserSettings
 
 object DependencyHandler {
