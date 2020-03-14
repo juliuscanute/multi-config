@@ -1,53 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/choice_container"
+    android:background="?android:selectableItemBackground"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-    <data>
-
-        <variable
-            name="model"
-            type="com.juliuscanute.multiconfig.ui.adapter.ItemState.ChoiceState" />
-
-        <variable
-            name="viewModel"
-            type="com.juliuscanute.multiconfig.ui.configdetail.ConfigurationDetailViewModel" />
-
-    </data>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/choice_container"
-        android:background="?android:selectableItemBackground"
-        android:layout_width="match_parent"
+    <TextView
+        android:textAppearance="?attr/textAppearanceOverline"
+        android:id="@+id/choice_overline"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="@{() -> viewModel.showChoiceDialog(model.description, model.items, model.currentChoiceIndex, model.key)}">
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="16dp"
+        tools:text="Night Mode" />
 
-        <TextView
-            android:textAppearance="?attr/textAppearanceOverline"
-            android:id="@+id/choice_overline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="@{model.description}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginLeft="16dp"
-            tools:text="Night Mode" />
-
-        <TextView
-            android:textAppearance="?attr/textAppearanceSubtitle1"
-            android:id="@+id/choice_content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="16dp"
-            android:text="@{model.getSelectedItem()}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/choice_overline"
-            android:layout_marginLeft="16dp"
-            tools:text="On"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+    <TextView
+        android:textAppearance="?attr/textAppearanceSubtitle1"
+        android:id="@+id/choice_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/choice_overline"
+        android:layout_marginLeft="16dp"
+        tools:text="On" />
+</androidx.constraintlayout.widget.ConstraintLayout>

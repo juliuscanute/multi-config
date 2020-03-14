@@ -59,13 +59,13 @@ class ConfigurationDetailAdapter(private val viewModel: ConfigurationDetailViewM
         val item = getItem(position)
         when {
             (item is ItemState.SwitchState) && (holder is ListItemSwitchHolder) -> {
-                holder.container.setOnClickListener {
+                holder.switchContainer.setOnClickListener {
                     viewModel.saveBooleanConfiguration(item.key, item.switchValue)
                 }
-                holder.overline.text = item.description
-                holder.content.text = item.getSwitchStatus()
-                holder.switch.isChecked = item.switchValue
-                holder.switch.setOnClickListener {
+                holder.switchOverline.text = item.description
+                holder.switchContent.text = item.getSwitchStatus()
+                holder.switchFlag.isChecked = item.switchValue
+                holder.switchFlag.setOnClickListener {
                     viewModel.saveBooleanConfiguration(item.key, item.switchValue)
                 }
             }
@@ -109,15 +109,15 @@ class ConfigurationDetailAdapter(private val viewModel: ConfigurationDetailViewM
         }
     }
 
-    inner class ListItemSwitchHolder(val view: View) :
+    inner class ListItemSwitchHolder(view: View) :
         RecyclerView.ViewHolder(view) {
-        val container: View = view.findViewById(R.id.choice_container)
-        val overline: TextView = view.findViewById(R.id.choice_overline)
-        val content: TextView = view.findViewById(R.id.choice_content)
-        val switch: Switch = view.findViewById(R.id.switch_flag)
+        val switchContainer: View = view.findViewById(R.id.switch_container)
+        val switchOverline: TextView = view.findViewById(R.id.switch_overline)
+        val switchContent: TextView = view.findViewById(R.id.switch_content)
+        val switchFlag: Switch = view.findViewById(R.id.switch_flag)
     }
 
-    inner class ListItemRangeHolder(val view: View) :
+    inner class ListItemRangeHolder(view: View) :
         RecyclerView.ViewHolder(view) {
         val rangeOverline: TextView = view.findViewById(R.id.range_overline)
         val rangeCurrentValue: TextView = view.findViewById(R.id.range_current_value)
@@ -126,14 +126,14 @@ class ConfigurationDetailAdapter(private val viewModel: ConfigurationDetailViewM
         val rangeMaxValue: TextView = view.findViewById(R.id.range_max_value)
     }
 
-    inner class ListItemEditableHolder(val view: View) :
+    inner class ListItemEditableHolder(view: View) :
         RecyclerView.ViewHolder(view) {
         val editContainer: View = view.findViewById(R.id.edit_container)
         val editOverline: TextView = view.findViewById(R.id.edit_overline)
         val editContent: TextView = view.findViewById(R.id.edit_content)
     }
 
-    inner class ListItemChoiceHolder(val view: View) :
+    inner class ListItemChoiceHolder(view: View) :
         RecyclerView.ViewHolder(view) {
         val choiceContainer: View = view.findViewById(R.id.choice_container)
         val choiceOverline: TextView = view.findViewById(R.id.choice_overline)
