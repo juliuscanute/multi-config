@@ -20,7 +20,7 @@ ext {
 
     publishedGroupId = "com.juliuscanute.multiconfig"
     artifact = "multiconfig"
-    libraryVersion = "1.0.1-dev"
+    libraryVersion = "1.0.2-dev"
 
     libraryDescription = "A library to change Application Config at Runtime"
     siteUrl = "https://github.com/juliuscanute/multi-config"

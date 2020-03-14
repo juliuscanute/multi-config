@@ -140,7 +140,7 @@ class ConfigurationRepository(
                 val key = PREFIX + it.key
                 var newValue: Boolean = false
                 if (settings.hasKey(key)) {
-                    newValue = settings.getBoolean(key,false)
+                    newValue = settings.getBoolean(key, false)
                     store[key] = StoreValue.BooleanValue(value = newValue)
                 } else {
                     newValue = it.switchValue
@@ -152,7 +152,7 @@ class ConfigurationRepository(
                 val key = PREFIX + it.key
                 var newValue: Int = 0
                 if (settings.hasKey(key)) {
-                    newValue = settings.getInt(key,-1)
+                    newValue = settings.getInt(key, 0)
                     store[key] = StoreValue.IntValue(value = newValue)
                 } else {
                     newValue = it.currentValue
@@ -164,7 +164,7 @@ class ConfigurationRepository(
                 val key = PREFIX + it.key
                 var newValue: String = ""
                 if (settings.hasKey(key)) {
-                    newValue = settings.getString(key,"")
+                    newValue = settings.getString(key, "")
                     store[key] = StoreValue.StringValue(value = newValue)
                 } else {
                     newValue = it.currentValue
@@ -186,8 +186,8 @@ class ConfigurationRepository(
                     )
 
                 if (keyPresent) {
-                    newStringValue = settings.getString(keyString,"")
-                    newIntValue = settings.getInt(keyInt,-1)
+                    newStringValue = settings.getString(keyString, "")
+                    newIntValue = settings.getInt(keyInt, 0)
                     store[key] =
                         StoreValue.KeyValue(
                             key = newStringValue,
