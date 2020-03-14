@@ -39,7 +39,7 @@ class ConfigurationAdapter(
             holder.container.setBackgroundColor(
                 ContextCompat.getColor(
                     viewContext,
-                    viewContext.getThemeColorId(android.R.attr.selectableItemBackground)
+                    viewContext.getThemeColorId(android.R.attr.windowBackground)
                 )
             )
         }
