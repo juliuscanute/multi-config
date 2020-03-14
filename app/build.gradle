@@ -8,6 +8,38 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'androidx.navigation.safeargs.kotlin'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
+
+ext {
+    bintrayRepo = "multi-config"
+    bintrayName = "com.juliuscanute.multiconfig"
+    libraryName = "multiconfig"
+
+    publishedGroupId = "com.juliuscanute.multiconfig"
+    artifact = "multiconfig"
+    libraryVersion = "1.0.1-dev"
+
+    libraryDescription = "A library to change Application Config at Runtime"
+    siteUrl = "https://github.com/juliuscanute/multi-config"
+    gitUrl = "https://github.com/juliuscanute/multi-config"
+    developerId = "juliuscanute"
+    developerName = "Julius Canute"
+    developerEmail = "juliuscanute@gmail.com"
+    licenseName = "The Apache Software License, Version 2.0"
+    licenseUrl = "https://www.apache.org/licenses/LICENSE-2.0"
+    allLicenses = ["Apache-2.0"]
+}
+
+bintray {
+    Properties properties = new Properties()
+    def propertiesFile = project.rootProject.file('local.properties')
+    if (propertiesFile.exists()) {
+        properties.load(propertiesFile.newDataInputStream())
+    }
+    user = System.getenv('BINTRAY_USER') ?: properties.getProperty("bintray.user")
+    key = System.getenv('BINTRAY_KEY') ?: properties.getProperty("bintray.apikey")
+}
 
 android {
     compileSdkVersion 28
@@ -15,7 +47,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 28
         versionCode 1
-        versionName '1.0.0'
+        versionName libraryVersion
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
     dataBinding {
@@ -131,4 +163,7 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
         jvmTarget = '1.8'
     }
 }
-apply from: 'maven-push.gradle'
+
+
+apply from: 'https://raw.github.com/nuuneoi/JCenter/master/bintrayv1.gradle'
+apply from: 'https://raw.github.com/nuuneoi/JCenter/master/installv1.gradle'
