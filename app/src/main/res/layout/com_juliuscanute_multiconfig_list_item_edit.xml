@@ -6,7 +6,7 @@
 
         <variable
             name="model"
-            type="com.juliuscanute.multiconfig.ui.adapter.ItemState.SwitchState" />
+            type="com.juliuscanute.multiconfig.ui.adapter.ItemState.EditableState" />
 
         <variable
             name="viewModel"
@@ -15,14 +15,15 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/edit_container"
         android:background="?android:selectableItemBackground"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{() -> viewModel.saveBooleanConfiguration(model.key, model.switchValue)}">
+        android:onClick="@{() -> viewModel.showEditableDialog(model.description, model.currentValue, model.key)}">
 
         <TextView
             android:textAppearance="?attr/textAppearanceOverline"
-            android:id="@+id/switch_overline"
+            android:id="@+id/edit_overline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -34,28 +35,16 @@
 
         <TextView
             android:textAppearance="?attr/textAppearanceSubtitle1"
-            android:id="@+id/switch_content"
+            android:id="@+id/edit_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="16dp"
-            android:text="@{model.switchStatus}"
+            android:text="@{model.currentValue}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/switch_overline"
+            app:layout_constraintTop_toBottomOf="@+id/edit_overline"
             android:layout_marginLeft="16dp" />
-
-        <Switch
-            android:id="@+id/switch_flag"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:checked="@{model.switchValue}"
-            android:onClick="@{() -> viewModel.saveBooleanConfiguration(model.key, model.switchValue)}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginRight="16dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

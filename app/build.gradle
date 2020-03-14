@@ -42,12 +42,6 @@ android {
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         consumerProguardFiles 'consumer-rules.pro'
     }
-    dataBinding {
-        enabled = true
-    }
-    viewBinding {
-        enabled = true
-    }
     buildTypes {
         release {
             minifyEnabled false

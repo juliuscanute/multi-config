@@ -6,15 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatEditText
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.juliuscanute.multiconfig.R
 import com.juliuscanute.multiconfig.base.observeSingleEvent
-import com.juliuscanute.multiconfig.databinding.ConfigurationDetailFragmentBinding
 import com.juliuscanute.multiconfig.ui.ItemDivider
 import com.juliuscanute.multiconfig.ui.adapter.ConfigurationDetailAdapter
 import com.juliuscanute.multiconfig.utils.buildViewModel
+import kotlinx.android.synthetic.main.com_juliuscanute_multiconfig_configuration_detail_fragment.*
 import model.Item
 
 private const val ARG_ENV_ID = "environment_id"
@@ -49,26 +48,20 @@ class ConfigurationDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = DataBindingUtil.inflate<ConfigurationDetailFragmentBinding>(
-            inflater,
-            R.layout.configuration_detail_fragment,
-            container,
-            false
-        )
-        binding.configurationDetailList.layoutManager = LinearLayoutManager(requireContext())
+        return inflater.inflate(R.layout.com_juliuscanute_multiconfig_configuration_detail_fragment, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        configuration_detail_list.layoutManager = LinearLayoutManager(requireContext())
         adapter = ConfigurationDetailAdapter(configurationDetailViewModel)
-        binding.configurationDetailList.adapter = adapter
-        binding.configurationDetailList.addItemDecoration(
+        configuration_detail_list.adapter = adapter
+        configuration_detail_list.addItemDecoration(
             ItemDivider(
                 requireContext(),
                 R.drawable.item_divider
             )
         )
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         configurationDetailViewModel.privateActions.observeSingleEvent(this) { state ->
             when (state) {
                 is ConfigurationDetailState.LoadEnvironmentConfigurationState -> {
@@ -103,7 +96,7 @@ class ConfigurationDetailFragment : Fragment() {
     }
 
     private fun showEditable(description: String, value: String, key: String) {
-        val view = layoutInflater.inflate(R.layout.input_alert_dialog, null)
+        val view = layoutInflater.inflate(R.layout.com_juliuscanute_multiconfig_input_alert_dialog, null)
         val textInput = view.findViewById<AppCompatEditText>(R.id.editable_input)
         textInput.hint = description
         textInput.setText(value)

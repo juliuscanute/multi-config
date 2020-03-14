@@ -4,15 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import com.juliuscanute.multiconfig.MultiConfig
 import com.juliuscanute.multiconfig.R
 import com.juliuscanute.multiconfig.base.observeMultiEvent
-import com.juliuscanute.multiconfig.databinding.ActivityMainBinding
 import com.juliuscanute.multiconfig.ui.config.ConfigurationFragment
 import com.juliuscanute.multiconfig.ui.configdetail.ConfigurationDetailFragment
 import com.juliuscanute.multiconfig.utils.IntentInitializer
 import com.juliuscanute.multiconfig.utils.buildViewModel
+import kotlinx.android.synthetic.main.com_juliuscanute_multiconfig_activity_main.*
 
 class MainActivity : AppCompatActivity(), ConfigurationFragment.Callbacks {
 
@@ -23,13 +22,15 @@ class MainActivity : AppCompatActivity(), ConfigurationFragment.Callbacks {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = DataBindingUtil.inflate<ActivityMainBinding>(layoutInflater, R.layout.activity_main, null, false)
-        binding.model = mainActivityViewModel
+        setContentView(R.layout.com_juliuscanute_multiconfig_activity_main)
+        launchButton.setOnClickListener {
+            mainActivityViewModel.onTap()
+        }
         mainActivityViewModel.commonActions.observeMultiEvent(this) { state ->
             when (state) {
                 is CommonState.ButtonConfigurationState -> {
-                    binding.materialButton.text = getString(R.string.launch_with, state.environment)
-                    binding.toolbar.title = getString(R.string.app_name_with, state.environment)
+                    launchButton.text = getString(R.string.launch_with, state.environment)
+                    toolbar.title = getString(R.string.app_name_with, state.environment)
                 }
                 is CommonState.ButtonTapState -> {
                     MultiConfig.environment = state.environment
@@ -45,8 +46,15 @@ class MainActivity : AppCompatActivity(), ConfigurationFragment.Callbacks {
                 }
             }
         }
-
-        setContentView(binding.root)
+        val currentFragment =
+            supportFragmentManager.findFragmentById(R.id.fragment_container)
+        if (currentFragment == null) {
+            val fragment = ConfigurationFragment()
+            supportFragmentManager
+                .beginTransaction()
+                .add(R.id.fragment_container, fragment)
+                .commit()
+        }
     }
 
     override fun onEnvironmentSelected(environment: String) {

@@ -1,17 +1,16 @@
 package com.juliuscanute.multiconfig.ui.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
-import androidx.databinding.DataBindingUtil
+import android.widget.Switch
+import android.widget.TextView
+import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.juliuscanute.multiconfig.R
-import com.juliuscanute.multiconfig.databinding.ListItemChoiceBinding
-import com.juliuscanute.multiconfig.databinding.ListItemEditBinding
-import com.juliuscanute.multiconfig.databinding.ListItemRangeBinding
-import com.juliuscanute.multiconfig.databinding.ListItemSwitchBinding
 import com.juliuscanute.multiconfig.ui.configdetail.ConfigurationDetailViewModel
 import model.Item
 import model.Projection
@@ -35,40 +34,20 @@ class ConfigurationDetailAdapter(private val viewModel: ConfigurationDetailViewM
         val layoutInflater = LayoutInflater.from(parent.context)
         return when (viewType) {
             UiType.SWITCH.type -> {
-                val binding = DataBindingUtil.inflate<ListItemSwitchBinding>(
-                    layoutInflater,
-                    R.layout.list_item_switch,
-                    parent,
-                    false
-                )
-                ListItemSwitchHolder(binding)
+                val view = layoutInflater.inflate(R.layout.com_juliuscanute_multiconfig_list_item_switch, parent, false)
+                ListItemSwitchHolder(view)
             }
             UiType.RANGE.type -> {
-                val binding = DataBindingUtil.inflate<ListItemRangeBinding>(
-                    layoutInflater,
-                    R.layout.list_item_range,
-                    parent,
-                    false
-                )
-                ListItemRangeHolder(binding)
+                val view = layoutInflater.inflate(R.layout.com_juliuscanute_multiconfig_list_item_range, parent, false)
+                ListItemRangeHolder(view)
             }
             UiType.EDITABLE.type -> {
-                val binding = DataBindingUtil.inflate<ListItemEditBinding>(
-                    layoutInflater,
-                    R.layout.list_item_edit,
-                    parent,
-                    false
-                )
-                ListItemEditableHolder(binding)
+                val view = layoutInflater.inflate(R.layout.com_juliuscanute_multiconfig_list_item_edit, parent, false)
+                ListItemEditableHolder(view)
             }
             UiType.CHOICE.type -> {
-                val binding = DataBindingUtil.inflate<ListItemChoiceBinding>(
-                    layoutInflater,
-                    R.layout.list_item_choice,
-                    parent,
-                    false
-                )
-                ListItemChoiceHolder(binding)
+                val view = layoutInflater.inflate(R.layout.com_juliuscanute_multiconfig_list_item_choice, parent, false)
+                ListItemChoiceHolder(view)
             }
             else -> {
                 throw NotImplementedError("Must not occur")
@@ -80,21 +59,30 @@ class ConfigurationDetailAdapter(private val viewModel: ConfigurationDetailViewM
         val item = getItem(position)
         when {
             (item is ItemState.SwitchState) && (holder is ListItemSwitchHolder) -> {
-                holder.binding.model = item
-                holder.binding.viewModel = viewModel
+                holder.container.setOnClickListener {
+                    viewModel.saveBooleanConfiguration(item.key, item.switchValue)
+                }
+                holder.overline.text = item.description
+                holder.content.text = item.getSwitchStatus()
+                holder.switch.isChecked = item.switchValue
+                holder.switch.setOnClickListener {
+                    viewModel.saveBooleanConfiguration(item.key, item.switchValue)
+                }
             }
             (item is ItemState.RangeState) && (holder is ListItemRangeHolder) -> {
-                holder.binding.model = item
                 val projection =
                     Projection(userMax = item.max, userMin = item.min)
                 projection.userValue = item.currentValue
-                holder.binding.viewModel = viewModel
-                holder.binding.rangeSeekBar.progress = projection.progressValue
-                holder.binding.rangeSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+                holder.rangeOverline.text = item.description
+                holder.rangeCurrentValue.text = item.getValueString()
+                holder.rangeMinValue.text = item.getMinString()
+                holder.rangeMaxValue.text = item.getMaxString()
+                holder.rangeSeekBar.progress = projection.progressValue
+                holder.rangeSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
                     override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                         if (fromUser) {
                             projection.progressValue = progress
-                            holder.binding.rangeCurrentValue.text = projection.userValue.toString()
+                            holder.rangeCurrentValue.text = projection.userValue.toString()
                         }
                     }
 
@@ -105,27 +93,52 @@ class ConfigurationDetailAdapter(private val viewModel: ConfigurationDetailViewM
                 })
             }
             (item is ItemState.EditableState) && (holder is ListItemEditableHolder) -> {
-                holder.binding.model = item
-                holder.binding.viewModel = viewModel
+                holder.editContainer.setOnClickListener {
+                    viewModel.showEditableDialog(item.description, item.currentValue, item.key)
+                }
+                holder.editOverline.text = item.description
+                holder.editContent.text = item.currentValue
             }
             (item is ItemState.ChoiceState) && (holder is ListItemChoiceHolder) -> {
-                holder.binding.model = item
-                holder.binding.viewModel = viewModel
+                holder.choiceContainer.setOnClickListener {
+                    viewModel.showChoiceDialog(item.description, item.items, item.currentChoiceIndex, item.key)
+                }
+                holder.choiceOverline.text = item.description
+                holder.choiceContent.text = item.getSelectedItem()
             }
         }
     }
 
-    inner class ListItemSwitchHolder(val binding: ListItemSwitchBinding) :
-        RecyclerView.ViewHolder(binding.root)
+    inner class ListItemSwitchHolder(val view: View) :
+        RecyclerView.ViewHolder(view) {
+        val container: View = view.findViewById(R.id.choice_container)
+        val overline: TextView = view.findViewById(R.id.choice_overline)
+        val content: TextView = view.findViewById(R.id.choice_content)
+        val switch: Switch = view.findViewById(R.id.switch_flag)
+    }
 
-    inner class ListItemRangeHolder(val binding: ListItemRangeBinding) :
-        RecyclerView.ViewHolder(binding.root)
+    inner class ListItemRangeHolder(val view: View) :
+        RecyclerView.ViewHolder(view) {
+        val rangeOverline: TextView = view.findViewById(R.id.range_overline)
+        val rangeCurrentValue: TextView = view.findViewById(R.id.range_current_value)
+        val rangeSeekBar: AppCompatSeekBar = view.findViewById(R.id.range_seek_bar)
+        val rangeMinValue: TextView = view.findViewById(R.id.range_min_value)
+        val rangeMaxValue: TextView = view.findViewById(R.id.range_max_value)
+    }
 
-    inner class ListItemEditableHolder(val binding: ListItemEditBinding) :
-        RecyclerView.ViewHolder(binding.root)
+    inner class ListItemEditableHolder(val view: View) :
+        RecyclerView.ViewHolder(view) {
+        val editContainer: View = view.findViewById(R.id.edit_container)
+        val editOverline: TextView = view.findViewById(R.id.edit_overline)
+        val editContent: TextView = view.findViewById(R.id.edit_content)
+    }
 
-    inner class ListItemChoiceHolder(val binding: ListItemChoiceBinding) :
-        RecyclerView.ViewHolder(binding.root)
+    inner class ListItemChoiceHolder(val view: View) :
+        RecyclerView.ViewHolder(view) {
+        val choiceContainer: View = view.findViewById(R.id.choice_container)
+        val choiceOverline: TextView = view.findViewById(R.id.choice_overline)
+        val choiceContent: TextView = view.findViewById(R.id.choice_content)
+    }
 
 }
 

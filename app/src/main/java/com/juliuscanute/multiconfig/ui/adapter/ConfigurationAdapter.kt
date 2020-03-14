@@ -1,14 +1,16 @@
 package com.juliuscanute.multiconfig.ui.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
+import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.juliuscanute.multiconfig.R
-import com.juliuscanute.multiconfig.databinding.ListItemConfigurationBinding
 import com.juliuscanute.multiconfig.ui.config.ConfigurationViewModel
+import com.juliuscanute.multiconfig.utils.getThemeColorId
 
 class ConfigurationAdapter(
     private val viewModel: ConfigurationViewModel
@@ -19,23 +21,42 @@ class ConfigurationAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ConfigurationHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = DataBindingUtil.inflate<ListItemConfigurationBinding>(
-            layoutInflater,
-            R.layout.list_item_configuration,
-            parent,
-            false
-        )
-        return ConfigurationHolder(binding)
+        val view = layoutInflater.inflate(R.layout.com_juliuscanute_multiconfig_list_item_configuration, parent, false)
+        return ConfigurationHolder(view)
     }
 
     override fun onBindViewHolder(holder: ConfigurationHolder, position: Int) {
         val config = getItem(position)
-        holder.binding.configuration = config
-        holder.binding.model = viewModel
+        val viewContext = holder.container.context
+        if (config.selected) {
+            holder.container.setBackgroundColor(
+                ContextCompat.getColor(
+                    viewContext,
+                    viewContext.getThemeColorId(R.attr.colorAccent)
+                )
+            )
+        } else {
+            holder.container.setBackgroundColor(
+                ContextCompat.getColor(
+                    viewContext,
+                    viewContext.getThemeColorId(R.attr.colorSurface)
+                )
+            )
+        }
+        holder.container.setOnClickListener {
+            viewModel.moveToConfigurationDetail(config.environment)
+        }
+        holder.container.setOnLongClickListener {
+            viewModel.selectNewConfiguration(config.index)
+        }
+        holder.environment.text = config.environment
     }
 
-    inner class ConfigurationHolder(val binding: ListItemConfigurationBinding) :
-        RecyclerView.ViewHolder(binding.root)
+    inner class ConfigurationHolder(val view: View) :
+        RecyclerView.ViewHolder(view) {
+        val container: View = view.findViewById(R.id.config_item_layout)
+        val environment: TextView = view.findViewById(R.id.environment)
+    }
 
 }
 
