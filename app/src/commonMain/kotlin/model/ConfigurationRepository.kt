@@ -138,7 +138,7 @@ class ConfigurationRepository(
         when (it) {
             is UiControlsModel.Switch -> {
                 val key = PREFIX + it.key
-                var newValue: Boolean = false
+                val newValue: Boolean
                 if (settings.hasKey(key)) {
                     newValue = settings.getBoolean(key, false)
                     store[key] = StoreValue.BooleanValue(value = newValue)
@@ -150,7 +150,7 @@ class ConfigurationRepository(
             }
             is UiControlsModel.Range -> {
                 val key = PREFIX + it.key
-                var newValue: Int = 0
+                val newValue: Int
                 if (settings.hasKey(key)) {
                     newValue = settings.getInt(key, 0)
                     store[key] = StoreValue.IntValue(value = newValue)
@@ -162,7 +162,7 @@ class ConfigurationRepository(
             }
             is UiControlsModel.Editable -> {
                 val key = PREFIX + it.key
-                var newValue: String = ""
+                val newValue: String
                 if (settings.hasKey(key)) {
                     newValue = settings.getString(key, "")
                     store[key] = StoreValue.StringValue(value = newValue)
@@ -178,8 +178,8 @@ class ConfigurationRepository(
                 val keyInt = PREFIX + it.key + PAIR_SUFFIX_INT
                 check(it.currentChoiceIndex < it.items.size) { "Choice mush be less than the available items" }
                 val item = it.items[it.currentChoiceIndex]
-                var newIntValue: Int = 0
-                var newStringValue: String = ""
+                val newIntValue: Int
+                val newStringValue: String
                 val keyPresent =
                     settings.hasKey(keyString) and settings.hasKey(
                         keyInt

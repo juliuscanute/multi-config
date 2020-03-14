@@ -1,5 +1,6 @@
 package com.juliuscanute.multiconfig.ui.configdetail
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -95,6 +96,7 @@ class ConfigurationDetailFragment : Fragment() {
         }.setTitle(description).setNegativeButton(android.R.string.cancel) { dialog, _ -> dialog.dismiss() }.show()
     }
 
+    @SuppressLint("InflateParams")
     private fun showEditable(description: String, value: String, key: String) {
         val view = layoutInflater.inflate(R.layout.com_juliuscanute_multiconfig_input_alert_dialog, null)
         val textInput = view.findViewById<AppCompatEditText>(R.id.editable_input)

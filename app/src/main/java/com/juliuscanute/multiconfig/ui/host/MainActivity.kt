@@ -29,8 +29,8 @@ class MainActivity : AppCompatActivity(), ConfigurationFragment.Callbacks {
         mainActivityViewModel.commonActions.observeMultiEvent(this) { state ->
             when (state) {
                 is CommonState.ButtonConfigurationState -> {
-                    launchButton.text = getString(R.string.launch_with, state.environment)
-                    toolbar.title = getString(R.string.app_name_with, state.environment)
+                    launchButton.text = getString(R.string.julius_multi_config_launch_with, state.environment)
+                    toolbar.title = getString(R.string.julius_multi_config_app_name_with, state.environment)
                 }
                 is CommonState.ButtonTapState -> {
                     MultiConfig.environment = state.environment

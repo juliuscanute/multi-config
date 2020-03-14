@@ -1,5 +1,4 @@
 apply plugin: 'org.jetbrains.kotlin.multiplatform'
-apply plugin: 'maven-publish'
 repositories {
     mavenLocal()
     google()
@@ -19,7 +18,7 @@ ext {
 
     publishedGroupId = "com.juliuscanute.multiconfig"
     artifact = "multiconfig"
-    libraryVersion = "1.0.9-dev"
+    libraryVersion = "1.0.10-dev"
 
     libraryDescription = "A library to change Application Config at Runtime"
     siteUrl = "https://github.com/juliuscanute/multi-config"
@@ -33,10 +32,10 @@ ext {
 }
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 1
         versionName libraryVersion
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
@@ -147,4 +146,4 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
 
 
 apply from: 'bintrayv1.1.gradle'
-apply from: 'https://raw.github.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'installv1.1.gradle'

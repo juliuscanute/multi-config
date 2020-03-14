@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">Configuration</string>
-    <string name="app_name_with">Configuration %s</string>
-    <string name="launch">Launch</string>
-    <string name="launch_with">Launch with %s</string>
+    <string name="julius_multi_config_app_name">Configuration</string>
+    <string name="julius_multi_config_app_name_with">Configuration %s</string>
+    <string name="julius_multi_config_launch">Launch</string>
+    <string name="julius_multi_config_launch_with">Launch with %s</string>
+    <string name="julius_multi_next_cd">Edit Configuration</string>
 </resources>
