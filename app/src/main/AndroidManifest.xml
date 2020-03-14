@@ -3,8 +3,10 @@
     package="com.juliuscanute.multiconfig">
 
     <application>
-        <activity android:name="com.juliuscanute.multiconfig.ui.host.MainActivity"
-            android:label="@string/app_name">
+        <activity
+            android:name="com.juliuscanute.multiconfig.ui.host.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Julius.MultiConfig.AppTheme.DarkNoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
