@@ -33,7 +33,7 @@ ext {
 
 bintray {
     Properties properties = new Properties()
-    def propertiesFile = project.rootProject.file('local.properties')
+    def propertiesFile = project.rootProject.file('secret.properties')
     if (propertiesFile.exists()) {
         properties.load(propertiesFile.newDataInputStream())
     }
