@@ -25,6 +25,6 @@ class ConfigurationManager(
     }
 
     fun getConfig(): Int {
-        return settings.getInt(KEY, defaultValue = -1)
+        return settings.getInt(KEY, defaultValue = 0)
     }
 }
