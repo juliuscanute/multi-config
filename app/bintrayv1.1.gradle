@@ -30,8 +30,9 @@ ext {
         properties.load(project.rootProject.file('secret.properties').newDataInputStream())
         userName = properties.getProperty("bintray.user")
         apiKey = properties.getProperty("bintray.apikey")
-        gpgPassword = properties.getProperty("bintray.gpg.password")
         filePresent = true
+    } else {
+        filePresent = false
     }
 }
 // Bintray
