@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="colorSurface" format="reference" />
+    <attr name="textAppearanceOverline" format="reference" />
+    <attr name="textAppearanceSubtitle1" format="reference" />
+    <attr name="textAppearanceBody2" format="reference" />
+</resources>

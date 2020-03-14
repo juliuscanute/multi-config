@@ -4,27 +4,48 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.AppCompatEditText
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.textfield.TextInputEditText
 import com.juliuscanute.multiconfig.R
 import com.juliuscanute.multiconfig.base.observeSingleEvent
 import com.juliuscanute.multiconfig.databinding.ConfigurationDetailFragmentBinding
 import com.juliuscanute.multiconfig.ui.ItemDivider
 import com.juliuscanute.multiconfig.ui.adapter.ConfigurationDetailAdapter
+import com.juliuscanute.multiconfig.utils.buildViewModel
 import model.Item
 
+private const val ARG_ENV_ID = "environment_id"
 
 class ConfigurationDetailFragment : Fragment() {
 
-    private val configurationDetailViewModel: ConfigurationDetailViewModel by viewModels()
+    companion object {
+        fun newInstance(environment: String): ConfigurationDetailFragment {
+            val args = Bundle().apply {
+                putString(ARG_ENV_ID, environment)
+            }
+            return ConfigurationDetailFragment().apply {
+                arguments = args
+            }
+        }
+    }
+
+    private val configurationDetailViewModel: ConfigurationDetailViewModel by lazy {
+        buildViewModel { ConfigurationDetailViewModel() }
+    }
+
     lateinit var adapter: ConfigurationDetailAdapter
-    private val args: ConfigurationDetailFragmentArgs by navArgs()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val environment: String = arguments?.getString(ARG_ENV_ID)
+            ?: throw IllegalAccessException("arguments must not be empty")
+        configurationDetailViewModel.loadEnvironmentConfiguration(environment)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,7 +70,6 @@ class ConfigurationDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        configurationDetailViewModel.loadEnvironmentConfiguration(args.environment)
         configurationDetailViewModel.privateActions.observeSingleEvent(this) { state ->
             when (state) {
                 is ConfigurationDetailState.LoadEnvironmentConfigurationState -> {
@@ -71,7 +91,7 @@ class ConfigurationDetailFragment : Fragment() {
     }
 
     private fun showChoiceItems(description: String, items: ArrayList<Item>, currentSelection: Int, key: String) {
-        MaterialAlertDialogBuilder(requireContext()).setSingleChoiceItems(
+        AlertDialog.Builder(requireContext()).setSingleChoiceItems(
             items.map { it.description }.toTypedArray(),
             currentSelection
         ) { dialog, which ->
@@ -85,7 +105,7 @@ class ConfigurationDetailFragment : Fragment() {
 
     private fun showEditable(description: String, value: String, key: String) {
         val view = layoutInflater.inflate(R.layout.input_alert_dialog, null)
-        val textInput = view.findViewById<TextInputEditText>(R.id.editable_input)
+        val textInput = view.findViewById<AppCompatEditText>(R.id.editable_input)
         textInput.hint = description
         textInput.setText(value)
         textInput.setSelection(value.length)

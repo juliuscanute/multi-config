@@ -9,7 +9,6 @@ repositories {
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'androidx.navigation.safeargs.kotlin'
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'com.github.dcendents.android-maven'
 
@@ -20,7 +19,7 @@ ext {
 
     publishedGroupId = "com.juliuscanute.multiconfig"
     artifact = "multiconfig"
-    libraryVersion = "1.0.3-dev"
+    libraryVersion = "1.0.4-dev"
 
     libraryDescription = "A library to change Application Config at Runtime"
     siteUrl = "https://github.com/juliuscanute/multi-config"
@@ -69,11 +68,6 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
-    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
-    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
-    implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
-    implementation 'com.google.android.material:material:1.1.0'
     testImplementation 'junit:junit:4.13'
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
     testImplementation 'androidx.arch.core:core-testing:2.1.0'
@@ -84,7 +78,6 @@ dependencies {
     androidTestImplementation 'com.github.javafaker:javafaker:0.16'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation "org.koin:koin-test:$koin_version"
-    androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
 }
 
 kotlin {

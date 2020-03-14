@@ -1,50 +1,24 @@
-/*
- * Copyright (c) 2019 Razeware LLC
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * Notwithstanding the foregoing, you may not use, copy, modify, merge, publish,
- * distribute, sublicense, create a derivative work, and/or sell copies of the
- * Software in any work that is designed, intended, or marketed for pedagogical or
- * instructional purposes related to programming, coding, application development,
- * or information technology.  Permission for such use, copying, modification,
- * merger, publication, distribution, sublicensing, creation of derivative works,
- * or sale is expressly withheld.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
-
 package com.juliuscanute.multiconfig.ui.host
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.juliuscanute.multiconfig.MultiConfig
 import com.juliuscanute.multiconfig.R
 import com.juliuscanute.multiconfig.base.observeMultiEvent
 import com.juliuscanute.multiconfig.databinding.ActivityMainBinding
+import com.juliuscanute.multiconfig.ui.config.ConfigurationFragment
+import com.juliuscanute.multiconfig.ui.configdetail.ConfigurationDetailFragment
 import com.juliuscanute.multiconfig.utils.IntentInitializer
+import com.juliuscanute.multiconfig.utils.buildViewModel
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ConfigurationFragment.Callbacks {
 
-    private val mainActivityViewModel: MainActivityViewModel by viewModels()
+    private val mainActivityViewModel: MainActivityViewModel by lazy {
+        buildViewModel { MainActivityViewModel() }
+    }
     private val startIntent: Intent by IntentInitializer()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,7 +37,7 @@ class MainActivity : AppCompatActivity() {
                         startActivity(startIntent)
                         finish()
                     } catch (e: Exception) {
-                        MaterialAlertDialogBuilder(this)
+                        AlertDialog.Builder(this)
                             .setTitle("Error")
                             .setMessage("Start activity intent not set in Multiconfig.")
                             .setPositiveButton(android.R.string.ok, null).show()
@@ -73,5 +47,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         setContentView(binding.root)
+    }
+
+    override fun onEnvironmentSelected(environment: String) {
+        val fragment = ConfigurationDetailFragment.newInstance(environment = environment)
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 }

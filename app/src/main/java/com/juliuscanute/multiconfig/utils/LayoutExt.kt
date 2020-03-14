@@ -8,7 +8,7 @@ import com.juliuscanute.multiconfig.R
 @BindingAdapter("itemSelectedState")
 fun View.setItemSelectedState(selected: Boolean) {
     if (selected) {
-        setBackgroundColor(ContextCompat.getColor(context, context.getThemeColorId(R.attr.colorSecondary)))
+        setBackgroundColor(ContextCompat.getColor(context, context.getThemeColorId(R.attr.colorAccent)))
     } else {
         setBackgroundColor(ContextCompat.getColor(context, context.getThemeColorId(R.attr.colorSurface)))
     }
