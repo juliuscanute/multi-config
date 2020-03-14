@@ -1,0 +1,60 @@
+apply plugin: 'com.jfrog.bintray'
+
+version = libraryVersion
+
+
+task sourcesJar(type: Jar) {
+    archiveClassifier.set("androidSrc")
+    from android.sourceSets.main.java.srcDirs
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    archiveClassifier.set("javadoc")
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+ext {
+    if (project.rootProject.file('secret.properties').exists()) {
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file('secret.properties').newDataInputStream())
+        userName = properties.getProperty("bintray.user")
+        apiKey = properties.getProperty("bintray.apikey")
+        gpgPassword = properties.getProperty("bintray.gpg.password")
+        filePresent = true
+    }
+}
+// Bintray
+bintray {
+    if (filePresent) {
+        user = userName
+        key = apiKey
+    } else {
+        user = System.getenv('BINTRAY_USER')
+        key = System.getenv('BINTRAY_KEY')
+    }
+    configurations = ['archives']
+    pkg {
+        repo = bintrayRepo
+        name = bintrayName
+        desc = libraryDescription
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = allLicenses
+        publish = true
+        publicDownloadNumbers = true
+        version {
+            desc = libraryDescription
+        }
+    }
+}

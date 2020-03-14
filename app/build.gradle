@@ -33,16 +33,6 @@ ext {
     allLicenses = ["Apache-2.0"]
 }
 
-bintray {
-    Properties properties = new Properties()
-    def propertiesFile = project.rootProject.file('secret.properties')
-    if (propertiesFile.exists()) {
-        properties.load(propertiesFile.newDataInputStream())
-    }
-    user = System.getenv('BINTRAY_USER') ?: properties.getProperty("bintray.user")
-    key = System.getenv('BINTRAY_KEY') ?: properties.getProperty("bintray.apikey")
-}
-
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -169,5 +159,5 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
 }
 
 
-apply from: 'https://raw.github.com/nuuneoi/JCenter/master/bintrayv1.gradle'
+apply from: 'bintrayv1.1.gradle'
 apply from: 'https://raw.github.com/nuuneoi/JCenter/master/installv1.gradle'
