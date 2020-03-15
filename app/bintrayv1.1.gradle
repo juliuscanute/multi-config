@@ -2,7 +2,7 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
 version = libraryVersion
-group = publishedGroupId                               
+group = publishedGroupId
 
 
 ext {
@@ -98,5 +98,4 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 
 artifacts {
     archives javadocJar
-    archives sourcesJar
 }
