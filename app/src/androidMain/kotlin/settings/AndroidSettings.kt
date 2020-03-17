@@ -37,7 +37,7 @@ class AndroidSetting private constructor(context: Context, name: String) : Setti
             .apply()
     }
 
-    class AndroidFactory(private val context: Context, private val name: String = "multi-config") : Settings.Factory {
+    class Factory(private val context: Context, private val name: String = "multi-config") : Settings.Factory {
         override fun create(): Settings {
             return AndroidSetting(context, name)
         }

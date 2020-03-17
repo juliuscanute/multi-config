@@ -18,7 +18,7 @@ ext {
 
     publishedGroupId = "com.juliuscanute.multiconfig"
     artifact = "multiconfig"
-    libraryVersion = "1.0.16-dev"
+    libraryVersion = "1.0.17-dev"
 
     libraryDescription = "A library to change Application Config at Runtime"
     siteUrl = "https://github.com/juliuscanute/multi-config"
@@ -86,7 +86,6 @@ kotlin {
         commonMain {
             dependencies {
                 implementation kotlin('stdlib-common')
-                implementation "com.russhwolf:multiplatform-settings:0.5"
             }
         }
         commonTest {
