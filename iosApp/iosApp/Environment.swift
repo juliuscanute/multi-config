@@ -14,7 +14,7 @@ public func appConfig(apply closure: (AppConfigurationBuilder) -> Void) -> NSMut
     return builder.build()
 }
 
-func setup() -> NSMutableArray {
+public func setup() -> NSMutableArray {
     return appConfig {
         $0.config(environment: "DEV") {
             $0.switch {

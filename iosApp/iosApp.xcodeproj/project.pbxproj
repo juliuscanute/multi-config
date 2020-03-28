@@ -10,9 +10,10 @@
 		4A99F85B72C32DF2209BADB7 /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E889EF35A722F55AE8F070DC /* Pods_iosApp.framework */; };
 		872B7D2C2420C7FE00DEBC27 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 872B7D2B2420C7FE00DEBC27 /* Foundation.framework */; };
 		8746C99F2426EFA900F0DF4D /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8746C99E2426EFA900F0DF4D /* Environment.swift */; };
+		8779ABE9242A196F000F0A1F /* StartMultiConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8779ABE8242A196F000F0A1F /* StartMultiConfig.swift */; };
 		B5B468BE0022438AB889C6E6 /* Pods_iosAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E2D89B816F141BE3C1AA76E /* Pods_iosAppTests.framework */; };
 		F861D7E1207FA40F0085E80D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F861D7E0207FA40F0085E80D /* AppDelegate.swift */; };
-		F861D7E3207FA40F0085E80D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F861D7E2207FA40F0085E80D /* ViewController.swift */; };
+		F861D7E3207FA40F0085E80D /* ConfigurationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F861D7E2207FA40F0085E80D /* ConfigurationController.swift */; };
 		F861D7E6207FA40F0085E80D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F861D7E4207FA40F0085E80D /* Main.storyboard */; };
 		F861D7EB207FA4100085E80D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F861D7E9207FA4100085E80D /* LaunchScreen.storyboard */; };
 		F861D7F6207FA4100085E80D /* iosAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F861D7F5207FA4100085E80D /* iosAppTests.swift */; };
@@ -58,6 +59,7 @@
 		74BB4CC789C2CB52074ED3ED /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
 		872B7D2B2420C7FE00DEBC27 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8746C99E2426EFA900F0DF4D /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		8779ABE8242A196F000F0A1F /* StartMultiConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartMultiConfig.swift; sourceTree = "<group>"; };
 		8E2D89B816F141BE3C1AA76E /* Pods_iosAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A9A6A1A9D392D3042F67C14 /* Pods-iosAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosAppTests.release.xcconfig"; path = "Target Support Files/Pods-iosAppTests/Pods-iosAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		A88F0F7D54C97420B2EF34E9 /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -66,7 +68,7 @@
 		F2C8A7ED1F0635966203BFC7 /* Pods-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app.release.xcconfig"; path = "Target Support Files/Pods-app/Pods-app.release.xcconfig"; sourceTree = "<group>"; };
 		F861D7DD207FA40F0085E80D /* multiconfig.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = multiconfig.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F861D7E0207FA40F0085E80D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F861D7E2207FA40F0085E80D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F861D7E2207FA40F0085E80D /* ConfigurationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationController.swift; sourceTree = "<group>"; };
 		F861D7E5207FA40F0085E80D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F861D7EA207FA4100085E80D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F861D7EC207FA4100085E80D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -157,11 +159,12 @@
 			isa = PBXGroup;
 			children = (
 				F861D7E0207FA40F0085E80D /* AppDelegate.swift */,
-				F861D7E2207FA40F0085E80D /* ViewController.swift */,
+				F861D7E2207FA40F0085E80D /* ConfigurationController.swift */,
 				F861D7E4207FA40F0085E80D /* Main.storyboard */,
 				F861D7E9207FA4100085E80D /* LaunchScreen.storyboard */,
 				F861D7EC207FA4100085E80D /* Info.plist */,
 				8746C99E2426EFA900F0DF4D /* Environment.swift */,
+				8779ABE8242A196F000F0A1F /* StartMultiConfig.swift */,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
@@ -381,7 +384,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F861D7E3207FA40F0085E80D /* ViewController.swift in Sources */,
+				8779ABE9242A196F000F0A1F /* StartMultiConfig.swift in Sources */,
+				F861D7E3207FA40F0085E80D /* ConfigurationController.swift in Sources */,
 				8746C99F2426EFA900F0DF4D /* Environment.swift in Sources */,
 				F861D7E1207FA40F0085E80D /* AppDelegate.swift in Sources */,
 			);
