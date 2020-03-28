@@ -16,17 +16,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g96-DY-xL8">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="XcT-XT-uSV"/>
+                                </constraints>
+                                <state key="normal" title="Launch"/>
+                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="935-4t-uYG">
-                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="579"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MultiConfigConfigurationCell" id="P2i-Op-mhO">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ListItemConfigurationCell" id="P2i-Op-mhO" customClass="ListItemConfigurationCell" customModule="multiconfig" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="51.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="P2i-Op-mhO" id="Xz8-wh-Kdw">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="51.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mKG-F8-QtL">
+                                                    <rect key="frame" x="19" y="15" width="293" height="21.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="42" id="AP2-3X-keM"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="mKG-F8-QtL" secondAttribute="trailing" constant="48" id="Cj6-rp-p2y"/>
+                                                <constraint firstItem="mKG-F8-QtL" firstAttribute="leading" secondItem="Xz8-wh-Kdw" secondAttribute="leadingMargin" constant="4" id="TpQ-OA-GVa"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="mKG-F8-QtL" secondAttribute="bottom" constant="4" id="xqq-vR-zuh"/>
+                                                <constraint firstItem="mKG-F8-QtL" firstAttribute="top" secondItem="Xz8-wh-Kdw" secondAttribute="topMargin" constant="4" id="y7b-ZI-0ee"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="label" destination="mKG-F8-QtL" id="XyL-qh-83T"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -36,14 +63,20 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="935-4t-uYG" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="5dz-xB-Nhs"/>
-                            <constraint firstItem="935-4t-uYG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="SRc-FJ-uF1"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="935-4t-uYG" secondAttribute="trailing" id="jlD-eh-zZl"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="935-4t-uYG" secondAttribute="bottom" id="nm8-N6-Ujb"/>
+                            <constraint firstItem="g96-DY-xL8" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="AwZ-VR-gv2"/>
+                            <constraint firstItem="g96-DY-xL8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="QTv-NH-IKb"/>
+                            <constraint firstItem="g96-DY-xL8" firstAttribute="top" secondItem="935-4t-uYG" secondAttribute="bottom" id="brU-9x-iJ2"/>
+                            <constraint firstItem="g96-DY-xL8" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="e8G-Jk-Pef"/>
+                            <constraint firstItem="935-4t-uYG" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="qEh-69-kRW"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="935-4t-uYG" secondAttribute="trailing" id="qm4-OH-5H5"/>
+                            <constraint firstItem="935-4t-uYG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="t19-LA-Rnq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="yoY-Lb-rVu"/>
+                    <connections>
+                        <outlet property="tableView" destination="935-4t-uYG" id="nqe-gC-oEC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

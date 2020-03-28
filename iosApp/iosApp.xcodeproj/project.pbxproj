@@ -11,6 +11,7 @@
 		872B7D2C2420C7FE00DEBC27 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 872B7D2B2420C7FE00DEBC27 /* Foundation.framework */; };
 		8746C99F2426EFA900F0DF4D /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8746C99E2426EFA900F0DF4D /* Environment.swift */; };
 		8779ABE9242A196F000F0A1F /* StartMultiConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8779ABE8242A196F000F0A1F /* StartMultiConfig.swift */; };
+		8779ABF1242F1D00000F0A1F /* ListItemConfigurationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8779ABF0242F1CFF000F0A1F /* ListItemConfigurationCell.swift */; };
 		B5B468BE0022438AB889C6E6 /* Pods_iosAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E2D89B816F141BE3C1AA76E /* Pods_iosAppTests.framework */; };
 		F861D7E1207FA40F0085E80D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F861D7E0207FA40F0085E80D /* AppDelegate.swift */; };
 		F861D7E3207FA40F0085E80D /* ConfigurationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F861D7E2207FA40F0085E80D /* ConfigurationController.swift */; };
@@ -60,6 +61,7 @@
 		872B7D2B2420C7FE00DEBC27 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8746C99E2426EFA900F0DF4D /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		8779ABE8242A196F000F0A1F /* StartMultiConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartMultiConfig.swift; sourceTree = "<group>"; };
+		8779ABF0242F1CFF000F0A1F /* ListItemConfigurationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemConfigurationCell.swift; sourceTree = "<group>"; };
 		8E2D89B816F141BE3C1AA76E /* Pods_iosAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A9A6A1A9D392D3042F67C14 /* Pods-iosAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosAppTests.release.xcconfig"; path = "Target Support Files/Pods-iosAppTests/Pods-iosAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		A88F0F7D54C97420B2EF34E9 /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				F861D7EC207FA4100085E80D /* Info.plist */,
 				8746C99E2426EFA900F0DF4D /* Environment.swift */,
 				8779ABE8242A196F000F0A1F /* StartMultiConfig.swift */,
+				8779ABF0242F1CFF000F0A1F /* ListItemConfigurationCell.swift */,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
@@ -388,6 +391,7 @@
 				F861D7E3207FA40F0085E80D /* ConfigurationController.swift in Sources */,
 				8746C99F2426EFA900F0DF4D /* Environment.swift in Sources */,
 				F861D7E1207FA40F0085E80D /* AppDelegate.swift in Sources */,
+				8779ABF1242F1D00000F0A1F /* ListItemConfigurationCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

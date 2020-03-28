@@ -2,6 +2,7 @@ import UIKit
 import app
 
 class ConfigurationController: UIViewController {
+    @IBOutlet weak var tableView: UITableView!
     
     lazy var manager: ConfigurationManager = {
         return (UIApplication.shared.delegate as? AppDelegate)!.configurationManager
@@ -9,6 +10,7 @@ class ConfigurationController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.tableFooterView = UIView(frame: .zero)
         navigationItem.title = "Configuration"
     }
     
@@ -24,10 +26,10 @@ extension ConfigurationController : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MultiConfigConfigurationCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ListItemConfigurationCell", for: indexPath) as! ListItemConfigurationCell
         let appConfig = manager.getApplicationConfiguration()
         let config = appConfig[indexPath.row] as! Configuration
-        cell.textLabel?.text = config.environment
+        cell.label.text = config.environment
         return cell
     }
 }
