@@ -14,7 +14,7 @@ public func appConfig(apply closure: (AppConfigurationBuilder) -> Void) -> NSMut
     return builder.build()
 }
 
-public func setup() -> NSMutableArray {
+func setup() -> NSMutableArray {
     return appConfig {
         $0.config(environment: "DEV") {
             $0.switch {
@@ -59,7 +59,7 @@ public func setup() -> NSMutableArray {
                 }
             }
         }
-    }
+        }
 }
 
 

@@ -12,6 +12,12 @@
 		8746C99F2426EFA900F0DF4D /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8746C99E2426EFA900F0DF4D /* Environment.swift */; };
 		8779ABE9242A196F000F0A1F /* StartMultiConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8779ABE8242A196F000F0A1F /* StartMultiConfig.swift */; };
 		8779ABF1242F1D00000F0A1F /* ListItemConfigurationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8779ABF0242F1CFF000F0A1F /* ListItemConfigurationCell.swift */; };
+		8779AC042430459C000F0A1F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8779AC032430459C000F0A1F /* Localizable.strings */; };
+		8779AC0624304893000F0A1F /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8779AC0524304893000F0A1F /* Box.swift */; };
+		8779AC08243048E0000F0A1F /* ConfigurationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8779AC07243048E0000F0A1F /* ConfigurationViewModel.swift */; };
+		8779AC0A24304F73000F0A1F /* ConfigurationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8779AC0924304F73000F0A1F /* ConfigurationState.swift */; };
+		8779AC0C24307DBB000F0A1F /* ConfigurationViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8779AC0B24307DBB000F0A1F /* ConfigurationViewDataSource.swift */; };
+		8779AC0E24307DF8000F0A1F /* ConfigurationViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8779AC0D24307DF8000F0A1F /* ConfigurationViewDelegate.swift */; };
 		B5B468BE0022438AB889C6E6 /* Pods_iosAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E2D89B816F141BE3C1AA76E /* Pods_iosAppTests.framework */; };
 		F861D7E1207FA40F0085E80D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F861D7E0207FA40F0085E80D /* AppDelegate.swift */; };
 		F861D7E3207FA40F0085E80D /* ConfigurationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F861D7E2207FA40F0085E80D /* ConfigurationController.swift */; };
@@ -62,6 +68,13 @@
 		8746C99E2426EFA900F0DF4D /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		8779ABE8242A196F000F0A1F /* StartMultiConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartMultiConfig.swift; sourceTree = "<group>"; };
 		8779ABF0242F1CFF000F0A1F /* ListItemConfigurationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemConfigurationCell.swift; sourceTree = "<group>"; };
+		8779AC00243042C0000F0A1F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		8779AC032430459C000F0A1F /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		8779AC0524304893000F0A1F /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
+		8779AC07243048E0000F0A1F /* ConfigurationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationViewModel.swift; sourceTree = "<group>"; };
+		8779AC0924304F73000F0A1F /* ConfigurationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationState.swift; sourceTree = "<group>"; };
+		8779AC0B24307DBB000F0A1F /* ConfigurationViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationViewDataSource.swift; sourceTree = "<group>"; };
+		8779AC0D24307DF8000F0A1F /* ConfigurationViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationViewDelegate.swift; sourceTree = "<group>"; };
 		8E2D89B816F141BE3C1AA76E /* Pods_iosAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A9A6A1A9D392D3042F67C14 /* Pods-iosAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosAppTests.release.xcconfig"; path = "Target Support Files/Pods-iosAppTests/Pods-iosAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		A88F0F7D54C97420B2EF34E9 /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -160,6 +173,7 @@
 		F861D7DF207FA40F0085E80D /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				8779AC032430459C000F0A1F /* Localizable.strings */,
 				F861D7E0207FA40F0085E80D /* AppDelegate.swift */,
 				F861D7E2207FA40F0085E80D /* ConfigurationController.swift */,
 				F861D7E4207FA40F0085E80D /* Main.storyboard */,
@@ -168,6 +182,11 @@
 				8746C99E2426EFA900F0DF4D /* Environment.swift */,
 				8779ABE8242A196F000F0A1F /* StartMultiConfig.swift */,
 				8779ABF0242F1CFF000F0A1F /* ListItemConfigurationCell.swift */,
+				8779AC0524304893000F0A1F /* Box.swift */,
+				8779AC07243048E0000F0A1F /* ConfigurationViewModel.swift */,
+				8779AC0924304F73000F0A1F /* ConfigurationState.swift */,
+				8779AC0B24307DBB000F0A1F /* ConfigurationViewDataSource.swift */,
+				8779AC0D24307DF8000F0A1F /* ConfigurationViewDelegate.swift */,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
@@ -287,6 +306,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F861D7EB207FA4100085E80D /* LaunchScreen.storyboard in Resources */,
+				8779AC042430459C000F0A1F /* Localizable.strings in Resources */,
 				F861D7E6207FA40F0085E80D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -388,9 +408,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				8779ABE9242A196F000F0A1F /* StartMultiConfig.swift in Sources */,
+				8779AC08243048E0000F0A1F /* ConfigurationViewModel.swift in Sources */,
+				8779AC0E24307DF8000F0A1F /* ConfigurationViewDelegate.swift in Sources */,
 				F861D7E3207FA40F0085E80D /* ConfigurationController.swift in Sources */,
 				8746C99F2426EFA900F0DF4D /* Environment.swift in Sources */,
+				8779AC0A24304F73000F0A1F /* ConfigurationState.swift in Sources */,
+				8779AC0624304893000F0A1F /* Box.swift in Sources */,
 				F861D7E1207FA40F0085E80D /* AppDelegate.swift in Sources */,
+				8779AC0C24307DBB000F0A1F /* ConfigurationViewDataSource.swift in Sources */,
 				8779ABF1242F1D00000F0A1F /* ListItemConfigurationCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -423,6 +448,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				F861D7E5207FA40F0085E80D /* Base */,
+				8779AC00243042C0000F0A1F /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

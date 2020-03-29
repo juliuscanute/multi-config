@@ -8,6 +8,9 @@ import UIKit
 import Foundation
 import app
 
+
+public typealias ApplicationConfiguration = [Configuration]
+
 public class StartMultiConfig {
     var settings: Settings?
     var configManager: ConfigurationManager?

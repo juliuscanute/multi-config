@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  iosApp
+
+  Created by Julius Canute on 29/3/20.
+  
+*/
+"configuration" = "Configuration";
+"selected_configuration" = "Launch %@";
