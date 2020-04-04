@@ -5,7 +5,7 @@ class ConfigurationController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var launch: UIBarButtonItem!
     
-    lazy var viewModel = {
+    internal lazy var viewModel = {
         return ConfigurationViewModel(manager: { return (UIApplication.shared.delegate as? AppDelegate)!.configurationManager })
     }()
     

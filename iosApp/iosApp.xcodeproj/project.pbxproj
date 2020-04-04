@@ -148,6 +148,89 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		8779AC0F2430882B000F0A1F /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				8779AC11243088BC000F0A1F /* Controllers */,
+				8779AC12243088E7000F0A1F /* ViewModels */,
+				8779AC1324308913000F0A1F /* Views */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		8779AC1024308868000F0A1F /* App */ = {
+			isa = PBXGroup;
+			children = (
+				8779AC142430895A000F0A1F /* AppDelegate */,
+				8779AC162430899E000F0A1F /* Supporting Files */,
+				8779AC17243089CD000F0A1F /* Utils */,
+				8779AC1524308981000F0A1F /* Views */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		8779AC11243088BC000F0A1F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F861D7E2207FA40F0085E80D /* ConfigurationController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		8779AC12243088E7000F0A1F /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				8779AC07243048E0000F0A1F /* ConfigurationViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		8779AC1324308913000F0A1F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8779AC0924304F73000F0A1F /* ConfigurationState.swift */,
+				8779AC0B24307DBB000F0A1F /* ConfigurationViewDataSource.swift */,
+				8779AC0D24307DF8000F0A1F /* ConfigurationViewDelegate.swift */,
+				8779ABF0242F1CFF000F0A1F /* ListItemConfigurationCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8779AC142430895A000F0A1F /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				F861D7E0207FA40F0085E80D /* AppDelegate.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		8779AC1524308981000F0A1F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F861D7E4207FA40F0085E80D /* Main.storyboard */,
+				F861D7E9207FA4100085E80D /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8779AC162430899E000F0A1F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8779AC032430459C000F0A1F /* Localizable.strings */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8779AC17243089CD000F0A1F /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				8746C99E2426EFA900F0DF4D /* Environment.swift */,
+				8779ABE8242A196F000F0A1F /* StartMultiConfig.swift */,
+				8779AC0524304893000F0A1F /* Box.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		F861D7D4207FA40F0085E80D = {
 			isa = PBXGroup;
 			children = (
@@ -173,20 +256,9 @@
 		F861D7DF207FA40F0085E80D /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
-				8779AC032430459C000F0A1F /* Localizable.strings */,
-				F861D7E0207FA40F0085E80D /* AppDelegate.swift */,
-				F861D7E2207FA40F0085E80D /* ConfigurationController.swift */,
-				F861D7E4207FA40F0085E80D /* Main.storyboard */,
-				F861D7E9207FA4100085E80D /* LaunchScreen.storyboard */,
 				F861D7EC207FA4100085E80D /* Info.plist */,
-				8746C99E2426EFA900F0DF4D /* Environment.swift */,
-				8779ABE8242A196F000F0A1F /* StartMultiConfig.swift */,
-				8779ABF0242F1CFF000F0A1F /* ListItemConfigurationCell.swift */,
-				8779AC0524304893000F0A1F /* Box.swift */,
-				8779AC07243048E0000F0A1F /* ConfigurationViewModel.swift */,
-				8779AC0924304F73000F0A1F /* ConfigurationState.swift */,
-				8779AC0B24307DBB000F0A1F /* ConfigurationViewDataSource.swift */,
-				8779AC0D24307DF8000F0A1F /* ConfigurationViewDelegate.swift */,
+				8779AC1024308868000F0A1F /* App */,
+				8779AC0F2430882B000F0A1F /* Configuration */,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
