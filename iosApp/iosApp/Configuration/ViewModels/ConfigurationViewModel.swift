@@ -11,10 +11,12 @@ import app
 public class ConfigurationViewModel {
     let configManager: ConfigurationManager
     let state: Observable<ConfigurationState> { return stateSubject.asObservable() }
+    let configurationDetailResponder: ConfigurationDetailResponder
     private let stateSubject: PublishSubject<ConfigurationState> = PublishSubject<ConfigurationState>()
     
-    init(manager: ConfigurationManager) {
+    init(manager: ConfigurationManager, configurationDetailResponder: ConfigurationDetailResponder) {
         self.configManager = manager
+        self.configurationDetailResponder = configurationDetailResponder
     }
     
     func moveToConfigurationDetail(environment: String) {
@@ -31,6 +33,7 @@ public class ConfigurationViewModel {
         let selectedConfig = configManager.getConfig()
         let selectedIndex = selectedConfig < 0 ? 0 : selectedConfig
         let appState = LoadApplicationConfigurationState(items: applicationConfiguration.mapState(selectedIndex: Int(selectedIndex)), environment: applicationConfiguration[Int(selectedIndex)].environment, selectedIndex: Int(selectedIndex))
+        configurationDetailResponder.selectConfiguration(environment: applicationConfiguration[Int(selectedIndex)].environment)
         stateSubject.onNext(ConfigurationState.appConfig(appState))
     }
     

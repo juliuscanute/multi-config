@@ -29,7 +29,7 @@ public class ConfiugrationDependencyContainer {
     }
     
     func makeConfigurationViewModel() -> ConfigurationViewModel {
-        return ConfigurationViewModel(manager: configurationManager)
+        return ConfigurationViewModel(manager: configurationManager, configurationDetailResponder: sharedMainViewModel)
     }
 }
 
