@@ -10,10 +10,11 @@ import app
 
 public class ConfigurationViewModel {
     let configManager: ConfigurationManager
-    let state = Box<ConfigurationState?>(nil)
+    let state: Observable<ConfigurationState> { return stateSubject.asObservable() }
+    private let stateSubject: PublishSubject<ConfigurationState> = PublishSubject<ConfigurationState>()
     
-    init(manager: () -> ConfigurationManager?) {
-        self.configManager = manager()!
+    init(manager: ConfigurationManager) {
+        self.configManager = manager
     }
     
     func moveToConfigurationDetail(environment: String) {
@@ -30,7 +31,16 @@ public class ConfigurationViewModel {
         let selectedConfig = configManager.getConfig()
         let selectedIndex = selectedConfig < 0 ? 0 : selectedConfig
         let appState = LoadApplicationConfigurationState(items: applicationConfiguration.mapState(selectedIndex: Int(selectedIndex)), environment: applicationConfiguration[Int(selectedIndex)].environment, selectedIndex: Int(selectedIndex))
-        state.value = ConfigurationState.appConfig(appState)
+        stateSubject.onNext(ConfigurationState.appConfig(appState))
+    }
+    
+    func getAvailableConfigurationCount() -> Int {
+        return configManager.getApplicationConfiguration().count
+    }
+    
+    func getConfigurationForIndex(index: Int) -> Configuration {
+        let applicationConfiguration: ApplicationConfiguration = configManager.getApplicationConfiguration() as! ApplicationConfiguration
+        return applicationConfiguration[index]
     }
 }
 

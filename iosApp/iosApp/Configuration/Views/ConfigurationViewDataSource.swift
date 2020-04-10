@@ -8,15 +8,20 @@
 import Foundation
 import UIKit
 
-extension ConfigurationController : UITableViewDataSource {
+enum CellIdentifier: String {
+
+  case cell
+}
+
+extension ConfigurationRootView : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return appConfig?.count ?? 0
+        return viewModel.getAvailableConfigurationCount()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ListItemConfigurationCell", for: indexPath) as! ListItemConfigurationCell
-        let config = appConfig?[indexPath.row]
-        cell.label.text = config?.environment
+        let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.cell.rawValue, for: indexPath)
+        let config = viewModel.getConfigurationForIndex(index: indexPath.row)
+        cell?.textLabel?.text = config.environment
         return cell
     }
 }

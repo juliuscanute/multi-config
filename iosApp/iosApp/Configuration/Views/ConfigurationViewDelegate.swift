@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-extension ConfigurationController : UITableViewDelegate {
+extension ConfigurationRootView : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.selectNewConfiguration(selected: indexPath.row)
     }
