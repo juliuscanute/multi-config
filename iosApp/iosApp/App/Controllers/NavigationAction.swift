@@ -7,9 +7,9 @@
 
 import Foundation
 
-public enum NavigationAction<ViewModelType>: Equatable where MainView: Equatable {
+public enum NavigationAction<ViewModelType>: Equatable where ViewModelType: Equatable {
     case present(view: ViewModelType)
     case presented(view: ViewModelType)
 }
 
-public typealias ConfigurationNavigationAction = NavigationAction<MainView>
+public typealias ConfigurationNavigationAction = NavigationAction<MainViewType>

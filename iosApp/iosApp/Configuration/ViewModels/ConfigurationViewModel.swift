@@ -7,12 +7,20 @@
 
 import Foundation
 import app
+import RxSwift
+import RxCocoa
 
 public class ConfigurationViewModel {
     let configManager: ConfigurationManager
-    let state: Observable<ConfigurationState> { return stateSubject.asObservable() }
+    var state: Observable<ConfigurationState> {
+        stateSubject.asObservable()
+    }
     let configurationDetailResponder: ConfigurationDetailResponder
     private let stateSubject: PublishSubject<ConfigurationState> = PublishSubject<ConfigurationState>()
+    public var launchText: Observable<String> {
+        launchTextSubject.asObservable()
+    }
+    private let launchTextSubject:BehaviorSubject<String> = BehaviorSubject<String>(value: "")
     
     init(manager: ConfigurationManager, configurationDetailResponder: ConfigurationDetailResponder) {
         self.configManager = manager
@@ -33,7 +41,7 @@ public class ConfigurationViewModel {
         let selectedConfig = configManager.getConfig()
         let selectedIndex = selectedConfig < 0 ? 0 : selectedConfig
         let appState = LoadApplicationConfigurationState(items: applicationConfiguration.mapState(selectedIndex: Int(selectedIndex)), environment: applicationConfiguration[Int(selectedIndex)].environment, selectedIndex: Int(selectedIndex))
-        configurationDetailResponder.selectConfiguration(environment: applicationConfiguration[Int(selectedIndex)].environment)
+        launchTextSubject.onNext(applicationConfiguration[Int(selectedIndex)].environment)
         stateSubject.onNext(ConfigurationState.appConfig(appState))
     }
     

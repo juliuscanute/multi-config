@@ -21,8 +21,8 @@ public class StartMultiConfig {
         startClass = NSClassFromString(start)
     }
     
-    func getConigurationManager() -> ConfigurationManager {
-        return configManager!
+    func getConfigurationManager() -> ConfigurationManager {
+        configManager!
     }
     
     func getStartController() -> UIViewController {

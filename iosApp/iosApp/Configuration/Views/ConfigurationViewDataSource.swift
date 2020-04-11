@@ -15,13 +15,13 @@ enum CellIdentifier: String {
 
 extension ConfigurationRootView : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.getAvailableConfigurationCount()
+        viewModel.getAvailableConfigurationCount()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.cell.rawValue, for: indexPath)
         let config = viewModel.getConfigurationForIndex(index: indexPath.row)
-        cell?.textLabel?.text = config.environment
+        cell.textLabel?.text = config.environment
         return cell
     }
 }

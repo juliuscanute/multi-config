@@ -4,33 +4,32 @@
 //
 //  Created by Julius Canute on 4/4/20.
 //
-
-import Foundation
+import UIKit
 import app
 
-public class ConfiugrationDependencyContainer {
+public class ConfigurationDependencyContainer {
     let configurationManager: ConfigurationManager
     let sharedMainViewModel: MainViewModel
     init() {
         configurationManager = startMultiConfig(apply: {
             $0.appConfig(configuration: setup(),startController: "ConfigurationController")
-        }).getConigurationManager()
+        }).getConfigurationManager()
         sharedMainViewModel = MainViewModel()
     }
     
-    func makeMainViewController() -> MainViewConroller {
+    func makeMainViewController() -> MainViewController {
         let configurationViewController = makeConfigurationViewController()
-        return MainViewConroller(viewModel: sharedMainViewModel,
+        return MainViewController(viewModel: sharedMainViewModel,
                                  configurationController: configurationViewController)
     }
     
-    func makeConfigurationViewController() -> ConfigurationViewController {
-        return ConfigurationViewController(configurationViewModelFactory: self)
+    func makeConfigurationViewController() -> ConfigurationController {
+        ConfigurationController(configurationViewModelFactory: self)
     }
     
     func makeConfigurationViewModel() -> ConfigurationViewModel {
-        return ConfigurationViewModel(manager: configurationManager, configurationDetailResponder: sharedMainViewModel)
+        ConfigurationViewModel(manager: configurationManager, configurationDetailResponder: sharedMainViewModel)
     }
 }
 
-extension ConfiugrationDependencyContainer: ConfigurationViewModelFactory {}
+extension ConfigurationDependencyContainer: ConfigurationViewModelFactory {}

@@ -8,6 +8,7 @@
 import Foundation
 
 enum ConfigurationState {
+    case initialState
     case appConfig(LoadApplicationConfigurationState)
     case selectedConfig(String)
     case buttonConfig(ButtonConfigurationState)

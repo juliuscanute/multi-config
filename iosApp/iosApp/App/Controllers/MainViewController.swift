@@ -7,10 +7,14 @@
 
 import Foundation
 import UIKit
+import RxSwift
+import RxCocoa
 
-class MainViewController : NiblessNavigationController {
+
+public class MainViewController : NiblessNavigationController {
     let viewModel: MainViewModel
     let configurationController: ConfigurationController
+    let disposeBag = DisposeBag()
     
     public init(viewModel: MainViewModel,
                 configurationController: ConfigurationController){
@@ -43,7 +47,7 @@ class MainViewController : NiblessNavigationController {
         }
     }
     
-    func present(view: MainVIewType) {
+    func present(view: MainViewType) {
         switch view {
         case .configuration:
             presentConfiguration()
@@ -55,7 +59,7 @@ class MainViewController : NiblessNavigationController {
     }
 }
 
-extension OnboardingViewController {
+extension MainViewController {
     
     func hideOrShowNavigationBarIfNeeded(for view: MainViewType, animated: Bool) {
         if view.hidesNavigationBar() {
@@ -65,12 +69,12 @@ extension OnboardingViewController {
         }
         
         if view.hidesToolBar() {
-            hideToolBar()
+            hideToolBar(animated: animated)
         } else {
             showToolBar()
         }
     }
-    func hideToolBar() {
+    func hideToolBar(animated: Bool) {
         if animated {
             transitionCoordinator?.animate(alongsideTransition: { context in
                 self.setToolbarHidden(true, animated: animated)
@@ -83,7 +87,6 @@ extension OnboardingViewController {
     func showToolBar() {
         if self.isToolbarHidden {
             self.setToolbarHidden(false, animated: false)
-            self.toolbarItems = [ToolbarView(frame: self.frame)]
         }
     }
     

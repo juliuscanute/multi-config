@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		4A99F85B72C32DF2209BADB7 /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E889EF35A722F55AE8F070DC /* Pods_iosApp.framework */; };
+		6F1FF05DF51525E46585F4BD /* ConfigurationDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1FF361A7FA090B62F74EEE /* ConfigurationDependencyContainer.swift */; };
+		6F1FF44732C498DB00EEE39F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1FF60A76A21AA7DF9E37E6 /* MainViewController.swift */; };
+		6F1FFB373728A50B83DB3940 /* ConfigurationDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1FF361A7FA090B62F74EEE /* ConfigurationDependencyContainer.swift */; };
+		6F1FFE5DCF2F54F75C560339 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1FF60A76A21AA7DF9E37E6 /* MainViewController.swift */; };
 		872B7D2C2420C7FE00DEBC27 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 872B7D2B2420C7FE00DEBC27 /* Foundation.framework */; };
 		872F4C5F243FEF10006F3E99 /* NavigationAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872F4C5E243FEF10006F3E99 /* NavigationAction.swift */; };
 		8746C99F2426EFA900F0DF4D /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8746C99E2426EFA900F0DF4D /* Environment.swift */; };
-		8750994524385D9800E0BF97 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8750994424385D9800E0BF97 /* MainViewController.swift */; };
-		8750994724385F7500E0BF97 /* ConfigurationDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8750994624385F7500E0BF97 /* ConfigurationDependencyContainer.swift */; };
 		8750994D2438623E00E0BF97 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8750994C2438623E00E0BF97 /* MainViewModel.swift */; };
 		8750994F2438628800E0BF97 /* ConfigurationDetailResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8750994E2438628800E0BF97 /* ConfigurationDetailResponder.swift */; };
 		87509951243862FF00E0BF97 /* MainViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87509950243862FF00E0BF97 /* MainViewType.swift */; };
@@ -20,16 +22,13 @@
 		8750995524386D6D00E0BF97 /* NiblessNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8750995424386D6D00E0BF97 /* NiblessNavigationController.swift */; };
 		875099572439449100E0BF97 /* ConfigurationRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875099562439449100E0BF97 /* ConfigurationRootView.swift */; };
 		87509959243944D400E0BF97 /* NiblessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87509958243944D400E0BF97 /* NiblessView.swift */; };
-		8750995B24394C6400E0BF97 /* NavigationAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8750995A24394C6400E0BF97 /* NavigationAction.swift */; };
 		8779ABE9242A196F000F0A1F /* StartMultiConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8779ABE8242A196F000F0A1F /* StartMultiConfig.swift */; };
 		8779AC042430459C000F0A1F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8779AC032430459C000F0A1F /* Localizable.strings */; };
-		8779AC0624304893000F0A1F /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8779AC0524304893000F0A1F /* Box.swift */; };
 		8779AC08243048E0000F0A1F /* ConfigurationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8779AC07243048E0000F0A1F /* ConfigurationViewModel.swift */; };
 		8779AC0A24304F73000F0A1F /* ConfigurationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8779AC0924304F73000F0A1F /* ConfigurationState.swift */; };
 		8779AC0C24307DBB000F0A1F /* ConfigurationViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8779AC0B24307DBB000F0A1F /* ConfigurationViewDataSource.swift */; };
 		8779AC0E24307DF8000F0A1F /* ConfigurationViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8779AC0D24307DF8000F0A1F /* ConfigurationViewDelegate.swift */; };
 		87C77D73243FFB7300A353B4 /* ToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C77D72243FFB7300A353B4 /* ToolbarView.swift */; };
-		87C77D7524400ED300A353B4 /* NiblessBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C77D7424400ED300A353B4 /* NiblessBarButtonItem.swift */; };
 		B5B468BE0022438AB889C6E6 /* Pods_iosAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E2D89B816F141BE3C1AA76E /* Pods_iosAppTests.framework */; };
 		F861D7E1207FA40F0085E80D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F861D7E0207FA40F0085E80D /* AppDelegate.swift */; };
 		F861D7E3207FA40F0085E80D /* ConfigurationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F861D7E2207FA40F0085E80D /* ConfigurationController.swift */; };
@@ -75,12 +74,12 @@
 /* Begin PBXFileReference section */
 		08FCA3DC0B114B9D14BBE838 /* Pods-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app.debug.xcconfig"; path = "Target Support Files/Pods-app/Pods-app.debug.xcconfig"; sourceTree = "<group>"; };
 		173133E0DBAFA042D2186097 /* Pods-iosAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosAppTests.debug.xcconfig"; path = "Target Support Files/Pods-iosAppTests/Pods-iosAppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6F1FF361A7FA090B62F74EEE /* ConfigurationDependencyContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationDependencyContainer.swift; sourceTree = "<group>"; };
+		6F1FF60A76A21AA7DF9E37E6 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		74BB4CC789C2CB52074ED3ED /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
 		872B7D2B2420C7FE00DEBC27 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		872F4C5E243FEF10006F3E99 /* NavigationAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationAction.swift; sourceTree = "<group>"; };
 		8746C99E2426EFA900F0DF4D /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
-		8750994424385D9800E0BF97 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		8750994624385F7500E0BF97 /* ConfigurationDependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationDependencyContainer.swift; sourceTree = "<group>"; };
 		8750994C2438623E00E0BF97 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		8750994E2438628800E0BF97 /* ConfigurationDetailResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationDetailResponder.swift; sourceTree = "<group>"; };
 		87509950243862FF00E0BF97 /* MainViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewType.swift; sourceTree = "<group>"; };
@@ -88,17 +87,14 @@
 		8750995424386D6D00E0BF97 /* NiblessNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiblessNavigationController.swift; sourceTree = "<group>"; };
 		875099562439449100E0BF97 /* ConfigurationRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationRootView.swift; sourceTree = "<group>"; };
 		87509958243944D400E0BF97 /* NiblessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiblessView.swift; sourceTree = "<group>"; };
-		8750995A24394C6400E0BF97 /* NavigationAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationAction.swift; sourceTree = "<group>"; };
 		8779ABE8242A196F000F0A1F /* StartMultiConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartMultiConfig.swift; sourceTree = "<group>"; };
 		8779AC00243042C0000F0A1F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		8779AC032430459C000F0A1F /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
-		8779AC0524304893000F0A1F /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
 		8779AC07243048E0000F0A1F /* ConfigurationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationViewModel.swift; sourceTree = "<group>"; };
 		8779AC0924304F73000F0A1F /* ConfigurationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationState.swift; sourceTree = "<group>"; };
 		8779AC0B24307DBB000F0A1F /* ConfigurationViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationViewDataSource.swift; sourceTree = "<group>"; };
 		8779AC0D24307DF8000F0A1F /* ConfigurationViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationViewDelegate.swift; sourceTree = "<group>"; };
 		87C77D72243FFB7300A353B4 /* ToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarView.swift; sourceTree = "<group>"; };
-		87C77D7424400ED300A353B4 /* NiblessBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiblessBarButtonItem.swift; sourceTree = "<group>"; };
 		8E2D89B816F141BE3C1AA76E /* Pods_iosAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A9A6A1A9D392D3042F67C14 /* Pods-iosAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosAppTests.release.xcconfig"; path = "Target Support Files/Pods-iosAppTests/Pods-iosAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		A88F0F7D54C97420B2EF34E9 /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -175,8 +171,8 @@
 		8750994324385D7D00E0BF97 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				8750994424385D9800E0BF97 /* MainViewController.swift */,
 				872F4C5E243FEF10006F3E99 /* NavigationAction.swift */,
+				6F1FF60A76A21AA7DF9E37E6 /* MainViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -257,9 +253,7 @@
 				8750995224386BD500E0BF97 /* NiblessViewController.swift */,
 				8750995424386D6D00E0BF97 /* NiblessNavigationController.swift */,
 				87509958243944D400E0BF97 /* NiblessView.swift */,
-				8750995A24394C6400E0BF97 /* NavigationAction.swift */,
 				87C77D72243FFB7300A353B4 /* ToolbarView.swift */,
-				87C77D7424400ED300A353B4 /* NiblessBarButtonItem.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -277,8 +271,7 @@
 			children = (
 				8746C99E2426EFA900F0DF4D /* Environment.swift */,
 				8779ABE8242A196F000F0A1F /* StartMultiConfig.swift */,
-				8779AC0524304893000F0A1F /* Box.swift */,
-				8750994624385F7500E0BF97 /* ConfigurationDependencyContainer.swift */,
+				6F1FF361A7FA090B62F74EEE /* ConfigurationDependencyContainer.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -550,14 +543,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				8779ABE9242A196F000F0A1F /* StartMultiConfig.swift in Sources */,
-				8750994524385D9800E0BF97 /* MainViewController.swift in Sources */,
 				8750995524386D6D00E0BF97 /* NiblessNavigationController.swift in Sources */,
-				8750995B24394C6400E0BF97 /* NavigationAction.swift in Sources */,
 				875099572439449100E0BF97 /* ConfigurationRootView.swift in Sources */,
 				8779AC08243048E0000F0A1F /* ConfigurationViewModel.swift in Sources */,
 				8779AC0E24307DF8000F0A1F /* ConfigurationViewDelegate.swift in Sources */,
 				87C77D73243FFB7300A353B4 /* ToolbarView.swift in Sources */,
-				87C77D7524400ED300A353B4 /* NiblessBarButtonItem.swift in Sources */,
 				F861D7E3207FA40F0085E80D /* ConfigurationController.swift in Sources */,
 				8750995324386BD500E0BF97 /* NiblessViewController.swift in Sources */,
 				8750994D2438623E00E0BF97 /* MainViewModel.swift in Sources */,
@@ -565,12 +555,12 @@
 				8746C99F2426EFA900F0DF4D /* Environment.swift in Sources */,
 				872F4C5F243FEF10006F3E99 /* NavigationAction.swift in Sources */,
 				8779AC0A24304F73000F0A1F /* ConfigurationState.swift in Sources */,
-				8750994724385F7500E0BF97 /* ConfigurationDependencyContainer.swift in Sources */,
-				8779AC0624304893000F0A1F /* Box.swift in Sources */,
 				F861D7E1207FA40F0085E80D /* AppDelegate.swift in Sources */,
 				8779AC0C24307DBB000F0A1F /* ConfigurationViewDataSource.swift in Sources */,
 				8750994F2438628800E0BF97 /* ConfigurationDetailResponder.swift in Sources */,
 				87509951243862FF00E0BF97 /* MainViewType.swift in Sources */,
+				6F1FFB373728A50B83DB3940 /* ConfigurationDependencyContainer.swift in Sources */,
+				6F1FFE5DCF2F54F75C560339 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -579,6 +569,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F861D7F6207FA4100085E80D /* iosAppTests.swift in Sources */,
+				6F1FF05DF51525E46585F4BD /* ConfigurationDependencyContainer.swift in Sources */,
+				6F1FF44732C498DB00EEE39F /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
