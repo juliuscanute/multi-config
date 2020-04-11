@@ -12,6 +12,15 @@ public class ConfigurationController: NiblessViewController {
         return button
     }()
 
+    let stackView: UIStackView = {
+        let stackView: UIStackView = UIStackView()
+        stackView.distribution = .fill
+        stackView.alignment = .top
+        stackView.axis = .horizontal
+        stackView.spacing = 8.0
+        return stackView
+    }()
+
     init(configurationViewModelFactory: ConfigurationViewModelFactory) {
         self.viewModel = configurationViewModelFactory.makeConfigurationViewModel()
         super.init()
@@ -19,12 +28,15 @@ public class ConfigurationController: NiblessViewController {
 
     public override func loadView() {
         self.view = ConfigurationRootView(viewModel: viewModel)
+        stackView.frame = self.navigationController?.toolbar.frame ?? .zero
+        stackView.addArrangedSubview(launchButton)
         self.toolbarItems = [UIBarButtonItem(customView: buildToolbarView())]
     }
 
     override public func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = NSLocalizedString("configuration", comment: "Application Title")
+        bindViewModel()
         viewModel.loadApplicationConfiguration()
     }
 

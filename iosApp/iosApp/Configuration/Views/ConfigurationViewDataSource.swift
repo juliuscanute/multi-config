@@ -22,6 +22,7 @@ extension ConfigurationRootView : UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.cell.rawValue, for: indexPath)
         let config = viewModel.getConfigurationForIndex(index: indexPath.row)
         cell.textLabel?.text = config.environment
+        cell.accessoryType = UITableViewCell.AccessoryType.detailButton
         return cell
     }
 }

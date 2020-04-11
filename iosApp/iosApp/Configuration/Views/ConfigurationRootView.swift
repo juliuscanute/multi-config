@@ -77,18 +77,7 @@ class ConfigurationRootView: NiblessView {
     }
 
     private func updateViewConfiguration(formatString: String, configuration: LoadApplicationConfigurationState) {
-        //        launch.title = String.localizedStringWithFormat(formatString, configuration.environment)
-        updateData(configuration: configuration)
         updateSelectionIndex(configuration: configuration)
-    }
-
-    private func updateData(configuration: LoadApplicationConfigurationState) {
-        configurationTableView.beginUpdates()
-        let indexes = configuration.items.enumerated().map { (index: Int, configuration: ConfigurationViewDataModel) in
-            IndexPath(row: index, section: 0)
-        }
-        configurationTableView.insertRows(at: indexes, with: .automatic)
-        configurationTableView.endUpdates()
     }
 
     private func updateSelectionIndex(configuration: LoadApplicationConfigurationState) {
