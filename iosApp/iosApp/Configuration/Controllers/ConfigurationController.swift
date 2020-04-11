@@ -5,7 +5,6 @@ import app
 
 public class ConfigurationController: NiblessViewController {
     let disposeBag = DisposeBag()
-    var appConfig: [ConfigurationViewDataModel]?
     let viewModel: ConfigurationViewModel
 
     init(baseViewModel: BaseViewModel, configurationViewModelFactory: ConfigurationDependencyContainer) {

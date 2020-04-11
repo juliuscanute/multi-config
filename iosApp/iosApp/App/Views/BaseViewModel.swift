@@ -14,7 +14,7 @@ public class BaseViewModel: ConfigurationChangeResponder {
     }
     private let stateSubject: BehaviorSubject<ApplicationState> = BehaviorSubject<ApplicationState>(value: .initialState)
 
-    func onConfigurationChange(state: ButtonConfigurationState) {
-        stateSubject.onNext(.buttonConfig(state))
+    func onConfigurationChange(state: NavigationConfigurationState) {
+        stateSubject.onNext(.navigationControlConfig(state))
     }
 }

@@ -27,7 +27,7 @@ public class ConfigurationViewModel {
     }
 
     func moveToConfigurationDetail(environment: String) {
-
+        configurationDetailResponder.selectConfiguration(environment: environment)
     }
 
     func selectNewConfiguration(selected: Int) {
@@ -42,7 +42,9 @@ public class ConfigurationViewModel {
         let environment = applicationConfiguration[Int(selectedIndex)].environment
         let appState = LoadApplicationConfigurationState(items: applicationConfiguration.mapState(selectedIndex: Int(selectedIndex)),
                 environment: environment, selectedIndex: Int(selectedIndex))
-        configurationChangeResponder.onConfigurationChange(state: ButtonConfigurationState(environment: environment))
+        configurationChangeResponder
+                .onConfigurationChange(state: NavigationConfigurationState(
+                title: NSLocalizedString("configuration", comment: "Application Title"), environment: environment))
         stateSubject.onNext(.appConfig(appState))
     }
 

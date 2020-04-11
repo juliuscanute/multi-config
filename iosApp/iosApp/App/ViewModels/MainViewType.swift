@@ -7,16 +7,17 @@
 
 import Foundation
 
-public enum MainViewType {
+public enum MainViewType: Equatable {
     case configuration
-    //    case configuratondetail(environment: String)
+    case configurationDetail(environment: String)
+
     public func hidesNavigationBar() -> Bool {
         switch self {
         default:
             return false
         }
     }
-    
+
     public func hidesToolBar() -> Bool {
         switch self {
         default:

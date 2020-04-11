@@ -10,29 +10,35 @@ import app
 
 public class ConfigurationDependencyContainer {
     let configurationManager: ConfigurationManager
-    let sharedMainViewModel: SharedViewModel
+    let sharedMainViewModel: NavigationViewModel
     let baseViewModel: BaseViewModel
 
     init() {
         configurationManager = startMultiConfig(apply: {
             $0.appConfig(configuration: setup(), startController: "ConfigurationController")
         }).getConfigurationManager()
-        sharedMainViewModel = SharedViewModel()
+        sharedMainViewModel = NavigationViewModel()
         baseViewModel = BaseViewModel()
     }
 
     func makeMainViewController() -> MainViewController {
-        let configurationViewController = makeConfigurationViewController()
-        return MainViewController(viewModel: sharedMainViewModel,
-                configurationController: configurationViewController)
+        MainViewController(viewModel: sharedMainViewModel, dependencyContainer: self)
     }
 
     func makeConfigurationViewController() -> ConfigurationController {
         ConfigurationController(baseViewModel: baseViewModel, configurationViewModelFactory: self)
     }
+
+    func makeConfigurationDetailViewController(environment: String) -> ConfigurationDetailController {
+        ConfigurationDetailController(baseViewModel: baseViewModel, environment: environment, configurationViewModelFactory: self)
+    }
 }
 
-extension ConfigurationDependencyContainer: ConfigurationViewModelFactory {
+extension ConfigurationDependencyContainer: ConfigurationViewModelFactory, ConfigurationDetailViewModelFactory {
+    func makeConfigurationDetailViewModel() -> ConfigurationDetailViewModel {
+        ConfigurationDetailViewModel(manager: configurationManager, configurationChangeResponder: baseViewModel)
+    }
+
 
     func makeConfigurationViewModel() -> ConfigurationViewModel {
         ConfigurationViewModel(manager: configurationManager, configurationDetailResponder: sharedMainViewModel,

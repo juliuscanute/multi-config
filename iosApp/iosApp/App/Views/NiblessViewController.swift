@@ -41,7 +41,6 @@ open class NiblessViewController: UIViewController {
     }
 
     func attachView() {
-        navigationItem.title = NSLocalizedString("configuration", comment: "Application Title")
         stackView.frame = self.navigationController?.toolbar.frame ?? .zero
         stackView.addArrangedSubview(launchButton)
         self.toolbarItems = [UIBarButtonItem(customView: stackView)]
@@ -62,8 +61,9 @@ open class NiblessViewController: UIViewController {
     func respond(to state: ApplicationState) {
         let formatString = NSLocalizedString("selected_configuration", comment: "Select application configuration")
         switch state {
-        case .buttonConfig(let buttonState):
+        case .navigationControlConfig(let buttonState):
             launchButton.setTitle(String.localizedStringWithFormat(formatString, buttonState.environment), for: .normal)
+            navigationItem.title = buttonState.title
         default:
             break
         }

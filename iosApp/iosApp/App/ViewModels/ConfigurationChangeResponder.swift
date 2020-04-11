@@ -5,5 +5,5 @@
 import Foundation
 
 protocol ConfigurationChangeResponder {
-    func onConfigurationChange(state: ButtonConfigurationState)
+    func onConfigurationChange(state: NavigationConfigurationState)
 }

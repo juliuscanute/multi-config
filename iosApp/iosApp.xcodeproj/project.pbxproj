@@ -24,7 +24,7 @@
 		872B7D2C2420C7FE00DEBC27 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 872B7D2B2420C7FE00DEBC27 /* Foundation.framework */; };
 		872F4C5F243FEF10006F3E99 /* NavigationAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872F4C5E243FEF10006F3E99 /* NavigationAction.swift */; };
 		8746C99F2426EFA900F0DF4D /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8746C99E2426EFA900F0DF4D /* Environment.swift */; };
-		8750994D2438623E00E0BF97 /* SharedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8750994C2438623E00E0BF97 /* SharedViewModel.swift */; };
+		8750994D2438623E00E0BF97 /* NavigationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8750994C2438623E00E0BF97 /* NavigationViewModel.swift */; };
 		8750994F2438628800E0BF97 /* ConfigurationDetailResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8750994E2438628800E0BF97 /* ConfigurationDetailResponder.swift */; };
 		87509951243862FF00E0BF97 /* MainViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87509950243862FF00E0BF97 /* MainViewType.swift */; };
 		8750995324386BD500E0BF97 /* NiblessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8750995224386BD500E0BF97 /* NiblessViewController.swift */; };
@@ -96,7 +96,7 @@
 		872B7D2B2420C7FE00DEBC27 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		872F4C5E243FEF10006F3E99 /* NavigationAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationAction.swift; sourceTree = "<group>"; };
 		8746C99E2426EFA900F0DF4D /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
-		8750994C2438623E00E0BF97 /* SharedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedViewModel.swift; sourceTree = "<group>"; };
+		8750994C2438623E00E0BF97 /* NavigationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewModel.swift; sourceTree = "<group>"; };
 		8750994E2438628800E0BF97 /* ConfigurationDetailResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationDetailResponder.swift; sourceTree = "<group>"; };
 		87509950243862FF00E0BF97 /* MainViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewType.swift; sourceTree = "<group>"; };
 		8750995224386BD500E0BF97 /* NiblessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiblessViewController.swift; sourceTree = "<group>"; };
@@ -230,7 +230,7 @@
 		8750994B2438621800E0BF97 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				8750994C2438623E00E0BF97 /* SharedViewModel.swift */,
+				8750994C2438623E00E0BF97 /* NavigationViewModel.swift */,
 				8750994E2438628800E0BF97 /* ConfigurationDetailResponder.swift */,
 				87509950243862FF00E0BF97 /* MainViewType.swift */,
 				6F1FFC56329F7E1A632FE2F6 /* ConfigurationChangeResponder.swift */,
@@ -600,7 +600,7 @@
 				8779AC0E24307DF8000F0A1F /* ConfigurationViewDelegate.swift in Sources */,
 				F861D7E3207FA40F0085E80D /* ConfigurationController.swift in Sources */,
 				8750995324386BD500E0BF97 /* NiblessViewController.swift in Sources */,
-				8750994D2438623E00E0BF97 /* SharedViewModel.swift in Sources */,
+				8750994D2438623E00E0BF97 /* NavigationViewModel.swift in Sources */,
 				87509959243944D400E0BF97 /* NiblessView.swift in Sources */,
 				8746C99F2426EFA900F0DF4D /* Environment.swift in Sources */,
 				872F4C5F243FEF10006F3E99 /* NavigationAction.swift in Sources */,

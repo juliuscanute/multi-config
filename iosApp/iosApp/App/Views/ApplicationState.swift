@@ -6,9 +6,10 @@ import Foundation
 
 enum ApplicationState {
     case initialState
-    case buttonConfig(ButtonConfigurationState)
+    case navigationControlConfig(NavigationConfigurationState)
 }
 
-struct ButtonConfigurationState {
+struct NavigationConfigurationState {
+    let title: String
     let environment: String
 }
