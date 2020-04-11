@@ -15,7 +15,7 @@ public func appConfig(apply closure: (AppConfigurationBuilder) -> Void) -> NSMut
 }
 
 func setup() -> NSMutableArray {
-    return appConfig {
+    appConfig {
         $0.config(environment: "DEV") {
             $0.switch {
                 $0.key = "A"
