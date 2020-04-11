@@ -65,14 +65,10 @@ class ConfigurationRootView: NiblessView {
     func respond(to state: ConfigurationState) {
         let formatString = NSLocalizedString("selected_configuration", comment: "Select application configuration")
         switch state {
-        case .initialState:
-            print("none")
         case .appConfig(let configuration):
             updateViewConfiguration(formatString: formatString, configuration: configuration)
-        case .selectedConfig(_):
-            print("none")
-        case .buttonConfig(_):
-            print("none")
+        default:
+            break
         }
     }
 

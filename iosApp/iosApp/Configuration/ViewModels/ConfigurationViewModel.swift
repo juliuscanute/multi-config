@@ -16,15 +16,14 @@ public class ConfigurationViewModel {
         stateSubject.asObservable()
     }
     let configurationDetailResponder: ConfigurationDetailResponder
+    let configurationChangeResponder: ConfigurationChangeResponder
     private let stateSubject: BehaviorSubject<ConfigurationState> = BehaviorSubject<ConfigurationState>(value: .initialState)
-    public var launchText: Observable<String> {
-        launchTextSubject.asObservable()
-    }
-    private let launchTextSubject: BehaviorSubject<String> = BehaviorSubject<String>(value: "")
 
-    init(manager: ConfigurationManager, configurationDetailResponder: ConfigurationDetailResponder) {
+    init(manager: ConfigurationManager, configurationDetailResponder: ConfigurationDetailResponder,
+         configurationChangeResponder: ConfigurationChangeResponder) {
         self.configManager = manager
         self.configurationDetailResponder = configurationDetailResponder
+        self.configurationChangeResponder = configurationChangeResponder
     }
 
     func moveToConfigurationDetail(environment: String) {
@@ -40,10 +39,11 @@ public class ConfigurationViewModel {
         let applicationConfiguration: ApplicationConfiguration = configManager.getApplicationConfiguration() as! ApplicationConfiguration
         let selectedConfig = configManager.getConfig()
         let selectedIndex = selectedConfig < 0 ? 0 : selectedConfig
+        let environment = applicationConfiguration[Int(selectedIndex)].environment
         let appState = LoadApplicationConfigurationState(items: applicationConfiguration.mapState(selectedIndex: Int(selectedIndex)),
-                environment: applicationConfiguration[Int(selectedIndex)].environment, selectedIndex: Int(selectedIndex))
-        launchTextSubject.onNext(applicationConfiguration[Int(selectedIndex)].environment)
-        stateSubject.onNext(ConfigurationState.appConfig(appState))
+                environment: environment, selectedIndex: Int(selectedIndex))
+        configurationChangeResponder.onConfigurationChange(state: ButtonConfigurationState(environment: environment))
+        stateSubject.onNext(.appConfig(appState))
     }
 
     func getAvailableConfigurationCount() -> Int {

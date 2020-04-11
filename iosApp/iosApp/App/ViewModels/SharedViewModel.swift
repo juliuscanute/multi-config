@@ -8,7 +8,7 @@
 import Foundation
 import RxSwift
 
-public class MainViewModel : ConfigurationDetailResponder {
+public class SharedViewModel: ConfigurationDetailResponder {
     // MARK: - Properties
     public var view: Observable<ConfigurationNavigationAction> { return viewSubject.asObservable() }
     private let viewSubject = BehaviorSubject<ConfigurationNavigationAction>(value: .present(view: .configuration))

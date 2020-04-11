@@ -12,11 +12,11 @@ import RxCocoa
 
 
 public class MainViewController : NiblessNavigationController {
-    let viewModel: MainViewModel
+    let viewModel: SharedViewModel
     let configurationController: ConfigurationController
     let disposeBag = DisposeBag()
     
-    public init(viewModel: MainViewModel,
+    public init(viewModel: SharedViewModel,
                 configurationController: ConfigurationController){
         self.viewModel = viewModel
         self.configurationController = configurationController

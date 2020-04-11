@@ -7,60 +7,20 @@ public class ConfigurationController: NiblessViewController {
     let disposeBag = DisposeBag()
     var appConfig: [ConfigurationViewDataModel]?
     let viewModel: ConfigurationViewModel
-    let launchButton: UIButton = {
-        let button = UIButton(type: .system)
-        return button
-    }()
 
-    let stackView: UIStackView = {
-        let stackView: UIStackView = UIStackView()
-        stackView.distribution = .fill
-        stackView.alignment = .top
-        stackView.axis = .horizontal
-        stackView.spacing = 8.0
-        return stackView
-    }()
-
-    init(configurationViewModelFactory: ConfigurationViewModelFactory) {
+    init(baseViewModel: BaseViewModel, configurationViewModelFactory: ConfigurationDependencyContainer) {
         self.viewModel = configurationViewModelFactory.makeConfigurationViewModel()
-        super.init()
+        super.init(viewModel: baseViewModel)
     }
 
     public override func loadView() {
         self.view = ConfigurationRootView(viewModel: viewModel)
-        stackView.frame = self.navigationController?.toolbar.frame ?? .zero
-        stackView.addArrangedSubview(launchButton)
-        self.toolbarItems = [UIBarButtonItem(customView: buildToolbarView())]
+        attachView()
     }
 
     override public func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = NSLocalizedString("configuration", comment: "Application Title")
-        bindViewModel()
         viewModel.loadApplicationConfiguration()
-    }
-
-    private func buildToolbarView() -> UIStackView {
-        let stackView = UIStackView(frame: self.navigationController?.toolbar.frame ?? .zero)
-        stackView.distribution = .fill
-        stackView.alignment = .top
-        stackView.axis = .horizontal
-        stackView.addArrangedSubview(launchButton)
-        stackView.spacing = 8.0
-        return stackView
-    }
-
-    func bindViewModel() {
-        let formatString = NSLocalizedString("selected_configuration", comment: "Select application configuration")
-        viewModel
-                .launchText
-                .distinctUntilChanged()
-                .subscribe(onNext: { [weak self] launchText in
-                    guard let strongSelf = self else {
-                        return
-                    }
-                    strongSelf.launchButton.setTitle(String.localizedStringWithFormat(formatString, launchText), for: .normal)
-                }).disposed(by: disposeBag)
     }
 }
 

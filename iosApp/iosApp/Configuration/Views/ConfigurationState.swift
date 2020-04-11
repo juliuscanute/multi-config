@@ -11,11 +11,6 @@ enum ConfigurationState {
     case initialState
     case appConfig(LoadApplicationConfigurationState)
     case selectedConfig(String)
-    case buttonConfig(ButtonConfigurationState)
-}
-
-struct ButtonConfigurationState {
-    let environment: String
 }
 
 struct LoadApplicationConfigurationState {
