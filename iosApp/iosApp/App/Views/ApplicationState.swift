@@ -11,5 +11,7 @@ enum ApplicationState {
 
 struct NavigationConfigurationState {
     let title: String
-    let environment: String
+    var buttonTitle: String? = nil
+    var backTitle: String? = nil
+    var environment: String? = nil
 }

@@ -59,13 +59,33 @@ open class NiblessViewController: UIViewController {
     }
 
     func respond(to state: ApplicationState) {
-        let formatString = NSLocalizedString("selected_configuration", comment: "Select application configuration")
         switch state {
         case .navigationControlConfig(let buttonState):
-            launchButton.setTitle(String.localizedStringWithFormat(formatString, buttonState.environment), for: .normal)
-            navigationItem.title = buttonState.title
+            applyAppTitle(state: buttonState)
+            applyBackTitle(state: buttonState)
+            applyButtonText(state: buttonState)
         default:
             break
         }
+    }
+
+    func applyAppTitle(state: NavigationConfigurationState) {
+        navigationItem.title = state.title
+    }
+
+    func applyBackTitle(state: NavigationConfigurationState) {
+        guard let backTitle = state.backTitle else {
+            return
+        }
+        let button = UIBarButtonItem()
+        button.title = backTitle
+        navigationItem.backBarButtonItem = button
+    }
+
+    func applyButtonText(state: NavigationConfigurationState) {
+        guard let buttonText = state.buttonTitle, let environment = state.environment else {
+            return
+        }
+        launchButton.setTitle(String.localizedStringWithFormat(buttonText, environment), for: .normal)
     }
 }

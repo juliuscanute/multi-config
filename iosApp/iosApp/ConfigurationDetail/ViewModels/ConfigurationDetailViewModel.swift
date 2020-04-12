@@ -22,7 +22,11 @@ public class ConfigurationDetailViewModel {
     }
 
     func setInitialViewState(environment: String) {
-        configurationChangeResponder.onConfigurationChange(state: NavigationConfigurationState(title: environment,
+        configurationChangeResponder
+                .onConfigurationChange(state: NavigationConfigurationState(
+                title: environment,
+                buttonTitle: NSLocalizedString("selected_configuration", comment: "Select application configuration"),
+                backTitle: NSLocalizedString("configuration", comment: "Application Title"),
                 environment: environment))
     }
 }

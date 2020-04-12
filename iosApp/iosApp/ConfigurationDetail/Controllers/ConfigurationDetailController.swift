@@ -24,6 +24,11 @@ public class ConfigurationDetailController: NiblessViewController {
         self.view = ConfigurationDetailRootVIew(viewModel: viewModel)
         attachView()
     }
+
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.setInitialViewState(environment: environment)
+    }
 }
 
 protocol ConfigurationDetailViewModelFactory {

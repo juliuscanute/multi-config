@@ -17,8 +17,8 @@ public class ConfigurationController: NiblessViewController {
         attachView()
     }
 
-    override public func viewDidLoad() {
-        super.viewDidLoad()
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         viewModel.loadApplicationConfiguration()
     }
 }
