@@ -27,7 +27,8 @@ public class ConfigurationDetailController: NiblessViewController {
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.setInitialViewState(environment: environment)
+        viewModel.onNavigationAppear(environment: environment)
+        viewModel.loadEnvironmentConfiguration(environment: environment)
     }
 }
 

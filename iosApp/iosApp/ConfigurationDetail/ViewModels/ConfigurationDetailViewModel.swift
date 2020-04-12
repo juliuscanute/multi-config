@@ -7,10 +7,12 @@ import app
 import RxSwift
 import RxCocoa
 
+public typealias EnvironmentConfiguration = [UiControlsModel]
 
 public class ConfigurationDetailViewModel {
-    let configManager: ConfigurationManager
-    let configurationChangeResponder: ConfigurationChangeResponder
+    private let configManager: ConfigurationManager
+    private let configurationChangeResponder: ConfigurationChangeResponder
+    private var manager: ConfigurationRepository!
     var state: Observable<ConfigurationDetailState> {
         stateSubject.asObservable()
     }
@@ -21,7 +23,40 @@ public class ConfigurationDetailViewModel {
         self.configurationChangeResponder = configurationChangeResponder
     }
 
-    func setInitialViewState(environment: String) {
+    func loadEnvironmentConfiguration(environment: String) {
+        manager = configManager.getConfiguration(environment: environment)
+        loadUpdatedState()
+    }
+
+    func saveBooleanConfiguration(key: String, currentValue: Bool) {
+        manager.saveConfig(key: key, value: !currentValue)
+        loadUpdatedState()
+    }
+
+    func saveIntConfiguration(key: String, currentValue: Int) {
+        manager.saveConfig(key: key, value_: Int32(currentValue))
+        loadUpdatedState()
+    }
+
+    func savePairConfiguration(key: String, currentValue: (key: String, value: String)) {
+        let currentPair = KotlinPair(first: currentValue.key, second: currentValue.value)
+        manager.saveConfig(key: key, value__: currentPair)
+        loadUpdatedState()
+    }
+
+    func saveStringConfiguration(key: String, currentValue: String) {
+        manager.saveConfig(key: key, value___: currentValue)
+        loadUpdatedState()
+    }
+
+    private func loadUpdatedState() {
+        let updatedConfig: EnvironmentConfiguration = manager.getEnvironmentConfiguration()
+        stateSubject.onNext(ConfigurationDetailState.loadEnvironmentConfiguration(
+                LoadEnvironmentConfigurationState(items: updatedConfig.mapState()
+                )))
+    }
+
+    func onNavigationAppear(environment: String) {
         configurationChangeResponder
                 .onConfigurationChange(state: NavigationConfigurationState(
                 title: environment,
@@ -30,3 +65,33 @@ public class ConfigurationDetailViewModel {
                 environment: environment))
     }
 }
+
+extension EnvironmentConfiguration {
+    func mapState() -> [ItemState] {
+        self.enumerated().map { (index: Int, configuration: UiControlsModel) in
+            switch configuration {
+            case is UiControlsModel.Switch:
+                let uiSwitch: UiControlsModel.Switch = configuration as! UiControlsModel.Switch
+                return ItemState.switchState(SwitchState(key: uiSwitch.key, description: uiSwitch.description(),
+                        switchValue: uiSwitch.switchValue))
+            case is UiControlsModel.Range:
+                let uiRange: UiControlsModel.Range = configuration as! UiControlsModel.Range
+                return ItemState.rangeState(RangeState(key: uiRange.key,
+                        description: uiRange.description(), min: Int(uiRange.min), max: Int(uiRange.max),
+                        currentValue: Int(uiRange.currentValue)))
+            case is UiControlsModel.Editable:
+                let uiEditable: UiControlsModel.Editable = configuration as! UiControlsModel.Editable
+                return ItemState.editableState(EditableState(key: uiEditable.key,
+                        description: uiEditable.description(), currentValue: uiEditable.currentValue))
+            default:
+                let uiChoice: UiControlsModel.Choice = configuration as! UiControlsModel.Choice
+                return ItemState.choiceState(ChoiceState(key: uiChoice.key,
+                        description: uiChoice.description(), currentChoiceIndex: Int(uiChoice.currentChoiceIndex),
+                        items: uiChoice.items.map { (item: Any) in
+                            ChoiceItem(description: (item as! Item).description())
+                        }))
+            }
+        }
+    }
+}
+

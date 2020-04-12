@@ -7,3 +7,5 @@
 */
 "configuration" = "Configuration";
 "selected_configuration" = "Launch %@";
+"switch_on" = "ON";
+"switch_off" = "OFF";

@@ -19,6 +19,7 @@
 		6F1FFA99715732A6E4BCA4BC /* ConfigurationDetailState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1FF224C43D77A792BE8556 /* ConfigurationDetailState.swift */; };
 		6F1FFAD0D560CB32D6F57B0B /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1FF77B8E83EEA1F2D61B4C /* BaseViewModel.swift */; };
 		6F1FFB373728A50B83DB3940 /* ConfigurationDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1FF361A7FA090B62F74EEE /* ConfigurationDependencyContainer.swift */; };
+		6F1FFB3EA38B2783D2FE5D0F /* ItemState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1FFE0F516FACE4FA264640 /* ItemState.swift */; };
 		6F1FFE5DCF2F54F75C560339 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1FF60A76A21AA7DF9E37E6 /* MainViewController.swift */; };
 		6F1FFE716B52D3FE1195D7F9 /* ApplicationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1FFB702F6FDE6226957551 /* ApplicationState.swift */; };
 		872B7D2C2420C7FE00DEBC27 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 872B7D2B2420C7FE00DEBC27 /* Foundation.framework */; };
@@ -91,6 +92,7 @@
 		6F1FFAD96A06BB20F811FE28 /* ConfigurationDetailViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationDetailViewDelegate.swift; sourceTree = "<group>"; };
 		6F1FFB702F6FDE6226957551 /* ApplicationState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationState.swift; sourceTree = "<group>"; };
 		6F1FFC56329F7E1A632FE2F6 /* ConfigurationChangeResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationChangeResponder.swift; sourceTree = "<group>"; };
+		6F1FFE0F516FACE4FA264640 /* ItemState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemState.swift; sourceTree = "<group>"; };
 		6F1FFE304CD546398388D45A /* ConfigurationDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationDetailController.swift; sourceTree = "<group>"; };
 		74BB4CC789C2CB52074ED3ED /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
 		872B7D2B2420C7FE00DEBC27 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -198,6 +200,7 @@
 				6F1FF224C43D77A792BE8556 /* ConfigurationDetailState.swift */,
 				6F1FF8AC4730C80859D3503D /* ConfigurationDetailViewDataSource.swift */,
 				6F1FFAD96A06BB20F811FE28 /* ConfigurationDetailViewDelegate.swift */,
+				6F1FFE0F516FACE4FA264640 /* ItemState.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -620,6 +623,7 @@
 				6F1FFE716B52D3FE1195D7F9 /* ApplicationState.swift in Sources */,
 				6F1FFAD0D560CB32D6F57B0B /* BaseViewModel.swift in Sources */,
 				6F1FF532A72E7F2710B84084 /* ConfigurationChangeResponder.swift in Sources */,
+				6F1FFB3EA38B2783D2FE5D0F /* ItemState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
