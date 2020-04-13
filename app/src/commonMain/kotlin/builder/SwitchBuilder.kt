@@ -12,7 +12,7 @@ class SwitchBuilder : Builder<UiControlsModel> {
         check(description.isNotBlank()) { "Description must not be empty" }
         return UiControlsModel.Switch(
             key = key,
-            description = description,
+            information = description,
             switchValue = switchValue
         )
     }

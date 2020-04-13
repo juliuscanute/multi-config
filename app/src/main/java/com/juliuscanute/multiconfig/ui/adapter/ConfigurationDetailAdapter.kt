@@ -192,6 +192,6 @@ sealed class ItemState(val id: String) {
         val items: ArrayList<Item>,
         var currentChoiceIndex: Int
     ) : ItemState(id = key) {
-        fun getSelectedItem() = items[currentChoiceIndex].description
+        fun getSelectedItem() = items[currentChoiceIndex].information
     }
 }

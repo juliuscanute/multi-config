@@ -72,23 +72,23 @@ extension EnvironmentConfiguration {
             switch configuration {
             case is UiControlsModel.Switch:
                 let uiSwitch: UiControlsModel.Switch = configuration as! UiControlsModel.Switch
-                return ItemState.switchState(SwitchState(key: uiSwitch.key, description: uiSwitch.description(),
+                return ItemState.switchState(SwitchState(key: uiSwitch.key, description: uiSwitch.information,
                         switchValue: uiSwitch.switchValue))
             case is UiControlsModel.Range:
                 let uiRange: UiControlsModel.Range = configuration as! UiControlsModel.Range
                 return ItemState.rangeState(RangeState(key: uiRange.key,
-                        description: uiRange.description(), min: Int(uiRange.min), max: Int(uiRange.max),
+                        description: uiRange.information, min: Int(uiRange.min), max: Int(uiRange.max),
                         currentValue: Int(uiRange.currentValue)))
             case is UiControlsModel.Editable:
                 let uiEditable: UiControlsModel.Editable = configuration as! UiControlsModel.Editable
                 return ItemState.editableState(EditableState(key: uiEditable.key,
-                        description: uiEditable.description(), currentValue: uiEditable.currentValue))
+                        description: uiEditable.information, currentValue: uiEditable.currentValue))
             default:
                 let uiChoice: UiControlsModel.Choice = configuration as! UiControlsModel.Choice
                 return ItemState.choiceState(ChoiceState(key: uiChoice.key,
-                        description: uiChoice.description(), currentChoiceIndex: Int(uiChoice.currentChoiceIndex),
+                        description: uiChoice.information, currentChoiceIndex: Int(uiChoice.currentChoiceIndex),
                         items: uiChoice.items.map { (item: Any) in
-                            ChoiceItem(description: (item as! Item).description())
+                            ChoiceItem(description: (item as! Item).information)
                         }))
             }
         }

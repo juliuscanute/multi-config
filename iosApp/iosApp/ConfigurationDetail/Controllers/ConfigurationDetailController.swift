@@ -21,7 +21,7 @@ public class ConfigurationDetailController: NiblessViewController {
     }
 
     public override func loadView() {
-        self.view = ConfigurationDetailRootVIew(viewModel: viewModel)
+        self.view = ConfigurationDetailRootView(viewModel: viewModel)
         attachView()
     }
 

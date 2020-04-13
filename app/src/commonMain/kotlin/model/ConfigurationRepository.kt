@@ -127,7 +127,7 @@ class ConfigurationRepository(
         val found: UiControlsModel.Choice? = configs.filterIsInstance<UiControlsModel.Choice>()
             .firstOrNull { item -> item.key == key }
         checkNotNull(found, { "Unable to find the key" })
-        found.items[value.second] = Item(description = value.first)
+        found.items[value.second] = Item(information = value.first)
         found.currentChoiceIndex = value.second
         store[userKey] = StoreValue.KeyValue(key = value.first, value = value.second)
         settings.putString(userKey + PAIR_SUFFIX_STRING, value.first)
@@ -197,7 +197,7 @@ class ConfigurationRepository(
                     newIntValue = it.currentChoiceIndex
                     store[key] =
                         StoreValue.KeyValue(
-                            key = item.description,
+                            key = item.information,
                             value = it.currentChoiceIndex
                         )
                 }

@@ -13,7 +13,7 @@ class EditableBuilder : Builder<UiControlsModel> {
         check(currentValue.isNotBlank()) { "Current value must not be empty" }
         return UiControlsModel.Editable(
             key = key,
-            description = description,
+            information = description,
             currentValue = currentValue
         )
     }

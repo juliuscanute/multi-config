@@ -20,7 +20,7 @@ class ChoiceBuilder : Builder<UiControlsModel> {
         check(items.size > 1) { "Number of items in choice must be greater than one" }
         return UiControlsModel.Choice(
             key = key,
-            description = description,
+            information = description,
             items = ArrayList(items),
             currentChoiceIndex = currentChoiceIndex
         )

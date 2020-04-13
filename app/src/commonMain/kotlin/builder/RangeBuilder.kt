@@ -17,7 +17,7 @@ class RangeBuilder : Builder<UiControlsModel> {
         check(currentValue in min..max) { "Current value must be between Max & Min" }
         return UiControlsModel.Range(
             key = key,
-            description = description,
+            information = description,
             min = min,
             max = max,
             currentValue = currentValue

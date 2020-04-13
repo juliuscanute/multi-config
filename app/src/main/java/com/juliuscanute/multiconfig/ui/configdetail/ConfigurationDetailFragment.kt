@@ -85,12 +85,12 @@ class ConfigurationDetailFragment : Fragment() {
 
     private fun showChoiceItems(description: String, items: ArrayList<Item>, currentSelection: Int, key: String) {
         AlertDialog.Builder(requireContext()).setSingleChoiceItems(
-            items.map { it.description }.toTypedArray(),
+            items.map { it.information }.toTypedArray(),
             currentSelection
         ) { dialog, which ->
             configurationDetailViewModel.savePairConfiguration(
                 key = key,
-                currentValue = items[which].description to which
+                currentValue = items[which].information to which
             )
             dialog.dismiss()
         }.setTitle(description).setNegativeButton(android.R.string.cancel) { dialog, _ -> dialog.dismiss() }.show()

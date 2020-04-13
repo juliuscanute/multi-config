@@ -14,7 +14,7 @@ class ConfigurationRootView: NiblessView {
     let configurationTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.register(UITableViewCell.self,
-                forCellReuseIdentifier: CellIdentifier.cell.rawValue)
+                forCellReuseIdentifier: ConfigurationEnvironmentIdentifier.cell.rawValue)
         tableView.tableFooterView = UIView(frame: .zero)
         return tableView
     }()

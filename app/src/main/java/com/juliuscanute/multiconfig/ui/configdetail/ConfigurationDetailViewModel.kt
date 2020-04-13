@@ -86,24 +86,24 @@ fun EnvironmentConfigurationImmutable.mapState(): List<ItemState> {
         when (it) {
             is UiControlsModel.Switch -> ItemState.SwitchState(
                 key = it.key,
-                description = it.description,
+                description = it.information,
                 switchValue = it.switchValue
             )
             is UiControlsModel.Range -> ItemState.RangeState(
                 key = it.key,
-                description = it.description,
+                description = it.information,
                 min = it.min,
                 max = it.max,
                 currentValue = it.currentValue
             )
             is UiControlsModel.Editable -> ItemState.EditableState(
                 key = it.key,
-                description = it.description,
+                description = it.information,
                 currentValue = it.currentValue
             )
             is UiControlsModel.Choice -> ItemState.ChoiceState(
                 key = it.key,
-                description = it.description,
+                description = it.information,
                 items = it.items,
                 currentChoiceIndex = it.currentChoiceIndex
             )

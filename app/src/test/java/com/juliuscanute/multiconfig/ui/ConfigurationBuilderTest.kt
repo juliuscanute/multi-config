@@ -58,28 +58,28 @@ class ConfigurationBuilderTest {
             when (it) {
                 is UiControlsModel.Switch -> {
                     Assert.assertEquals("A", it.key)
-                    Assert.assertEquals("A-D", it.description)
+                    Assert.assertEquals("A-D", it.information)
                     Assert.assertEquals(false, it.switchValue)
                 }
                 is UiControlsModel.Range -> {
                     Assert.assertEquals("B", it.key)
-                    Assert.assertEquals("B-D", it.description)
+                    Assert.assertEquals("B-D", it.information)
                     Assert.assertEquals(1, it.min)
                     Assert.assertEquals(100, it.max)
                     Assert.assertEquals(50, it.currentValue)
                 }
                 is UiControlsModel.Editable -> {
                     Assert.assertEquals("C", it.key)
-                    Assert.assertEquals("C-D", it.description)
+                    Assert.assertEquals("C-D", it.information)
                     Assert.assertEquals("C-V", it.currentValue)
                 }
                 is UiControlsModel.Choice -> {
                     Assert.assertEquals("D", it.key)
-                    Assert.assertEquals("D-D", it.description)
+                    Assert.assertEquals("D-D", it.information)
                     Assert.assertEquals(0, it.currentChoiceIndex)
-                    Assert.assertEquals("E", it.items[0].description)
-                    Assert.assertEquals("F", it.items[1].description)
-                    Assert.assertEquals("G", it.items[2].description)
+                    Assert.assertEquals("E", it.items[0].information)
+                    Assert.assertEquals("F", it.items[1].information)
+                    Assert.assertEquals("G", it.items[2].information)
                 }
             }
         }

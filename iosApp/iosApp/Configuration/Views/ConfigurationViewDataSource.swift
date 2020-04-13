@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-enum CellIdentifier: String {
+enum ConfigurationEnvironmentIdentifier: String {
 
   case cell
 }
@@ -19,7 +19,7 @@ extension ConfigurationRootView : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.cell.rawValue, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: ConfigurationEnvironmentIdentifier.cell.rawValue, for: indexPath)
         let config = viewModel.getConfigurationForIndex(index: indexPath.row)
         cell.textLabel?.text = config.environment
         cell.accessoryType = UITableViewCell.AccessoryType.detailButton

@@ -7,6 +7,6 @@ class ItemBuilder : Builder<Item> {
 
     override fun build(): Item {
         check(description.isNotBlank()) { "Description must not be empty" }
-        return Item(description = description)
+        return Item(information = description)
     }
 }
