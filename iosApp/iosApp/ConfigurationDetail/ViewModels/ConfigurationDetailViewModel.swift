@@ -9,7 +9,7 @@ import RxCocoa
 
 public typealias EnvironmentConfiguration = [UiControlsModel]
 
-public class ConfigurationDetailViewModel {
+public class ConfigurationDetailViewModel : ConfigurationSwitchCellDelegate {
     private let configManager: ConfigurationManager
     private let configurationChangeResponder: ConfigurationChangeResponder
     private var manager: ConfigurationRepository!
@@ -29,7 +29,7 @@ public class ConfigurationDetailViewModel {
     }
 
     func saveBooleanConfiguration(key: String, currentValue: Bool) {
-        manager.saveConfig(key: key, value: !currentValue)
+        manager.saveConfig(key: key, value: currentValue)
         loadUpdatedState()
     }
 

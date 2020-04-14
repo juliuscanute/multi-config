@@ -16,6 +16,8 @@ extension ConfigurationDetailRootView: UITableViewDataSource {
         case .switchState(let state):
             let cell = tableView.dequeueReusableCell(withIdentifier:
             ConfigurationDetailCell.configurationSwitchCell.rawValue, for: indexPath) as! ConfigurationSwitchCell
+            cell.delegate = viewModel
+            cell.selectionStyle = .none
             cell.switchState = state
             return cell
         case .rangeState(let state):

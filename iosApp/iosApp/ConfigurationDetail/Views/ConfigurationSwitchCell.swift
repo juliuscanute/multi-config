@@ -9,7 +9,7 @@ import UIKit
 
 
 protocol ConfigurationSwitchCellDelegate {
-    func onSwitchValueChange(cell: ConfigurationSwitchCell, currentValue: Bool)
+    func saveBooleanConfiguration(key: String, currentValue: Bool)
 }
 
 class ConfigurationSwitchCell: UITableViewCell {
@@ -21,7 +21,6 @@ class ConfigurationSwitchCell: UITableViewCell {
             switchUi.setOn(currentValue, animated: true)
         }
     }
-
 
     private let switchDescriptionLabel: UILabel = {
         let lbl = UILabel()
@@ -37,9 +36,8 @@ class ConfigurationSwitchCell: UITableViewCell {
     }()
 
     @objc func changeSwitchState() {
-        let currentValue: Bool = !switchUi.isOn
-        switchUi.setOn(currentValue, animated: true)
-        delegate?.onSwitchValueChange(cell: self, currentValue: currentValue)
+        let currentValue: Bool = switchUi.isOn
+        delegate?.saveBooleanConfiguration(key: switchState!.key, currentValue: currentValue)
     }
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -52,7 +50,7 @@ class ConfigurationSwitchCell: UITableViewCell {
         switchUi.anchor(top: topAnchor, left: nil, bottom: bottomAnchor, right: rightAnchor,
                 paddingTop: 8, paddingLeft: 0, paddingBottom: 8, paddingRight: 8, width: 0,
                 height: 0, enableInsets: false)
-        switchUi.addTarget(self, action: #selector(changeSwitchState), for: .touchUpInside)
+        switchUi.addTarget(self, action: #selector(changeSwitchState), for: .valueChanged)
     }
 
     required init?(coder aDecoder: NSCoder) {
