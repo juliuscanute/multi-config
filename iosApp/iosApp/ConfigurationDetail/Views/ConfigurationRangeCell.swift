@@ -3,12 +3,12 @@ import app
 
 
 protocol ConfigurationRangeCellDelegate {
-    func onValueChange(cell: ConfigurationRangeCell, number: Int)
+    func saveIntConfiguration(key: String, currentValue: Int)
 }
 
 class ConfigurationRangeCell: UITableViewCell {
     var delegate: ConfigurationRangeCellDelegate?
-    var progress: Int = 0
+    var progress: Int? = nil
     let minProgress: Int = 0
     let maxProgress: Int = 100
     var projection: Projection!
@@ -19,7 +19,9 @@ class ConfigurationRangeCell: UITableViewCell {
             projection = Projection(userMax: Int32(rangeState?.max ?? 0), userMin: Int32(rangeState?.min ?? 0),
                     progressMax: Int32(maxProgress), progressMin: Int32(minProgress))
             projection.userValue = Int32(rangeState?.currentValue ?? 0)
-            progress = Int(projection.progressValue)
+            if progress == nil {
+                progress = Int(projection!.progressValue)
+            }
         }
     }
     private let switchDescriptionLabel: UILabel = {
@@ -53,23 +55,23 @@ class ConfigurationRangeCell: UITableViewCell {
     }()
 
     @objc func decreaseFunc() {
-        if progress > minProgress {
-            progress -= 1
+        if progress! > minProgress {
+            progress! -= 1
             changeQuantity()
         }
     }
 
     @objc func increaseFunc() {
-        if progress < maxProgress {
-            progress += 1
+        if progress! < maxProgress {
+            progress! += 1
             changeQuantity()
         }
     }
 
     func changeQuantity() {
-        projection.progressValue = Int32(progress)
+        projection.progressValue = Int32(progress!)
         rangeQuantity.text = String(projection.userValue)
-        delegate?.onValueChange(cell: self, number: Int(projection.userValue))
+        delegate?.saveIntConfiguration(key: rangeState!.key, currentValue: Int(projection!.userValue))
     }
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {

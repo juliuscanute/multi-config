@@ -39,6 +39,7 @@ class ConfigurationDetailRootView: NiblessView {
         self.viewModel = viewModel
         super.init(frame: frame)
         configurationDetailTableView.dataSource = self
+        configurationDetailTableView.delegate = self
     }
 
     override func didMoveToWindow() {

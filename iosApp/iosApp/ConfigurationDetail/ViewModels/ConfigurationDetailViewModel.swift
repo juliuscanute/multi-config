@@ -9,14 +9,18 @@ import RxCocoa
 
 public typealias EnvironmentConfiguration = [UiControlsModel]
 
-public class ConfigurationDetailViewModel : ConfigurationSwitchCellDelegate {
+public class ConfigurationDetailViewModel: ConfigurationSwitchCellDelegate, ConfigurationRangeCellDelegate {
     private let configManager: ConfigurationManager
     private let configurationChangeResponder: ConfigurationChangeResponder
     private var manager: ConfigurationRepository!
     var state: Observable<ConfigurationDetailState> {
         stateSubject.asObservable()
     }
+    public var choice: Observable<ChoiceState> {
+        choiceDialog.asObserver()
+    }
     private let stateSubject: BehaviorSubject<ConfigurationDetailState> = BehaviorSubject<ConfigurationDetailState>(value: .initialState)
+    private let choiceDialog: PublishSubject<ChoiceState> = PublishSubject<ChoiceState>()
 
     init(manager: ConfigurationManager, configurationChangeResponder: ConfigurationChangeResponder) {
         self.configManager = manager
@@ -38,7 +42,7 @@ public class ConfigurationDetailViewModel : ConfigurationSwitchCellDelegate {
         loadUpdatedState()
     }
 
-    func savePairConfiguration(key: String, currentValue: (key: String, value: String)) {
+    func savePairConfiguration(key: String, currentValue: (key: String, value: Int32)) {
         let currentPair = KotlinPair(first: currentValue.key, second: currentValue.value)
         manager.saveConfig(key: key, value__: currentPair)
         loadUpdatedState()
@@ -47,6 +51,10 @@ public class ConfigurationDetailViewModel : ConfigurationSwitchCellDelegate {
     func saveStringConfiguration(key: String, currentValue: String) {
         manager.saveConfig(key: key, value___: currentValue)
         loadUpdatedState()
+    }
+
+    func showAvailableChoices(choiceState: ChoiceState) {
+        choiceDialog.onNext(choiceState)
     }
 
     private func loadUpdatedState() {

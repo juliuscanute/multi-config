@@ -51,7 +51,7 @@ struct EditableState {
     let currentValue: String
 }
 
-struct ChoiceState {
+public struct ChoiceState {
     let key: String
     let description: String
     let currentChoiceIndex: Int

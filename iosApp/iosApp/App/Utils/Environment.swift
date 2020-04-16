@@ -23,27 +23,27 @@ func setup() -> NSMutableArray {
                 $0.switchValue = false
             }
         }
-        
-        $0.config(environment:"SIT") {
+
+        $0.config(environment: "SIT") {
             $0.range {
                 $0.key = "B"
                 $0.description = "B-D"
-                $0.min = 1
-                $0.max = 100
+                $0.min = 0
+                $0.max = 1000
                 $0.step = 2
                 $0.currentValue = 50
             }
         }
-        
-        $0.config(environment:"UAT") {
+
+        $0.config(environment: "UAT") {
             $0.editable {
                 $0.key = "C"
                 $0.description = "C-D"
                 $0.currentValue = "C-V"
             }
         }
-        
-        $0.config(environment:"PROD") {
+
+        $0.config(environment: "PROD") {
             $0.choice {
                 $0.key = "D"
                 $0.description = "D-D"
@@ -59,7 +59,7 @@ func setup() -> NSMutableArray {
                 }
             }
         }
-        }
+    }
 }
 
 

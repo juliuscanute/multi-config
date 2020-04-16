@@ -23,6 +23,8 @@ extension ConfigurationDetailRootView: UITableViewDataSource {
         case .rangeState(let state):
             let cell = tableView.dequeueReusableCell(withIdentifier:
             ConfigurationDetailCell.configurationRangeCell.rawValue, for: indexPath) as! ConfigurationRangeCell
+            cell.delegate = viewModel
+            cell.selectionStyle = .none
             cell.rangeState = state
             return cell
         case .editableState(let state):
