@@ -10,7 +10,7 @@ extension ConfigurationDetailRootView: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         switch config {
         case .editableState(let state):
-            print("none")
+            viewModel.showEditable(editableState: state)
         case .choiceState(let state):
             viewModel.showAvailableChoices(choiceState: state)
         default:

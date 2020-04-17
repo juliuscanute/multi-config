@@ -9,3 +9,7 @@
 "selected_configuration" = "Launch %@";
 "switch_on" = "ON";
 "switch_off" = "OFF";
+"edit_configuration" = "Edit Configuration";
+"choose_configuration" = "Choose Configuration";
+"ok" = "Ok";
+"cancel" = "Cancel";

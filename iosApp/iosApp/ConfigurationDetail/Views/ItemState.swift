@@ -45,7 +45,7 @@ struct RangeState {
     }
 }
 
-struct EditableState {
+public struct EditableState {
     let key: String
     let description: String
     let currentValue: String

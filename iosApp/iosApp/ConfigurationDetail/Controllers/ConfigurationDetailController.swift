@@ -31,7 +31,13 @@ public class ConfigurationDetailController: NiblessViewController {
             guard let strongSelf = self else {
                 return
             }
-            strongSelf.showDialog(choiceState: state)
+            strongSelf.showChoiceDialog(choiceState: state)
+        }).disposed(by: disposeBag)
+        viewModel.editable.subscribe(onNext: { [weak self] state in
+            guard let strongSelf = self else {
+                return
+            }
+            strongSelf.showEditableDialog(editableState: state)
         }).disposed(by: disposeBag)
     }
 
@@ -41,13 +47,28 @@ public class ConfigurationDetailController: NiblessViewController {
         viewModel.loadEnvironmentConfiguration(environment: environment)
     }
 
-    private func showDialog(choiceState: ChoiceState) {
-        let alert = UIAlertController(title: "Choose Configuration", message: choiceState.description, preferredStyle: UIAlertController.Style.alert)
-        let closure = { (action: UIAlertAction) -> Void in
-            guard let index = alert.actions.index(of: action) else {
+    private func showEditableDialog(editableState: EditableState) {
+        let alert = UIAlertController(title: NSLocalizedString("edit_configuration", comment: "Edit the configuration"), message: editableState.description, preferredStyle: UIAlertController.Style.alert)
+        alert.addTextField { (inputText) in
+            inputText.text = editableState.currentValue
+        }
+        alert.addAction(UIAlertAction(title: NSLocalizedString("ok", comment: "Save changes"), style: .default, handler: { [weak alert, weak self] (_) in
+            guard let textField = alert?.textFields?[0].text, let strongSelf = self else {
                 return
             }
-            self.viewModel.savePairConfiguration(key: choiceState.key, currentValue:
+            strongSelf.viewModel.saveStringConfiguration(key: editableState.key, currentValue: textField)
+        }))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("cancel", comment: "Dont save changes"), style: UIAlertAction.Style.cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    private func showChoiceDialog(choiceState: ChoiceState) {
+        let alert = UIAlertController(title: NSLocalizedString("choose_configuration", comment: "Choose a configuration"), message: choiceState.description, preferredStyle: UIAlertController.Style.alert)
+        let closure = { [weak alert, weak self](action: UIAlertAction) -> Void in
+            guard let index = alert?.actions.index(of: action), let strongSelf = self else {
+                return
+            }
+            strongSelf.viewModel.savePairConfiguration(key: choiceState.key, currentValue:
             (key: choiceState.items[index].description, value: Int32(index)))
         }
         choiceState.items.enumerated().forEach({ index, item in
@@ -57,7 +78,7 @@ public class ConfigurationDetailController: NiblessViewController {
                 alert.addAction(UIAlertAction(title: item.description, style: UIAlertAction.Style.default, handler: closure))
             }
         })
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("cancel", comment: "Dont save changes"), style: UIAlertAction.Style.cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
 }

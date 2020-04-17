@@ -19,8 +19,12 @@ public class ConfigurationDetailViewModel: ConfigurationSwitchCellDelegate, Conf
     public var choice: Observable<ChoiceState> {
         choiceDialog.asObserver()
     }
+    public var editable: Observable<EditableState> {
+        editableDialog.asObserver()
+    }
     private let stateSubject: BehaviorSubject<ConfigurationDetailState> = BehaviorSubject<ConfigurationDetailState>(value: .initialState)
     private let choiceDialog: PublishSubject<ChoiceState> = PublishSubject<ChoiceState>()
+    private let editableDialog: PublishSubject<EditableState> = PublishSubject<EditableState>()
 
     init(manager: ConfigurationManager, configurationChangeResponder: ConfigurationChangeResponder) {
         self.configManager = manager
@@ -55,6 +59,10 @@ public class ConfigurationDetailViewModel: ConfigurationSwitchCellDelegate, Conf
 
     func showAvailableChoices(choiceState: ChoiceState) {
         choiceDialog.onNext(choiceState)
+    }
+
+    func showEditable(editableState: EditableState) {
+        editableDialog.onNext(editableState)
     }
 
     private func loadUpdatedState() {
