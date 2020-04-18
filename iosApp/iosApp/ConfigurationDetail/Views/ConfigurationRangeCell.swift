@@ -74,7 +74,7 @@ class ConfigurationRangeCell: UITableViewCell {
         delegate?.saveIntConfiguration(key: rangeState!.key, currentValue: Int(projection!.userValue))
     }
 
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubview(switchDescriptionLabel)
         let stackView = UIStackView(arrangedSubviews: [decreaseButton, rangeQuantity, increaseButton])

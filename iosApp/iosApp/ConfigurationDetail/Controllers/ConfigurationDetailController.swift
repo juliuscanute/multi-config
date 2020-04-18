@@ -65,7 +65,7 @@ public class ConfigurationDetailController: NiblessViewController {
     private func showChoiceDialog(choiceState: ChoiceState) {
         let alert = UIAlertController(title: NSLocalizedString("choose_configuration", comment: "Choose a configuration"), message: choiceState.description, preferredStyle: UIAlertController.Style.alert)
         let closure = { [weak alert, weak self](action: UIAlertAction) -> Void in
-            guard let index = alert?.actions.index(of: action), let strongSelf = self else {
+            guard let index = alert?.actions.firstIndex(of: action), let strongSelf = self else {
                 return
             }
             strongSelf.viewModel.savePairConfiguration(key: choiceState.key, currentValue:
