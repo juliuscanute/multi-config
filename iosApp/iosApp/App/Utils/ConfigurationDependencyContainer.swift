@@ -13,10 +13,8 @@ public class ConfigurationDependencyContainer {
     let sharedMainViewModel: NavigationViewModel
     let baseViewModel: BaseViewModel
 
-    init() {
-        configurationManager = startMultiConfig(apply: {
-            $0.appConfig(configuration: setup(), startController: "ConfigurationController")
-        }).getConfigurationManager()
+    init(configurationManager: ConfigurationManager) {
+        self.configurationManager = configurationManager
         sharedMainViewModel = NavigationViewModel()
         baseViewModel = BaseViewModel()
     }
