@@ -44,8 +44,8 @@ public class ConfigurationViewModel {
                 environment: environment, selectedIndex: Int(selectedIndex))
         configurationChangeResponder
                 .onConfigurationChange(state: NavigationConfigurationState(
-                title: NSLocalizedString("configuration", comment: "Application Title"),
-                buttonTitle: NSLocalizedString("selected_configuration", comment: "Select application configuration"),
+                title: NSLocalizedString("configuration", bundle: Bundle(for: ConfigurationViewModel.self), comment: "Application Title"),
+                buttonTitle: NSLocalizedString("selected_configuration", bundle: Bundle(for: ConfigurationViewModel.self), comment: "Select application configuration"),
                 environment: environment))
         stateSubject.onNext(.appConfig(appState))
     }

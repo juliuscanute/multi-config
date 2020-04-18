@@ -7,10 +7,10 @@
             buildForRunning = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "873FBEDC244A69120013B94D"
-               BuildableName = "multiconfig_ios.framework"
-               BlueprintName = "multiconfig-ios"
-               ReferencedContainer = "container:multiconfig-ios.xcodeproj">
+               BlueprintIdentifier = "873FBF63244A86580013B94D"
+               BuildableName = "config-test.app"
+               BlueprintName = "config-test"
+               ReferencedContainer = "container:../../../config-test/config-test.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -19,5 +19,18 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Debug"
       allowLocationSimulation = "YES">
+      <BuildableProductRunnable>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "873FBF63244A86580013B94D"
+            BuildableName = "config-test.app"
+            BlueprintName = "config-test"
+            ReferencedContainer = "container:../../../config-test/config-test.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+      <LocationScenarioReference
+         identifier = "com.apple.dt.IDEFoundation.CurrentLocationScenarioIdentifier"
+         referenceType = "1">
+      </LocationScenarioReference>
    </LaunchAction>
 </Scheme>

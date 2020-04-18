@@ -33,14 +33,14 @@ class ConfigurationRangeCell: UITableViewCell {
     }()
     private let decreaseButton: UIButton = {
         let btn = UIButton(type: .custom)
-        btn.setImage(UIImage(named: "minus"), for: .normal)
+        btn.setImage(UIImage(named: "minus", in: Bundle(for: ConfigurationRangeCell.self), compatibleWith: nil), for: .normal)
         btn.imageView?.contentMode = .scaleAspectFill
         return btn
     }()
 
     private let increaseButton: UIButton = {
         let btn = UIButton(type: .custom)
-        btn.setImage(UIImage(named: "plus"), for: .normal)
+        btn.setImage(UIImage(named: "plus", in: Bundle(for: ConfigurationRangeCell.self), compatibleWith: nil), for: .normal)
         btn.imageView?.contentMode = .scaleAspectFill
         return btn
     }()

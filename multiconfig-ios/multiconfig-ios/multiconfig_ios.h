@@ -15,5 +15,3 @@ FOUNDATION_EXPORT double multiconfig_iosVersionNumber;
 FOUNDATION_EXPORT const unsigned char multiconfig_iosVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <multiconfig_ios/PublicHeader.h>
-
-
