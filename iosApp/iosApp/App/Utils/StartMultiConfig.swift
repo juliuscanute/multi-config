@@ -15,11 +15,9 @@ public typealias ApplicationConfiguration = [Configuration]
 public class StartMultiConfig {
     var settings: Settings?
     var configManager: ConfigurationManager?
-    var startClass: AnyClass?
 
-    public func appConfig(configuration: NSMutableArray, startController start: AnyClass) {
+    public func appConfig(configuration: NSMutableArray) {
         configManager = ConfigurationManager(repository: configuration, settings: UserSettings().userSettings())
-        startClass = start
     }
 
     public func getConfigurationManager() -> ConfigurationManager {
@@ -38,9 +36,8 @@ public func startMultiConfig(apply closure: (StartMultiConfig) -> Void) -> Start
 public class MultiConfig {
     static var multiConfig: StartMultiConfig!
 
-    static func getStartController() -> UIViewController {
-        let viewClass = multiConfig.startClass as! UIViewController.Type
-        return viewClass.init()
+    static func getStartController(environment: String) -> UIViewController {
+        (UIApplication.shared.delegate as! StartViewControllerInitializer).allocateStartViewController(environment: environment)
     }
 
     static public func getConfig() -> ConfigurationRepository {
@@ -51,5 +48,13 @@ public class MultiConfig {
         let environment = applicationConfiguration[Int(selectedIndex)].environment
         return configManager!.getConfiguration(environment: environment)
     }
+
+    static public func getConfig(environment: String) -> ConfigurationRepository {
+        multiConfig.configManager!.getConfiguration(environment: environment)
+    }
 }
 
+
+public protocol StartViewControllerInitializer {
+    func allocateStartViewController(environment: String?) -> UIViewController
+}
