@@ -63,7 +63,7 @@ class ConfigurationRootView: NiblessView {
     }
 
     func respond(to state: ConfigurationState) {
-        let formatString = NSLocalizedString("selected_configuration", bundle: Bundle(for: ConfigurationRootView.self), comment: "Select application configuration")
+        let formatString = AppString.selected_configuration
         switch state {
         case .appConfig(let configuration):
             updateViewConfiguration(formatString: formatString, configuration: configuration)

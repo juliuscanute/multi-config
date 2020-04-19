@@ -76,8 +76,8 @@ public class ConfigurationDetailViewModel: ConfigurationSwitchCellDelegate, Conf
         configurationChangeResponder
                 .onConfigurationChange(state: NavigationConfigurationState(
                 title: environment,
-                buttonTitle: NSLocalizedString("selected_configuration", bundle: Bundle(for: ConfigurationDetailViewModel.self), comment: "Select application configuration"),
-                backTitle: NSLocalizedString("configuration", bundle: Bundle(for: ConfigurationDetailViewModel.self), comment: "Application Title"),
+                buttonTitle: AppString.selected_configuration,
+                backTitle: AppString.configuration,
                 environment: environment))
     }
 }

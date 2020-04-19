@@ -18,9 +18,9 @@ struct SwitchState {
 
     func getSwitchStatus() -> String {
         if (switchValue) {
-            return NSLocalizedString("switch_on", bundle: Bundle(for: ConfigurationDetailRootView.self), comment: "On state of switch")
+            return AppString.switch_on
         } else {
-            return NSLocalizedString("switch_off", bundle: Bundle(for: ConfigurationDetailRootView.self), comment: "Off state of switch")
+            return AppString.switch_off
         }
     }
 }

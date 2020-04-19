@@ -8,7 +8,8 @@
 import Foundation
 import RxSwift
 
-public class NavigationViewModel: ConfigurationDetailResponder {
+public class NavigationViewModel: ConfigurationDetailResponder, LaunchApplicationResponder {
+
     // MARK: - Properties
     public var view: Observable<ConfigurationNavigationAction> {
         viewSubject.asObservable()
@@ -17,6 +18,10 @@ public class NavigationViewModel: ConfigurationDetailResponder {
 
     public func selectConfiguration(environment: String) {
         viewSubject.onNext(.present(view: .configurationDetail(environment: environment)))
+    }
+
+    public func launchConfiguration(environment: String?) {
+        viewSubject.onNext(.present(view: .launchApplication(environment: environment)))
     }
 
     public func uiPresented(mainView: MainViewType) {

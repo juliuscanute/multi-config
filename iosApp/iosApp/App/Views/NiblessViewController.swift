@@ -44,6 +44,7 @@ open class NiblessViewController: UIViewController {
         stackView.frame = self.navigationController?.toolbar.frame ?? .zero
         stackView.addArrangedSubview(launchButton)
         self.toolbarItems = [UIBarButtonItem(customView: stackView)]
+        launchButton.addTarget(viewModel, action: #selector(BaseViewModel.launchApplicationController), for: .touchUpInside)
         bindViewModelToViews()
     }
 

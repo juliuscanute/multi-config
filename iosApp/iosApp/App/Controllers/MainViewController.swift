@@ -54,6 +54,8 @@ public class MainViewController: NiblessNavigationController {
             presentConfiguration()
         case .configurationDetail(let environment):
             presentConfigurationDetail(environment: environment)
+        case .launchApplication(let environment):
+            presentApplicationController(environment: environment)
         }
     }
 
@@ -63,6 +65,10 @@ public class MainViewController: NiblessNavigationController {
 
     func presentConfigurationDetail(environment: String) {
         pushViewController(dependencyContainer.makeConfigurationDetailViewController(environment: environment), animated: true)
+    }
+
+    func presentApplicationController(environment: String?) {
+        pushViewController(MultiConfig.getStartController(), animated: true)
     }
 }
 
@@ -145,8 +151,7 @@ extension MainViewController {
         case is ConfigurationDetailController:
             return .configurationDetail(environment: "")
         default:
-            assertionFailure("Encountered unexpected child view controller type in MainViewController")
-            return nil
+            return .launchApplication(environment: "")
         }
     }
 }

@@ -13,8 +13,19 @@ public class BaseViewModel: ConfigurationChangeResponder {
         stateSubject.asObservable()
     }
     private let stateSubject: BehaviorSubject<ApplicationState> = BehaviorSubject<ApplicationState>(value: .initialState)
+    private let launchApplicationResponder: LaunchApplicationResponder
+    private var environment: String? = nil
+
+    init(launchApplicationResponder: LaunchApplicationResponder) {
+        self.launchApplicationResponder = launchApplicationResponder
+    }
 
     func onConfigurationChange(state: NavigationConfigurationState) {
+        environment = state.environment
         stateSubject.onNext(.navigationControlConfig(state))
+    }
+
+    @objc func launchApplicationController() {
+        launchApplicationResponder.launchConfiguration(environment: environment)
     }
 }

@@ -16,7 +16,7 @@ public class ConfigurationDependencyContainer {
     init(configurationManager: ConfigurationManager) {
         self.configurationManager = configurationManager
         sharedMainViewModel = NavigationViewModel()
-        baseViewModel = BaseViewModel()
+        baseViewModel = BaseViewModel(launchApplicationResponder: sharedMainViewModel)
     }
 
     func makeMainViewController() -> MainViewController {

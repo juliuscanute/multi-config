@@ -10,9 +10,12 @@ import Foundation
 public enum MainViewType: Equatable {
     case configuration
     case configurationDetail(environment: String)
+    case launchApplication(environment: String?)
 
     public func hidesNavigationBar() -> Bool {
         switch self {
+        case .launchApplication:
+            return true
         default:
             return false
         }
@@ -20,6 +23,8 @@ public enum MainViewType: Equatable {
 
     public func hidesToolBar() -> Bool {
         switch self {
+        case .launchApplication:
+            return true
         default:
             return false
         }

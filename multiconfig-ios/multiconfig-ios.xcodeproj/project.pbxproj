@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F1FF2D84080C7256684C9DB /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1FF367E614F0D91E9B05AB /* StringExt.swift */; };
+		6F1FF5A8A5E0B76DE8C59661 /* LaunchApplicationResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1FFE6236B7959E2034EC7E /* LaunchApplicationResponder.swift */; };
 		873FBEE2244A69120013B94D /* multiconfig_ios.h in Headers */ = {isa = PBXBuildFile; fileRef = 873FBEE0244A69120013B94D /* multiconfig_ios.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		873FBF03244A6A8A0013B94D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873FBEEA244A6A8A0013B94D /* MainViewController.swift */; };
 		873FBF04244A6A8A0013B94D /* NavigationAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873FBEEB244A6A8A0013B94D /* NavigationAction.swift */; };
@@ -65,6 +67,8 @@
 
 /* Begin PBXFileReference section */
 		1EFADDC51F683AC3ECCD7037 /* Pods-multiconfig-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-multiconfig-ios.debug.xcconfig"; path = "Target Support Files/Pods-multiconfig-ios/Pods-multiconfig-ios.debug.xcconfig"; sourceTree = "<group>"; };
+		6F1FF367E614F0D91E9B05AB /* StringExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExt.swift; sourceTree = "<group>"; };
+		6F1FFE6236B7959E2034EC7E /* LaunchApplicationResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchApplicationResponder.swift; sourceTree = "<group>"; };
 		7F5FE61D79A782B65D79E34C /* Pods_multiconfig_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_multiconfig_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		873FBEDD244A69120013B94D /* multiconfig_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = multiconfig_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		873FBEE0244A69120013B94D /* multiconfig_ios.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = multiconfig_ios.h; sourceTree = "<group>"; };
@@ -182,6 +186,7 @@
 				873FBEED244A6A8A0013B94D /* Environment.swift */,
 				873FBEEE244A6A8A0013B94D /* StartMultiConfig.swift */,
 				873FBEEF244A6A8A0013B94D /* ConfigurationDependencyContainer.swift */,
+				6F1FF367E614F0D91E9B05AB /* StringExt.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -209,6 +214,7 @@
 				873FBEF6244A6A8A0013B94D /* NavigationViewModel.swift */,
 				873FBEF7244A6A8A0013B94D /* ConfigurationChangeResponder.swift */,
 				873FBEF8244A6A8A0013B94D /* MainViewType.swift */,
+				6F1FFE6236B7959E2034EC7E /* LaunchApplicationResponder.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -346,8 +352,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 873FBEE5244A69120013B94D /* Build configuration list for PBXNativeTarget "multiconfig-ios" */;
 			buildPhases = (
-				F861D812207FA4320085E80D /* ShellScript */,
 				4E21C21016CF838BB023AF18 /* [CP] Check Pods Manifest.lock */,
+				F861D812207FA4320085E80D /* ShellScript */,
 				873FBED8244A69120013B94D /* Headers */,
 				873FBED9244A69120013B94D /* Sources */,
 				873FBEDA244A69120013B94D /* Frameworks */,
@@ -484,6 +490,8 @@
 				873FBF0A244A6A8A0013B94D /* ConfigurationDetailResponder.swift in Sources */,
 				873FBF04244A6A8A0013B94D /* NavigationAction.swift in Sources */,
 				873FBF12244A6A8A0013B94D /* NiblessViewController.swift in Sources */,
+				6F1FF2D84080C7256684C9DB /* StringExt.swift in Sources */,
+				6F1FF5A8A5E0B76DE8C59661 /* LaunchApplicationResponder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
