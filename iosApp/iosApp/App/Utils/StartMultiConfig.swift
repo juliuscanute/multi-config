@@ -15,9 +15,14 @@ public typealias ApplicationConfiguration = [Configuration]
 public class StartMultiConfig {
     var settings: Settings?
     var configManager: ConfigurationManager?
+    let rootGroup: String
+
+    init(rootGroup: String) {
+        self.rootGroup = rootGroup
+    }
 
     public func appConfig(configuration: NSMutableArray) {
-        configManager = ConfigurationManager(repository: configuration, settings: UserSettings().userSettings())
+        configManager = ConfigurationManager(repository: configuration, settings: UserSettings().userSettings(group: rootGroup))
     }
 
     public func getConfigurationManager() -> ConfigurationManager {
@@ -25,8 +30,8 @@ public class StartMultiConfig {
     }
 }
 
-public func startMultiConfig(apply closure: (StartMultiConfig) -> Void) -> StartMultiConfig {
-    let config = StartMultiConfig()
+public func startMultiConfig(rootGroup: String, apply closure: (StartMultiConfig) -> Void) -> StartMultiConfig {
+    let config = StartMultiConfig(rootGroup: rootGroup)
     MultiConfig.multiConfig = config
     closure(config)
     return config

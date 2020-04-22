@@ -2,10 +2,9 @@ package settings
 
 import platform.Foundation.NSUserDefaults
 
+class AppleSettings(group: String) : Settings {
 
-class AppleSettings : Settings {
-
-    private val defaults = NSUserDefaults.standardUserDefaults
+    private val defaults = NSUserDefaults(suiteName = group)
 
     override fun hasKey(key: String): Boolean {
         return defaults.objectForKey(defaultName = key) != null
@@ -27,19 +26,22 @@ class AppleSettings : Settings {
 
     override fun putBoolean(key: String, value: Boolean) {
         defaults.setBool(value = value, forKey = key)
+        defaults.synchronize()
     }
 
     override fun putInt(key: String, value: Int) {
         defaults.setInteger(value = value.toLong(), forKey = key)
+        defaults.synchronize()
     }
 
     override fun putString(key: String, value: String) {
         defaults.setObject(value = value, forKey = key)
+        defaults.synchronize()
     }
 
-    class Factory : Settings.Factory {
+    class Factory(val group: String) : Settings.Factory {
         override fun create(): Settings {
-            return AppleSettings()
+            return AppleSettings(group = group)
         }
     }
 }
