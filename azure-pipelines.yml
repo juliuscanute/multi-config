@@ -10,6 +10,11 @@ pool:
   vmImage: 'macos-latest'
 
 steps:
+
+- task: CocoaPods@0
+  inputs:
+    workingDirectory: 'multiconfig-ios/'
+    forceRepoUpdate: false
 - task: Xcode@5
   inputs:
     actions: 'build'
