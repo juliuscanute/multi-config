@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import app
+import multiconfig_common
 
 public class ConfigurationDependencyContainer {
     let configurationManager: ConfigurationManager

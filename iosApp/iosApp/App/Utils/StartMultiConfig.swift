@@ -7,7 +7,7 @@
 
 import UIKit
 import Foundation
-import app
+import multiconfig_common
 
 
 public typealias ApplicationConfiguration = [Configuration]

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import app
+import multiconfig_common
 import RxSwift
 import RxCocoa
 

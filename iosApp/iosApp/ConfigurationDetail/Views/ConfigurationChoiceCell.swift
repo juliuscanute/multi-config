@@ -3,7 +3,7 @@
 //
 
 import UIKit
-import app
+import multiconfig_common
 
 class ConfigurationChoiceCell: UITableViewCell {
     var choiceState: ChoiceState? {

@@ -46,19 +46,19 @@
 		873FBF3D244A6AD70013B94D /* ConfigurationDetailViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873FBF32244A6AD70013B94D /* ConfigurationDetailViewDelegate.swift */; };
 		873FBF3E244A6AD70013B94D /* ConfigurationRangeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873FBF33244A6AD70013B94D /* ConfigurationRangeCell.swift */; };
 		873FBF3F244A6AD70013B94D /* ConfigurationDetailState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873FBF34244A6AD70013B94D /* ConfigurationDetailState.swift */; };
-		873FBF54244A7A340013B94D /* app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 873FBF53244A7A340013B94D /* app.framework */; };
-		873FBF55244A7A340013B94D /* app.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 873FBF53244A7A340013B94D /* app.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		873FBF58244A7A4B0013B94D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 873FBF57244A7A4B0013B94D /* Foundation.framework */; };
+		876F1EED245998F600B599E5 /* multiconfig_common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 876F1EEC245998F600B599E5 /* multiconfig_common.framework */; };
+		876F1EEE245998F600B599E5 /* multiconfig_common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 876F1EEC245998F600B599E5 /* multiconfig_common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		873FBF56244A7A340013B94D /* Embed Frameworks */ = {
+		876F1EEF245998F600B599E5 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				873FBF55244A7A340013B94D /* app.framework in Embed Frameworks */,
+				876F1EEE245998F600B599E5 /* multiconfig_common.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -109,8 +109,9 @@
 		873FBF32244A6AD70013B94D /* ConfigurationDetailViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationDetailViewDelegate.swift; sourceTree = "<group>"; };
 		873FBF33244A6AD70013B94D /* ConfigurationRangeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationRangeCell.swift; sourceTree = "<group>"; };
 		873FBF34244A6AD70013B94D /* ConfigurationDetailState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationDetailState.swift; sourceTree = "<group>"; };
-		873FBF53244A7A340013B94D /* app.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = app.framework; path = ../app/build/bin/ios/debugFramework/app.framework; sourceTree = "<group>"; };
+		873FBF53244A7A340013B94D /* multiconfig_common.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = multiconfig_common.framework; path = ../app/build/bin/ios/debugFramework/multiconfig_common.framework; sourceTree = "<group>"; };
 		873FBF57244A7A4B0013B94D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		876F1EEC245998F600B599E5 /* multiconfig_common.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = multiconfig_common.framework; path = ../app/build/bin/ios/releaseFramework/multiconfig_common.framework; sourceTree = "<group>"; };
 		B51914F030651CF8FCF29878 /* Pods-multiconfig-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-multiconfig-ios.release.xcconfig"; path = "Target Support Files/Pods-multiconfig-ios/Pods-multiconfig-ios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -119,8 +120,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				873FBF54244A7A340013B94D /* app.framework in Frameworks */,
 				873FBF58244A7A4B0013B94D /* Foundation.framework in Frameworks */,
+				876F1EED245998F600B599E5 /* multiconfig_common.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,8 +328,9 @@
 		FE098A7B031918A4D477A781 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				876F1EEC245998F600B599E5 /* multiconfig_common.framework */,
 				873FBF57244A7A4B0013B94D /* Foundation.framework */,
-				873FBF53244A7A340013B94D /* app.framework */,
+				873FBF53244A7A340013B94D /* multiconfig_common.framework */,
 				7F5FE61D79A782B65D79E34C /* Pods_multiconfig_ios.framework */,
 			);
 			name = Frameworks;
@@ -358,7 +360,7 @@
 				873FBED9244A69120013B94D /* Sources */,
 				873FBEDA244A69120013B94D /* Frameworks */,
 				873FBEDB244A69120013B94D /* Resources */,
-				873FBF56244A7A340013B94D /* Embed Frameworks */,
+				876F1EEF245998F600B599E5 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

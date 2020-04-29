@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import app
+import multiconfig_common
 
 public func appConfig(apply closure: (AppConfigurationBuilder) -> Void) -> NSMutableArray {
     let builder = AppConfigurationBuilder()
