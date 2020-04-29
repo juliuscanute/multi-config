@@ -1,7 +1,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import multiconfig_common
+import MultiConfigCommon
 
 public class ConfigurationController: NiblessViewController {
     let disposeBag = DisposeBag()

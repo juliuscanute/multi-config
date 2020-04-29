@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-import multiconfig_common
+import MultiConfigCommon
 
 extension ConfigurationRootView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

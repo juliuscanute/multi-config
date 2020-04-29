@@ -6,7 +6,7 @@ import Foundation
 import UIKit
 import RxSwift
 import RxCocoa
-import multiconfig_common
+import MultiConfigCommon
 
 
 public class ConfigurationDetailController: NiblessViewController {

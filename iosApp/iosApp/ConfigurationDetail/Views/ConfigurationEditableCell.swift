@@ -3,7 +3,7 @@
 //
 
 import UIKit
-import multiconfig_common
+import MultiConfigCommon
 
 class ConfigurationEditableCell: UITableViewCell {
     var editableState: EditableState? {

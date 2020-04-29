@@ -1,5 +1,5 @@
 import UIKit
-import multiconfig_common
+import MultiConfigCommon
 
 
 public class MultiConfigInitializer {

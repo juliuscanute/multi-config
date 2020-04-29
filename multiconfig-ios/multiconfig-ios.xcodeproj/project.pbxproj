@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		6F1FF2D84080C7256684C9DB /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1FF367E614F0D91E9B05AB /* StringExt.swift */; };
 		6F1FF5A8A5E0B76DE8C59661 /* LaunchApplicationResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1FFE6236B7959E2034EC7E /* LaunchApplicationResponder.swift */; };
-		873FBEE2244A69120013B94D /* multiconfig_ios.h in Headers */ = {isa = PBXBuildFile; fileRef = 873FBEE0244A69120013B94D /* multiconfig_ios.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		873FBEE2244A69120013B94D /* MultiConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 873FBEE0244A69120013B94D /* MultiConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		873FBF03244A6A8A0013B94D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873FBEEA244A6A8A0013B94D /* MainViewController.swift */; };
 		873FBF04244A6A8A0013B94D /* NavigationAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873FBEEB244A6A8A0013B94D /* NavigationAction.swift */; };
 		873FBF05244A6A8A0013B94D /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873FBEED244A6A8A0013B94D /* Environment.swift */; };
@@ -47,8 +47,8 @@
 		873FBF3E244A6AD70013B94D /* ConfigurationRangeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873FBF33244A6AD70013B94D /* ConfigurationRangeCell.swift */; };
 		873FBF3F244A6AD70013B94D /* ConfigurationDetailState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873FBF34244A6AD70013B94D /* ConfigurationDetailState.swift */; };
 		873FBF58244A7A4B0013B94D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 873FBF57244A7A4B0013B94D /* Foundation.framework */; };
-		876F1EED245998F600B599E5 /* multiconfig_common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 876F1EEC245998F600B599E5 /* multiconfig_common.framework */; };
-		876F1EEE245998F600B599E5 /* multiconfig_common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 876F1EEC245998F600B599E5 /* multiconfig_common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		876F1EED245998F600B599E5 /* MultiConfigCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 876F1EEC245998F600B599E5 /* MultiConfigCommon.framework */; };
+		876F1EEE245998F600B599E5 /* MultiConfigCommon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 876F1EEC245998F600B599E5 /* MultiConfigCommon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -58,7 +58,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				876F1EEE245998F600B599E5 /* multiconfig_common.framework in Embed Frameworks */,
+				876F1EEE245998F600B599E5 /* MultiConfigCommon.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -70,8 +70,8 @@
 		6F1FF367E614F0D91E9B05AB /* StringExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExt.swift; sourceTree = "<group>"; };
 		6F1FFE6236B7959E2034EC7E /* LaunchApplicationResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchApplicationResponder.swift; sourceTree = "<group>"; };
 		7F5FE61D79A782B65D79E34C /* Pods_multiconfig_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_multiconfig_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		873FBEDD244A69120013B94D /* multiconfig_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = multiconfig_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		873FBEE0244A69120013B94D /* multiconfig_ios.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = multiconfig_ios.h; sourceTree = "<group>"; };
+		873FBEDD244A69120013B94D /* MultiConfig.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MultiConfig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		873FBEE0244A69120013B94D /* MultiConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MultiConfig.h; sourceTree = "<group>"; };
 		873FBEE1244A69120013B94D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		873FBEEA244A6A8A0013B94D /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		873FBEEB244A6A8A0013B94D /* NavigationAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationAction.swift; sourceTree = "<group>"; };
@@ -109,9 +109,9 @@
 		873FBF32244A6AD70013B94D /* ConfigurationDetailViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationDetailViewDelegate.swift; sourceTree = "<group>"; };
 		873FBF33244A6AD70013B94D /* ConfigurationRangeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationRangeCell.swift; sourceTree = "<group>"; };
 		873FBF34244A6AD70013B94D /* ConfigurationDetailState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationDetailState.swift; sourceTree = "<group>"; };
-		873FBF53244A7A340013B94D /* multiconfig_common.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = multiconfig_common.framework; path = ../app/build/bin/ios/debugFramework/multiconfig_common.framework; sourceTree = "<group>"; };
+		873FBF53244A7A340013B94D /* MultiConfigCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultiConfigCommon.framework; path = ../app/build/bin/ios/debugFramework/MultiConfigCommon.framework; sourceTree = "<group>"; };
 		873FBF57244A7A4B0013B94D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		876F1EEC245998F600B599E5 /* multiconfig_common.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = multiconfig_common.framework; path = ../app/build/bin/ios/releaseFramework/multiconfig_common.framework; sourceTree = "<group>"; };
+		876F1EEC245998F600B599E5 /* MultiConfigCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultiConfigCommon.framework; path = ../app/build/bin/ios/releaseFramework/MultiConfigCommon.framework; sourceTree = "<group>"; };
 		B51914F030651CF8FCF29878 /* Pods-multiconfig-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-multiconfig-ios.release.xcconfig"; path = "Target Support Files/Pods-multiconfig-ios/Pods-multiconfig-ios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,7 +121,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				873FBF58244A7A4B0013B94D /* Foundation.framework in Frameworks */,
-				876F1EED245998F600B599E5 /* multiconfig_common.framework in Frameworks */,
+				876F1EED245998F600B599E5 /* MultiConfigCommon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,7 +141,7 @@
 		873FBEDE244A69120013B94D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				873FBEDD244A69120013B94D /* multiconfig_ios.framework */,
+				873FBEDD244A69120013B94D /* MultiConfig.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -152,7 +152,7 @@
 				873FBF26244A6AD70013B94D /* ConfigurationDetail */,
 				873FBF16244A6AC70013B94D /* Configuration */,
 				873FBEE8244A6A8A0013B94D /* App */,
-				873FBEE0244A69120013B94D /* multiconfig_ios.h */,
+				873FBEE0244A69120013B94D /* MultiConfig.h */,
 				873FBEE1244A69120013B94D /* Info.plist */,
 			);
 			path = "multiconfig-ios";
@@ -328,9 +328,9 @@
 		FE098A7B031918A4D477A781 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				876F1EEC245998F600B599E5 /* multiconfig_common.framework */,
+				876F1EEC245998F600B599E5 /* MultiConfigCommon.framework */,
 				873FBF57244A7A4B0013B94D /* Foundation.framework */,
-				873FBF53244A7A340013B94D /* multiconfig_common.framework */,
+				873FBF53244A7A340013B94D /* MultiConfigCommon.framework */,
 				7F5FE61D79A782B65D79E34C /* Pods_multiconfig_ios.framework */,
 			);
 			name = Frameworks;
@@ -343,7 +343,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				873FBEE2244A69120013B94D /* multiconfig_ios.h in Headers */,
+				873FBEE2244A69120013B94D /* MultiConfig.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,7 +368,7 @@
 			);
 			name = "multiconfig-ios";
 			productName = "multiconfig-ios";
-			productReference = 873FBEDD244A69120013B94D /* multiconfig_ios.framework */;
+			productReference = 873FBEDD244A69120013B94D /* MultiConfig.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -648,8 +648,8 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.juliuscanute.multiconfig-ios";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.juliuscanute.multiconfig;
+				PRODUCT_NAME = MultiConfig;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -673,8 +673,8 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.juliuscanute.multiconfig-ios";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.juliuscanute.multiconfig;
+				PRODUCT_NAME = MultiConfig;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

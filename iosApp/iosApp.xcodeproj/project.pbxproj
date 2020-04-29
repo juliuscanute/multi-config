@@ -49,8 +49,8 @@
 		F861D7E3207FA40F0085E80D /* ConfigurationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F861D7E2207FA40F0085E80D /* ConfigurationController.swift */; };
 		F861D7EB207FA4100085E80D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F861D7E9207FA4100085E80D /* LaunchScreen.storyboard */; };
 		F861D7F6207FA4100085E80D /* iosAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F861D7F5207FA4100085E80D /* iosAppTests.swift */; };
-		F861D80C207FA4200085E80D /* multiconfig_common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F861D805207FA4200085E80D /* multiconfig_common.framework */; };
-		F861D80D207FA4200085E80D /* multiconfig_common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F861D805207FA4200085E80D /* multiconfig_common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F861D80C207FA4200085E80D /* MultiConfigCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F861D805207FA4200085E80D /* MultiConfigCommon.framework */; };
+		F861D80D207FA4200085E80D /* MultiConfigCommon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F861D805207FA4200085E80D /* MultiConfigCommon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FF8B204CDF5433D2B7D4F6AB /* Pods_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5E141AE3E9417A1124B65D8 /* Pods_app.framework */; };
 /* End PBXBuildFile section */
 
@@ -78,7 +78,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F861D80D207FA4200085E80D /* multiconfig_common.framework in Embed Frameworks */,
+				F861D80D207FA4200085E80D /* MultiConfigCommon.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,7 +137,7 @@
 		F861D7F1207FA4100085E80D /* iosAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iosAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F861D7F5207FA4100085E80D /* iosAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iosAppTests.swift; sourceTree = "<group>"; };
 		F861D7F7207FA4100085E80D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F861D805207FA4200085E80D /* multiconfig_common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = multiconfig_common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F861D805207FA4200085E80D /* MultiConfigCommon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MultiConfigCommon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F861D813207FA4520085E80D /* app */ = {isa = PBXFileReference; lastKnownFileType = folder; name = app; path = ../app; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -155,7 +155,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				872B7D2C2420C7FE00DEBC27 /* Foundation.framework in Frameworks */,
-				F861D80C207FA4200085E80D /* multiconfig_common.framework in Frameworks */,
+				F861D80C207FA4200085E80D /* MultiConfigCommon.framework in Frameworks */,
 				4A99F85B72C32DF2209BADB7 /* Pods_iosApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -365,7 +365,7 @@
 			children = (
 				F861D7DD207FA40F0085E80D /* multiconfig.app */,
 				F861D7F1207FA4100085E80D /* iosAppTests.xctest */,
-				F861D805207FA4200085E80D /* multiconfig_common.framework */,
+				F861D805207FA4200085E80D /* MultiConfigCommon.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -447,7 +447,7 @@
 			);
 			name = app;
 			productName = app;
-			productReference = F861D805207FA4200085E80D /* multiconfig_common.framework */;
+			productReference = F861D805207FA4200085E80D /* MultiConfigCommon.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
