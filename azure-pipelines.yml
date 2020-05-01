@@ -30,8 +30,8 @@ steps:
 - task: CopyFiles@2
   inputs:
     contents: |
-        '**/MultiConfig.framework**'
-        '**/MultiConfigCommon.framework**'
+        '**/MultiConfig**'
+        '**/MultiConfigCommon**'
     targetFolder: '$(build.artifactStagingDirectory)'
 - task: PublishBuildArtifacts@1
   inputs:
