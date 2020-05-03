@@ -1,6 +1,8 @@
 language: swift
 osx_image: xcode11.3
 
+jdk:
+  - oraclejdk8
 podfile: multiconfig-ios/Podfile
 script:
   - xcodebuild -sdk iphonesimulator13.2 -configuration Release -workspace multiconfig-ios/multiconfig-ios.xcworkspace -scheme multiconfig-ios build CODE_SIGNING_ALLOWED=NO
