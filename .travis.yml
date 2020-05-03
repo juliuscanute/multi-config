@@ -1,8 +1,12 @@
 language: swift
 osx_image: xcode11.3
+jdk: 1.8.0_112-b16
 before_install:
   - brew cask install adoptopenjdk/openjdk/adoptopenjdk8
 podfile: multiconfig-ios/Podfile
 script:
   - export JAVA_HOME=`/usr/libexec/java_home -v 1.8.0_222`
-  - xcodebuild -sdk iphonesimulator13.2 -configuration Release -workspace multiconfig-ios/multiconfig-ios.xcworkspace -scheme multiconfig-ios build CODE_SIGNING_ALLOWED=NO
+  - /usr/libexec/java_home -V
+  - echo $JAVA_HOME
+  - java -version
+#  - xcodebuild -sdk iphonesimulator13.2 -configuration Release -workspace multiconfig-ios/multiconfig-ios.xcworkspace -scheme multiconfig-ios build CODE_SIGNING_ALLOWED=NO
