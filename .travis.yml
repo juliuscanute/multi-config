@@ -5,8 +5,8 @@ before_install:
   - brew cask install adoptopenjdk/openjdk/adoptopenjdk8
 podfile: multiconfig-ios/Podfile
 script:
-  - export JAVA_HOME=`/usr/libexec/java_home -v 1.8.0_222`
+  - export JAVA_HOME=`/usr/libexec/java_home -v 1.8.0_252`
   - /usr/libexec/java_home -V
   - echo $JAVA_HOME
   - java -version
-#  - xcodebuild -sdk iphonesimulator13.2 -configuration Release -workspace multiconfig-ios/multiconfig-ios.xcworkspace -scheme multiconfig-ios build CODE_SIGNING_ALLOWED=NO
+  - xcodebuild -sdk iphonesimulator13.2 -configuration Release -workspace multiconfig-ios/multiconfig-ios.xcworkspace -scheme multiconfig-ios build CODE_SIGNING_ALLOWED=NO
