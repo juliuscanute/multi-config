@@ -12,3 +12,5 @@ script:
   - java -version
   - yes |  /usr/local/share/android-sdk/tools/bin/sdkmanager --licenses
   - xcodebuild -sdk iphonesimulator13.2 -configuration Release -workspace multiconfig-ios/multiconfig-ios.xcworkspace -scheme multiconfig-ios build CODE_SIGNING_ALLOWED=NO
+  - tar -C $BUILT_PRODUCTS_DIR -cvf MultiConfig.tar ./
+  - tar -C app/build/bin/ios/releaseFramework/ -cvf MultiConfigCommon.tar ./
