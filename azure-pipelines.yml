@@ -15,10 +15,9 @@ steps:
   inputs:
     actions: 'build'
     scheme: 'multiconfig-ios'
-    sdk: 'iphonesimulator'
+    sdk: 'iphonesimulator13.2'
     configuration: 'Release'
     xcWorkspacePath: 'multiconfig-ios/multiconfig-ios.xcworkspace'
-    xcodeVersion: '10' # Options: 8, 9, 10, default, specifyPath
 # - task: Xcode@5
 #   inputs:
 #     actions: 'build'
