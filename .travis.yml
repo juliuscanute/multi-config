@@ -2,10 +2,11 @@ language: swift
 osx_image: xcode11.3
 before_install:
   - brew cask install adoptopenjdk/openjdk/adoptopenjdk8
+  - brew cask install android-sdk
 podfile: multiconfig-ios/Podfile
 script:
   - export JAVA_HOME=`/usr/libexec/java_home -v 1.8.0_252`
-  - export ANDROID_SDK_ROOT="NOTREQUIRED"
+  - export ANDROID_SDK_ROOT="$(brew --prefix)/share/android-sdk"
   - /usr/libexec/java_home -V
   - echo $JAVA_HOME
   - java -version
