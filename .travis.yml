@@ -12,5 +12,6 @@ script:
   - java -version
   - yes |  /usr/local/share/android-sdk/tools/bin/sdkmanager --licenses
   - xcodebuild -sdk iphonesimulator13.2 -configuration Release -workspace multiconfig-ios/multiconfig-ios.xcworkspace -scheme multiconfig-ios build CODE_SIGNING_ALLOWED=NO
-  - tar -C $BUILT_PRODUCTS_DIR -cvf MultiConfig.tar ./
-  - tar -C app/build/bin/ios/releaseFramework/ -cvf MultiConfigCommon.tar ./
+  - export BUILD_PRODUCT_DIR=$(xcodebuild -scheme multiconfig-ios -workspace multiconfig-ios/multiconfig-ios.xcworkspace ONLY_ACTIVE_ARCH=NO -sdk iphonesimulator13.2 -configuration Release -showBuildSettings | grep -m 1 "BUILT_PRODUCTS_DIR" | grep -oEi "\/.*")
+  - (cd $BUILD_PRODUCT_DIR ; zip -r MultiConfig.zip ./MultiConfig.framework)
+  - (cd $BUILD_PRODUCT_DIR ; zip -r MultiConfigCommon.zip ./MultiConfigCommon.framework)
