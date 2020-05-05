@@ -12,6 +12,19 @@ script:
   - java -version
   - yes |  /usr/local/share/android-sdk/tools/bin/sdkmanager --licenses
   - xcodebuild -sdk iphonesimulator13.2 -configuration Release -workspace multiconfig-ios/multiconfig-ios.xcworkspace -scheme multiconfig-ios build CODE_SIGNING_ALLOWED=NO
-  - export BUILD_PRODUCT_DIR=$(xcodebuild -scheme multiconfig-ios -workspace multiconfig-ios/multiconfig-ios.xcworkspace ONLY_ACTIVE_ARCH=NO -sdk iphonesimulator13.2 -configuration Release -showBuildSettings | grep -m 1 "BUILT_PRODUCTS_DIR" | grep -oEi "\/.*")
-  - (cd $BUILD_PRODUCT_DIR ; zip -r MultiConfig.zip ./MultiConfig.framework)
-  - (cd $BUILD_PRODUCT_DIR ; zip -r MultiConfigCommon.zip ./MultiConfigCommon.framework)
+  - xcodebuild -sdk iphoneos13.2 -configuration Release -workspace multiconfig-ios/multiconfig-ios.xcworkspace -scheme multiconfig-ios build CODE_SIGNING_ALLOWED=NO
+  - export BUILD_PRODUCT_SIM_DIR=$(xcodebuild -scheme multiconfig-ios -workspace multiconfig-ios/multiconfig-ios.xcworkspace ONLY_ACTIVE_ARCH=NO -sdk iphonesimulator13.2 -configuration Release -showBuildSettings | grep -m 1 "BUILT_PRODUCTS_DIR" | grep -oEi "\/.*")
+  - export BUILD_PRODUCT_IOS_DIR=$(xcodebuild -scheme multiconfig-ios -workspace multiconfig-ios/multiconfig-ios.xcworkspace ONLY_ACTIVE_ARCH=NO -sdk iphoneos13.2 -configuration Release -showBuildSettings | grep -m 1 "BUILT_PRODUCTS_DIR" | grep -oEi "\/.*")
+  - lipo -create $BUILD_PRODUCT_SIM_DIR/MultiConfig.framework/MultiConfig $BUILD_PRODUCT_IOS_DIR/MultiConfig.framework/MultiConfig -output $BUILD_PRODUCT_IOS_DIR/MultiConfig.framework/MultiConfig
+  - lipo -create $BUILD_PRODUCT_SIM_DIR/MultiConfigCommon.framework/MultiConfigCommon $BUILD_PRODUCT_IOS_DIR/MultiConfigCommon.framework/MultiConfigCommon -output $BUILD_PRODUCT_IOS_DIR/MultiConfigCommon.framework/MultiConfigCommon
+  - (cd $BUILD_PRODUCT_IOS_DIR ; zip -r MultiConfig.zip ./MultiConfig.framework)
+  - (cd $BUILD_PRODUCT_IOS_DIR ; zip -r MultiConfigCommon.zip ./MultiConfigCommon.framework)
+deploy:
+  provider: releases
+  api_key: $GITHUB_OAUTH2_TOKEN
+  file:
+    - $BUILD_PRODUCT_IOS_DIR/MultiConfig.zip
+    - $BUILD_PRODUCT_IOS_DIR/MultiConfigCommon.zip
+  skip_cleanup: true
+  on:
+    tags: true
