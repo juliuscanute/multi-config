@@ -68,7 +68,7 @@ public class MainViewController: NiblessNavigationController {
     }
 
     func presentApplicationController(environment: String?) {
-        pushViewController(MultiConfig.getStartController(environment: environment!), animated: true)
+        pushViewController(ConfigInitializer.getStartController(environment: environment!), animated: true)
     }
 }
 

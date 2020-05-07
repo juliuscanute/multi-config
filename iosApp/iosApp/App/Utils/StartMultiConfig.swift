@@ -32,13 +32,13 @@ public class StartMultiConfig {
 
 public func startMultiConfig(rootGroup: String, apply closure: (StartMultiConfig) -> Void) -> StartMultiConfig {
     let config = StartMultiConfig(rootGroup: rootGroup)
-    MultiConfig.multiConfig = config
+    ConfigInitializer.multiConfig = config
     closure(config)
     return config
 }
 
 
-public class MultiConfig {
+public class ConfigInitializer {
     static var multiConfig: StartMultiConfig!
 
     static func getStartController(environment: String) -> UIViewController {
