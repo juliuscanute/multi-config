@@ -8,27 +8,15 @@ before_install:
   - brew cask install android-sdk
 podfile: multiconfig-ios/Podfile
 script:
-  - export JAVA_HOME=`/usr/libexec/java_home -v 1.8.0_252`
-  - export ANDROID_SDK_ROOT="$(brew --prefix)/share/android-sdk"
-  - /usr/libexec/java_home -V
-  - echo $JAVA_HOME
-  - java -version
-  - yes |  /usr/local/share/android-sdk/tools/bin/sdkmanager --licenses
-  - xcodebuild -sdk iphonesimulator -configuration Release -workspace multiconfig-ios/multiconfig-ios.xcworkspace -scheme multiconfig-ios build CODE_SIGNING_ALLOWED=NO
-  - xcodebuild -sdk iphoneos -configuration Release -workspace multiconfig-ios/multiconfig-ios.xcworkspace -scheme multiconfig-ios build CODE_SIGNING_ALLOWED=NO
-  - export BUILD_PRODUCT_SIM_DIR=$(xcodebuild -scheme multiconfig-ios -workspace multiconfig-ios/multiconfig-ios.xcworkspace ONLY_ACTIVE_ARCH=NO -sdk iphonesimulator -configuration Release -showBuildSettings | grep -m 1 "BUILT_PRODUCTS_DIR" | grep -oEi "\/.*")
-  - export BUILD_PRODUCT_IOS_DIR=$(xcodebuild -scheme multiconfig-ios -workspace multiconfig-ios/multiconfig-ios.xcworkspace ONLY_ACTIVE_ARCH=NO -sdk iphoneos -configuration Release -showBuildSettings | grep -m 1 "BUILT_PRODUCTS_DIR" | grep -oEi "\/.*")
-  - cp -f $BUILD_PRODUCT_SIM_DIR/MultiConfig.framework/Modules/MultiConfig.swiftmodule/* $BUILD_PRODUCT_IOS_DIR/MultiConfig.framework/Modules/MultiConfig.swiftmodule/ | echo
-  - lipo -create $BUILD_PRODUCT_SIM_DIR/MultiConfig.framework/MultiConfig $BUILD_PRODUCT_IOS_DIR/MultiConfig.framework/MultiConfig -output $BUILD_PRODUCT_IOS_DIR/MultiConfig.framework/MultiConfig
-  - lipo -create $BUILD_PRODUCT_SIM_DIR/MultiConfigCommon.framework/MultiConfigCommon $BUILD_PRODUCT_IOS_DIR/MultiConfigCommon.framework/MultiConfigCommon -output $BUILD_PRODUCT_IOS_DIR/MultiConfigCommon.framework/MultiConfigCommon
-  - (cd $BUILD_PRODUCT_IOS_DIR ; zip -r MultiConfig.zip ./MultiConfig.framework)
-  - (cd $BUILD_PRODUCT_IOS_DIR ; zip -r MultiConfigCommon.zip ./MultiConfigCommon.framework)
+  - ci_build/build.sh
 deploy:
   provider: releases
   api_key: $GITHUB_OAUTH2_TOKEN
   file:
-    - $BUILD_PRODUCT_IOS_DIR/MultiConfig.zip
-    - $BUILD_PRODUCT_IOS_DIR/MultiConfigCommon.zip
+    - MultiConfig-Debug.zip
+    - MultiConfigCommon-Debug.zip
+    - MultiConfig-Release.zip
+    - MultiConfigCommon-Release.zip
   skip_cleanup: true
   on:
     tags: true
