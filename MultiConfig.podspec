@@ -1,6 +1,7 @@
 Pod::Spec.new do |s|
+    version = ENV['LIB_VERSION'] || '1.0.22'
     s.name              = 'MultiConfig'
-    s.version           = ENV['LIB_VERSION'] || '1.0'
+    s.version           = version
     s.summary           = 'The MultiConfig iOS SDK enables you to configure App settings at runtime.'
     s.homepage          = 'https://github.com/juliuscanute/multi-config'
 
@@ -20,7 +21,7 @@ Pod::Spec.new do |s|
                                                 LICENSE
                            }
     s.platform          = :ios
-    s.source            = { :http => "https://github.com/juliuscanute/multi-config/releases/download/#{s.version}/MultiConfig-Release.zip" }
+    s.source            = { :http => "https://github.com/juliuscanute/multi-config/releases/download/"+version+"/MultiConfig-Release.zip" }
 
     s.ios.deployment_target = '13.0'
     s.swift_versions = '5.0'

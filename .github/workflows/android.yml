@@ -23,6 +23,7 @@ jobs:
           LIB_VERSION: '1.0.0'
       - name: Read Tags
         run: |
+          set -eo pipefail
           LIB_VERSION=$(git describe --tags `git rev-list --tags --max-count=1`)
       - name: Run unit test
         run: ./gradlew testReleaseUnitTest -b app/build.gradle
