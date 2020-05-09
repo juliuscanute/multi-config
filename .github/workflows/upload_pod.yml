@@ -1,4 +1,4 @@
-- name: Deploy to Cocoapod Action
+name: Deploy to Cocoapod Action
 on:
   registry_package:
     types: [published]
