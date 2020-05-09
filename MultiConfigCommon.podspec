@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name              = 'MultiConfigCommon'
-    s.version           = '1.0.3'
+    s.version           = ENV['LIB_VERSION'] || '1.0'
     s.summary           = 'The MultiConfigCommon is a dependency of MultiConfig which enables you to configure App settings at runtime.'
     s.homepage          = 'https://github.com/juliuscanute/multi-config'
 
@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
                                }
 
     s.platform          = :ios
-    s.source            = { :http => 'https://github.com/juliuscanute/multi-config/releases/download/1.0.3/MultiConfigCommon.zip' }
+    s.source            = { :http => 'https://github.com/juliuscanute/multi-config/releases/download/#{s.version}/MultiConfigCommon.zip' }
     s.swift_versions = '5.0'
     s.ios.deployment_target = '13.0'
     s.ios.vendored_frameworks = 'MultiConfigCommon.framework'

@@ -26,11 +26,15 @@ echo "$JAVA_HOME"
 java -version
 yes |  /usr/local/share/android-sdk/tools/bin/sdkmanager --licenses
 
-for Configuration in Debug, Release
-do
-  buildFramework iphonesimulator ${Configuration}
-  export BUILD_SIM_DIR="$BUILD_DIR"
-  buildFramework iphoneos ${Configuration}
-  export BUILD_IOS_DIR="$BUILD_DIR"
-  buildUniversal "$BUILD_SIM_DIR" "$BUILD_IOS_DIR" ${Configuration}
-done
+buildFramework iphonesimulator Debug
+export BUILD_SIM_DIR="$BUILD_DIR"
+buildFramework iphoneos Debug
+export BUILD_IOS_DIR="$BUILD_DIR"
+buildUniversal "$BUILD_SIM_DIR" "$BUILD_IOS_DIR" Debug
+
+
+buildFramework iphonesimulator Release
+export BUILD_SIM_DIR="$BUILD_DIR"
+buildFramework iphoneos Release
+export BUILD_IOS_DIR="$BUILD_DIR"
+buildUniversal "$BUILD_SIM_DIR" "$BUILD_IOS_DIR" Release
