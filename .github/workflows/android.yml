@@ -2,8 +2,7 @@ name: Android CI
 
 on:
   tags:
-    - *
-
+    - 1.0.*
 jobs:
   build:
 
