@@ -22,5 +22,10 @@ jobs:
           pod trunk push MultiConfigCommon.podspec --allow-warnings
           pod spec lint MultiConfig.podspec --allow-warnings
           pod trunk push MultiConfig.podspec --allow-warnings
+
+          pod spec lint MultiConfigCommon-Debug.podspec --allow-warnings
+          pod trunk push MultiConfigCommon-Debug.podspec --allow-warnings
+          pod spec lint MultiConfig-Debug.podspec --allow-warnings
+          pod trunk push MultiConfig-Debug.podspec --allow-warnings
         env:
           COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}

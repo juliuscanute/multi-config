@@ -18,7 +18,7 @@ ext {
 
     publishedGroupId = "com.juliuscanute.multiconfig"
     artifact = "multiconfig"
-    libraryVersion = "${System.getenv('LIB_VERSION')?:'1.0.0'}-dev"
+    libraryVersion = "${System.getenv('GIT_TAG_NAME')?:'1.0.0'}"
 
     libraryDescription = "A library to change Application Config at Runtime"
     siteUrl = "https://github.com/juliuscanute/multi-config"

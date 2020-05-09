@@ -17,20 +17,13 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-      - name: set environment variables
-        uses: allenevans/set-env@v1.0.0
-        with:
-          LIB_VERSION: '1.0.0'
-      - name: Read Tags
-        run: |
-          set -eo pipefail
-          LIB_VERSION=$(git describe --tags `git rev-list --tags --max-count=1`)
-      - name: Run unit test
-        run: ./gradlew testReleaseUnitTest -b app/build.gradle
-      - name: Build with Gradle
-        run:  ./gradlew install
-      - name: Publish artifact
+      - uses: olegtarasov/get-tag@v2
+        id: tagName
+      - name: Run, Build & Deploy to Jfrog
         env:
           BINTRAY_USER: ${{ secrets.BINTRAY_USER }}
           BINTRAY_KEY: ${{ secrets.BINTRAY_KEY }}
-        run: ./gradlew bintrayUpload
+        run: |
+          ./gradlew testReleaseUnitTest -b app/build.gradle
+          ./gradlew install
+          ./gradlew bintrayUpload
