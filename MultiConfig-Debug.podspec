@@ -26,7 +26,7 @@ Pod::Spec.new do |s|
     s.ios.deployment_target = '13.0'
     s.swift_versions = '5.0'
     s.ios.vendored_frameworks = 'MultiConfig.framework'
-    s.dependency 'MultiConfigCommon'
+    s.dependency 'MultiConfigCommon-Debug'
     s.dependency 'RxSwift', '~> 5'
     s.dependency 'RxCocoa', '~> 5'
 end
