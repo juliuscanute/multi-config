@@ -1,7 +1,6 @@
 name: Deploy to Cocoapod Action
 on:
-  registry_package:
-    types: [published]
+  release:
     tags:
       - '*'
 jobs:
