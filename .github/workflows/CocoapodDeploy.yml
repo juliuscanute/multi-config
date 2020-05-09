@@ -1,6 +1,7 @@
 name: Deploy to Cocoapod Action
 on:
   release:
+    types: [published]
     tags:
       - '*'
 jobs:
@@ -17,9 +18,9 @@ jobs:
         run: |
           set -eo pipefail
           export LIB_VERSION=$(git describe --tags `git rev-list --tags --max-count=1`)
-          pod lib lint MultiConfigCommon.podspec --allow-warnings
+          pod spec lint MultiConfigCommon.podspec --allow-warnings
           pod trunk push MultiConfigCommon.podspec --allow-warnings
-          pod lib lint MultiConfig.podspec --allow-warnings
+          pod spec lint MultiConfig.podspec --allow-warnings
           pod trunk push MultiConfig.podspec --allow-warnings
         env:
           COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
