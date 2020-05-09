@@ -1,10 +1,8 @@
 name: Android CI
 
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+  tags:
+    - *
 
 jobs:
   build:
@@ -17,14 +15,12 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-      - uses: olegtarasov/get-tag@v2
-        id: tagName
       - name: Run, Build & Deploy to Jfrog
         env:
           BINTRAY_USER: ${{ secrets.BINTRAY_USER }}
           BINTRAY_KEY: ${{ secrets.BINTRAY_KEY }}
         run: |
-          export LIB_VERSION=$GIT_TAG_NAME
+          export LIB_VERSION=$(git describe --tags `git rev-list --tags --max-count=1`)
           echo $LIB_VERSION
           ./gradlew testReleaseUnitTest -b app/build.gradle
           ./gradlew install
