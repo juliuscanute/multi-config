@@ -17,10 +17,13 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
+      - name: set environment variables
+        uses: allenevans/set-env@v1.0.0
+        with:
+          LIB_VERSION: '1.0.0'
       - name: Read Tags
         run: |
-          set -eo pipefail
-          export LIB_VERSION=$(git describe --tags `git rev-list --tags --max-count=1`)
+          LIB_VERSION=$(git describe --tags `git rev-list --tags --max-count=1`)
       - name: Run unit test
         run: ./gradlew testReleaseUnitTest -b app/build.gradle
       - name: Build with Gradle
