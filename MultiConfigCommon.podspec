@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
                                }
 
     s.platform          = :ios
-    s.source            = { :http => 'https://github.com/juliuscanute/multi-config/releases/download/#{s.version}/MultiConfigCommon.zip' }
+    s.source            = { :http => 'https://github.com/juliuscanute/multi-config/releases/download/#{s.version}/MultiConfigCommon-Release.zip' }
     s.swift_versions = '5.0'
     s.ios.deployment_target = '13.0'
     s.ios.vendored_frameworks = 'MultiConfigCommon.framework'

@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
                                                 LICENSE
                            }
     s.platform          = :ios
-    s.source            = { :http => "https://github.com/juliuscanute/multi-config/releases/download/#{s.version}/MultiConfig.zip" }
+    s.source            = { :http => "https://github.com/juliuscanute/multi-config/releases/download/#{s.version}/MultiConfig-Release.zip" }
 
     s.ios.deployment_target = '13.0'
     s.swift_versions = '5.0'

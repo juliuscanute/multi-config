@@ -17,6 +17,10 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
+      - name: Read Tags
+        run: |
+          set -eo pipefail
+          export LIB_VERSION=$(git describe --tags `git rev-list --tags --max-count=1`)
       - name: Run unit test
         run: ./gradlew testReleaseUnitTest -b app/build.gradle
       - name: Build with Gradle
