@@ -1,0 +1,26 @@
+name: MultiConfig No UI
+
+on:
+  create:
+    tags:
+      - 1.0.*
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Test, Build & Deploy to Jfrog
+        env:
+          BINTRAY_USER: ${{ secrets.BINTRAY_USER }}
+          BINTRAY_KEY: ${{ secrets.BINTRAY_KEY }}
+        run: |
+          export LIB_VERSION=$(git describe --tags `git rev-list --tags --max-count=1`)
+          echo $LIB_VERSION
+          ./gradlew install -b multiconfignoui/build.gradle
+          ./gradlew bintrayUpload -b multiconfignoui/build.gradle

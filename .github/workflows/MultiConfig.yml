@@ -1,4 +1,4 @@
-name: Android CI
+name: MultiConfig UI
 
 on:
   create:

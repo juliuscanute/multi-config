@@ -1,4 +1,4 @@
-![Android CI](https://github.com/juliuscanute/multi-config/workflows/Android%20CI/badge.svg)
+[![Build Status](https://travis-ci.org/juliuscanute/multi-config.svg?branch=master)](https://travis-ci.org/juliuscanute/multi-config)
 
 # Library
 
