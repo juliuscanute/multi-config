@@ -3,9 +3,11 @@ package com.juliuscanute.multiconfig.ui
 import builder.appConfig
 import com.nhaarman.mockitokotlin2.mock
 import model.ConfigurationRepository
+import model.ImmutableConfigurationRepository
 import model.UiControlsModel
 import org.junit.Assert
 import org.junit.Test
+import settings.Settings
 
 
 class ConfigurationBuilderTest {
@@ -322,8 +324,9 @@ class ConfigurationBuilderTest {
 
             }
         }[0]
+        val settings:Settings = mock()
 
-        val repository = ConfigurationRepository(configs.configs, mock())
+        val repository = ConfigurationRepository(configs.configs, settings)
 
         Assert.assertEquals(false, repository.getConfigBoolean("A"))
         Assert.assertEquals(50, repository.getConfigInt("B"))
@@ -332,6 +335,58 @@ class ConfigurationBuilderTest {
         Assert.assertEquals(0, repository.getConfigPair("D").second)
     }
 
+
+    @Test
+    fun `verify immutable configuration repository`() {
+        val configs = appConfig {
+            config("DEV") {
+
+                switch {
+                    key = "A"
+                    description = "A-D"
+                    switchValue = false
+                }
+
+                range {
+                    key = "B"
+                    description = "B-D"
+                    min = 1
+                    max = 100
+                    currentValue = 50
+                }
+
+                editable {
+                    key = "C"
+                    description = "C-D"
+                    currentValue = "C-V"
+                }
+
+                choice {
+                    key = "D"
+                    description = "D-D"
+                    currentChoiceIndex = 0
+                    item {
+                        description = "E"
+                    }
+                    item {
+                        description = "F"
+                    }
+                    item {
+                        description = "G"
+                    }
+                }
+
+            }
+        }[0]
+
+        val repository = ImmutableConfigurationRepository(configs.configs)
+
+        Assert.assertEquals(false, repository.getConfigBoolean("A"))
+        Assert.assertEquals(50, repository.getConfigInt("B"))
+        Assert.assertEquals("C-V", repository.getConfigString("C"))
+        Assert.assertEquals("E", repository.getConfigPair("D").first)
+        Assert.assertEquals(0, repository.getConfigPair("D").second)
+    }
 
     @Test(expected = IllegalStateException::class)
     fun `verify invalid type get`() {
@@ -346,6 +401,24 @@ class ConfigurationBuilderTest {
         }[0]
 
         val repository = ConfigurationRepository(configs.configs, mock())
+
+        repository.getConfigInt("A")
+    }
+
+
+    @Test(expected = IllegalStateException::class)
+    fun `verify invalid immutable get`() {
+        val configs = appConfig {
+            config("DEV") {
+                switch {
+                    key = "A"
+                    description = "A-D"
+                    switchValue = false
+                }
+            }
+        }[0]
+
+        val repository = ImmutableConfigurationRepository(configs.configs)
 
         repository.getConfigInt("A")
     }

@@ -2,13 +2,14 @@ package model
 
 import builder.EnvironmentConfiguration
 import builder.EnvironmentConfigurationImmutable
+import settings.Settings
 
 class ImmutableConfigurationRepository(
     private val configs: EnvironmentConfiguration
-) : ConfigurationGetterImplementation() {
-    fun getEnvironmentConfiguration(): EnvironmentConfigurationImmutable = loadConfiguration()
+) : ConfigurationGetterImplementation(configs) {
+    fun getEnvironmentConfiguration(): EnvironmentConfigurationImmutable = loadConfiguration(configs = configs)
 
-    override fun loadConfiguration(): List<UiControlsModel> = configs.map {
+    override fun loadConfiguration(configs: EnvironmentConfiguration, settings: Settings?): List<UiControlsModel> = configs.map {
         when (it) {
             is UiControlsModel.Switch -> {
                 val key = PREFIX + it.key

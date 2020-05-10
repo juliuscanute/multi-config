@@ -1,6 +1,11 @@
 package model
 
-abstract class ConfigurationGetterImplementation : ConfigurationGetter {
+import builder.EnvironmentConfiguration
+import settings.Settings
+
+abstract class ConfigurationGetterImplementation(private val configs: EnvironmentConfiguration,
+                                                 private var settings: Settings? = null
+) : ConfigurationGetter {
     companion object {
         const val PREFIX = "ImmutableConfigurationRepository"
         const val PAIR_SUFFIX_STRING = "PairSuffixString"
@@ -10,7 +15,7 @@ abstract class ConfigurationGetterImplementation : ConfigurationGetter {
 
     init {
         store = HashMap()
-        loadConfiguration()
+        loadConfiguration(configs, settings)
     }
     override fun getConfigInt(userKey: String): Int {
         val key = PREFIX + userKey
@@ -80,5 +85,5 @@ abstract class ConfigurationGetterImplementation : ConfigurationGetter {
         return configValue
     }
 
-    abstract fun loadConfiguration() :List<UiControlsModel>
+    abstract fun loadConfiguration(configs: EnvironmentConfiguration, settings: Settings? = null) :List<UiControlsModel>
 }

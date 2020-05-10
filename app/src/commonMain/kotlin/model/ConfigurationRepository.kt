@@ -7,9 +7,9 @@ import settings.Settings
 class ConfigurationRepository(
     private val configs: EnvironmentConfiguration,
     private val settings: Settings
-) : ConfigurationGetterImplementation() {
+) : ConfigurationGetterImplementation(configs, settings) {
 
-    fun getEnvironmentConfiguration(): EnvironmentConfigurationImmutable = loadConfiguration()
+    fun getEnvironmentConfiguration(): EnvironmentConfigurationImmutable = loadConfiguration(configs, settings)
 
     fun saveConfig(key: String, value: Int) {
         val userKey = PREFIX + key
@@ -53,7 +53,8 @@ class ConfigurationRepository(
         settings.putInt(userKey + PAIR_SUFFIX_INT, value.second)
     }
 
-    override fun loadConfiguration() = configs.map {
+    override fun loadConfiguration(configs: EnvironmentConfiguration, settings: Settings?) = configs.map {
+        checkNotNull(settings){"settings must not be null"}
         when (it) {
             is UiControlsModel.Switch -> {
                 val key = PREFIX + it.key
