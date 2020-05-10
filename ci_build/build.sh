@@ -23,8 +23,14 @@ shorten () {
 buildFramework(){
   IOS_SDK=$1
   CONFIGURATION=$2
-  xcodebuild -sdk "${IOS_SDK}" -configuration "${CONFIGURATION}" -workspace multiconfig-ios/multiconfig-ios.xcworkspace -scheme multiconfig-ios clean build CODE_SIGNING_ALLOWED=NO | shorten -s ... 80
+  xcodebuild -sdk "${IOS_SDK}" -configuration "${CONFIGURATION}" -workspace multiconfig-ios/multiconfig-ios.xcworkspace -scheme multiconfig-ios build CODE_SIGNING_ALLOWED=NO | shorten -s ... 80
   export BUILD_DIR=$(xcodebuild -scheme multiconfig-ios -workspace multiconfig-ios/multiconfig-ios.xcworkspace ONLY_ACTIVE_ARCH=NO -sdk "${IOS_SDK}" -configuration "${CONFIGURATION}" -showBuildSettings | grep -m 1 "BUILT_PRODUCTS_DIR" | grep -oEi "\/.*")
+}
+
+buildClean(){
+  IOS_SDK=$1
+  CONFIGURATION=$2
+  xcodebuild -sdk "${IOS_SDK}" -configuration "${CONFIGURATION}" -workspace multiconfig-ios/multiconfig-ios.xcworkspace -scheme multiconfig-ios clean CODE_SIGNING_ALLOWED=NO | shorten -s ... 80
 }
 
 buildUniversal(){
@@ -53,6 +59,8 @@ buildFramework iphoneos Debug
 export BUILD_IOS_DIR="$BUILD_DIR"
 buildUniversal "$BUILD_SIM_DIR" "$BUILD_IOS_DIR" Debug
 
+buildClean iphonesimulator Debug
+buildClean iphoneos Debug
 
 buildFramework iphonesimulator Release
 export BUILD_SIM_DIR="$BUILD_DIR"
