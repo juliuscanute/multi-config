@@ -4,7 +4,8 @@ import builder.EnvironmentConfiguration
 import settings.Settings
 
 abstract class ConfigurationGetterImplementation(private val configs: EnvironmentConfiguration,
-                                                 private var settings: Settings? = null
+                                                 private var settings: Settings? = null,
+                                                 private val environment: String
 ) : ConfigurationGetter {
     companion object {
         const val PREFIX = "ImmutableConfigurationRepository"
@@ -15,10 +16,10 @@ abstract class ConfigurationGetterImplementation(private val configs: Environmen
 
     init {
         store = HashMap()
-        loadConfiguration(configs, settings)
+        loadConfiguration(configs, settings, environment)
     }
     override fun getConfigInt(userKey: String): Int {
-        val key = PREFIX + userKey
+        val key = environment + PREFIX + userKey
         val storeValue: StoreValue? = store[key]
         checkNotNull(storeValue, { "Unable to find the key" })
         val configValue: Int? = try {
@@ -35,7 +36,7 @@ abstract class ConfigurationGetterImplementation(private val configs: Environmen
     }
 
     override fun getConfigString(userKey: String): String {
-        val key = PREFIX + userKey
+        val key = environment + PREFIX + userKey
         val storeValue: StoreValue? = store[key]
         checkNotNull(storeValue, { "Unable to find the key" })
         val configValue: String? = try {
@@ -52,7 +53,7 @@ abstract class ConfigurationGetterImplementation(private val configs: Environmen
     }
 
     override fun getConfigBoolean(userKey: String): Boolean {
-        val key = PREFIX + userKey
+        val key = environment + PREFIX + userKey
         val storeValue: StoreValue? = store[key]
         checkNotNull(storeValue, { "Unable to find the key" })
         val configValue: Boolean? = try {
@@ -69,7 +70,7 @@ abstract class ConfigurationGetterImplementation(private val configs: Environmen
     }
 
     override fun getConfigPair(userKey: String): Pair<String, Int> {
-        val key = PREFIX + userKey
+        val key = environment + PREFIX + userKey
         val storeValue: StoreValue? = store[key]
         checkNotNull(storeValue, { "Unable to find the key" })
         val configValue: Pair<String, Int>? = try {
@@ -85,5 +86,5 @@ abstract class ConfigurationGetterImplementation(private val configs: Environmen
         return configValue
     }
 
-    abstract fun loadConfiguration(configs: EnvironmentConfiguration, settings: Settings? = null) :List<UiControlsModel>
+    abstract fun loadConfiguration(configs: EnvironmentConfiguration, settings: Settings? = null, environment: String) :List<UiControlsModel>
 }

@@ -6,13 +6,14 @@ import settings.Settings
 
 class ConfigurationRepository(
     private val configs: EnvironmentConfiguration,
-    private val settings: Settings
-) : ConfigurationGetterImplementation(configs, settings) {
+    private val settings: Settings,
+    private val environment: String
+) : ConfigurationGetterImplementation(configs, settings, environment) {
 
-    fun getEnvironmentConfiguration(): EnvironmentConfigurationImmutable = loadConfiguration(configs, settings)
+    fun getEnvironmentConfiguration(): EnvironmentConfigurationImmutable = loadConfiguration(configs, settings, environment)
 
     fun saveConfig(key: String, value: Int) {
-        val userKey = PREFIX + key
+        val userKey = environment + PREFIX + key
         val found: UiControlsModel.Range? = configs.filterIsInstance<UiControlsModel.Range>()
             .firstOrNull { item -> item.key == key }
         checkNotNull(found, { "Unable to find the key" })
@@ -22,7 +23,7 @@ class ConfigurationRepository(
     }
 
     fun saveConfig(key: String, value: String) {
-        val userKey = PREFIX + key
+        val userKey = environment + PREFIX + key
         val found: UiControlsModel.Editable? = configs.filterIsInstance<UiControlsModel.Editable>()
             .firstOrNull { item -> item.key == key }
         checkNotNull(found, { "Unable to find the key" })
@@ -32,7 +33,7 @@ class ConfigurationRepository(
     }
 
     fun saveConfig(key: String, value: Boolean) {
-        val userKey = PREFIX + key
+        val userKey = environment + PREFIX + key
         val found: UiControlsModel.Switch? = configs.filterIsInstance<UiControlsModel.Switch>()
             .firstOrNull { item -> item.key == key }
         checkNotNull(found, { "Unable to find the key" })
@@ -42,7 +43,7 @@ class ConfigurationRepository(
     }
 
     fun saveConfig(key: String, value: Pair<String, Int>) {
-        val userKey = PREFIX + key
+        val userKey = environment + PREFIX + key
         val found: UiControlsModel.Choice? = configs.filterIsInstance<UiControlsModel.Choice>()
             .firstOrNull { item -> item.key == key }
         checkNotNull(found, { "Unable to find the key" })
@@ -53,11 +54,11 @@ class ConfigurationRepository(
         settings.putInt(userKey + PAIR_SUFFIX_INT, value.second)
     }
 
-    override fun loadConfiguration(configs: EnvironmentConfiguration, settings: Settings?) = configs.map {
-        checkNotNull(settings){"settings must not be null"}
+    override fun loadConfiguration(configs: EnvironmentConfiguration, settings: Settings?, environment: String) = configs.map {
+        checkNotNull(settings) { "settings must not be null" }
         when (it) {
             is UiControlsModel.Switch -> {
-                val key = PREFIX + it.key
+                val key = environment + PREFIX + it.key
                 val newValue: Boolean
                 if (settings.hasKey(key)) {
                     newValue = settings.getBoolean(key, false)
@@ -69,7 +70,7 @@ class ConfigurationRepository(
                 it.copy(switchValue = newValue)
             }
             is UiControlsModel.Range -> {
-                val key = PREFIX + it.key
+                val key = environment + PREFIX + it.key
                 val newValue: Int
                 if (settings.hasKey(key)) {
                     newValue = settings.getInt(key, 0)
@@ -81,7 +82,7 @@ class ConfigurationRepository(
                 it.copy(currentValue = newValue)
             }
             is UiControlsModel.Editable -> {
-                val key = PREFIX + it.key
+                val key = environment + PREFIX + it.key
                 val newValue: String
                 if (settings.hasKey(key)) {
                     newValue = settings.getString(key, "")
@@ -93,9 +94,9 @@ class ConfigurationRepository(
                 it.copy(currentValue = newValue)
             }
             is UiControlsModel.Choice -> {
-                val key = PREFIX + it.key
-                val keyString = PREFIX + it.key + PAIR_SUFFIX_STRING
-                val keyInt = PREFIX + it.key + PAIR_SUFFIX_INT
+                val key = environment + PREFIX + it.key
+                val keyString = environment + PREFIX + it.key + PAIR_SUFFIX_STRING
+                val keyInt = environment + PREFIX + it.key + PAIR_SUFFIX_INT
                 check(it.currentChoiceIndex < it.items.size) { "Choice mush be less than the available items" }
                 val item = it.items[it.currentChoiceIndex]
                 val newIntValue: Int

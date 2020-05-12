@@ -131,7 +131,7 @@ class ConfigurationBuilderTest {
             }
         }[0]
 
-        val config = ConfigurationRepository(configs.configs, mock())
+        val config = ConfigurationRepository(configs.configs, mock(), "DEV")
 
         Assert.assertEquals(50, config.getConfigInt("B"))
         config.saveConfig("B", 75)
@@ -324,9 +324,9 @@ class ConfigurationBuilderTest {
 
             }
         }[0]
-        val settings:Settings = mock()
+        val settings: Settings = mock()
 
-        val repository = ConfigurationRepository(configs.configs, settings)
+        val repository = ConfigurationRepository(configs.configs, settings, "DEV")
 
         Assert.assertEquals(false, repository.getConfigBoolean("A"))
         Assert.assertEquals(50, repository.getConfigInt("B"))
@@ -379,13 +379,67 @@ class ConfigurationBuilderTest {
             }
         }[0]
 
-        val repository = ImmutableConfigurationRepository(configs.configs)
+        val repository = ImmutableConfigurationRepository(configs.configs, "DEV")
 
         Assert.assertEquals(false, repository.getConfigBoolean("A"))
         Assert.assertEquals(50, repository.getConfigInt("B"))
         Assert.assertEquals("C-V", repository.getConfigString("C"))
         Assert.assertEquals("E", repository.getConfigPair("D").first)
         Assert.assertEquals(0, repository.getConfigPair("D").second)
+    }
+
+    @Test
+    fun `verify same keys in different environment for immutable repository`() {
+        val allConfig = appConfig {
+            config("DEV") {
+                switch {
+                    key = "A"
+                    description = "A-D"
+                    switchValue = false
+                }
+            }
+            config("UAT") {
+                switch {
+                    key = "A"
+                    description = "A-D"
+                    switchValue = true
+                }
+            }
+        }
+        val devConfig = allConfig[0]
+        val uatConfig = allConfig[1]
+        val repositoryDev = ImmutableConfigurationRepository(devConfig.configs, devConfig.environment)
+        val repositoryUat = ImmutableConfigurationRepository(uatConfig.configs, uatConfig.environment)
+        Assert.assertEquals(false, repositoryDev.getConfigBoolean("A"))
+        Assert.assertEquals(true, repositoryUat.getConfigBoolean("A"))
+    }
+
+
+    @Test
+    fun `verify same keys in different environment for mutable repository`() {
+        val allConfig = appConfig {
+            config("DEV") {
+                switch {
+                    key = "A"
+                    description = "A-D"
+                    switchValue = false
+                }
+            }
+            config("UAT") {
+                switch {
+                    key = "A"
+                    description = "A-D"
+                    switchValue = true
+                }
+            }
+        }
+        val settings: Settings = mock()
+        val devConfig = allConfig[0]
+        val uatConfig = allConfig[1]
+        val repositoryDev = ConfigurationRepository(devConfig.configs, settings, devConfig.environment)
+        val repositoryUat = ConfigurationRepository(uatConfig.configs, settings, uatConfig.environment)
+        Assert.assertEquals(false, repositoryDev.getConfigBoolean("A"))
+        Assert.assertEquals(true, repositoryUat.getConfigBoolean("A"))
     }
 
     @Test(expected = IllegalStateException::class)
@@ -400,7 +454,7 @@ class ConfigurationBuilderTest {
             }
         }[0]
 
-        val repository = ConfigurationRepository(configs.configs, mock())
+        val repository = ConfigurationRepository(configs.configs, mock(), "DEV")
 
         repository.getConfigInt("A")
     }
@@ -418,7 +472,7 @@ class ConfigurationBuilderTest {
             }
         }[0]
 
-        val repository = ImmutableConfigurationRepository(configs.configs)
+        val repository = ImmutableConfigurationRepository(configs.configs, "DEV")
 
         repository.getConfigInt("A")
     }

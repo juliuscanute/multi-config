@@ -27,13 +27,13 @@ class ConfigurationManager {
         val configuration = repository.firstOrNull { it.environment == environment }
         checkNotNull(configuration) { "configuration mush not be null" }
         checkNotNull(settings) { "settings must not be empty" }
-        return ConfigurationRepository(configuration.configs, settings)
+        return ConfigurationRepository(configuration.configs, settings, environment)
     }
 
     fun getImmutableConfiguration(environment: String): ImmutableConfigurationRepository {
         val configuration = repository.firstOrNull { it.environment == environment }
         checkNotNull(configuration) { "configuration mush not be null" }
-        return ImmutableConfigurationRepository(configuration.configs)
+        return ImmutableConfigurationRepository(configuration.configs, environment)
     }
 
     fun saveConfig(value: Int) {
