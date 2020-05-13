@@ -3,6 +3,7 @@ package com.juliuscanute.multiconfig.di
 import android.content.Context
 import android.content.Intent
 import builder.ApplicationConfiguration
+import com.juliuscanute.multiconfig.MultiConfig
 import model.ConfigurationManager
 import settings.Settings
 import settings.UserSettings
@@ -16,6 +17,12 @@ object StartMultiConfig {
 
     fun appConfig(configuration: ApplicationConfiguration, intent: Intent) {
         configManager = ConfigurationManager(settings = settings, repository = configuration)
+        if (MultiConfig.environment.isEmpty()) {
+            val applicationConfiguration = configManager.getApplicationConfiguration()
+            val selectedConfig = configManager.getConfig()
+            val selectedIndex = if (selectedConfig < 0) 0 else selectedConfig
+            MultiConfig.environment = applicationConfiguration[selectedIndex].environment
+        }
         this.intent = intent
     }
 
