@@ -1,9 +1,8 @@
-package com.juliuscanute.multiconfig.di
+package com.juliuscanute.multiconfig.config
 
 import android.content.Context
 import android.content.Intent
 import com.juliuscanute.multiconfig.builder.ApplicationConfiguration
-import com.juliuscanute.multiconfig.MultiConfig
 import com.juliuscanute.multiconfig.settings.Settings
 import com.juliuscanute.multiconfig.settings.UserSettings
 import com.juliuscanute.multiconfig.model.ConfigurationManager
@@ -15,27 +14,30 @@ object StartMultiConfig {
     private var intent: Intent? = null
 
 
-    fun appConfig(configuration: ApplicationConfiguration, intent: Intent) {
+    fun multiConfig(configuration: ApplicationConfiguration, intent: Intent) {
         checkNotNull(settings) { "Settings must not be empty" }
         configManager = ConfigurationManager(settings = settings!!, repository = configuration)
+        MultiConfig.configManager = configManager
         if (MultiConfig.environment.isEmpty()) {
             val applicationConfiguration = configManager.getApplicationConfiguration()
             val selectedConfig = configManager.getConfig()
             val selectedIndex = if (selectedConfig < 0) 0 else selectedConfig
             MultiConfig.environment = applicationConfiguration[selectedIndex].environment
         }
-        this.intent = intent
+        StartMultiConfig.intent = intent
     }
 
-    fun appConfig(configuration: ApplicationConfiguration) {
+    fun multiConfig(configuration: ApplicationConfiguration) {
         configManager = ConfigurationManager(repository = configuration)
+        MultiConfig.configManager = configManager
         if (MultiConfig.environment.isEmpty()) {
             val applicationConfiguration = configManager.getApplicationConfiguration()
             MultiConfig.environment = applicationConfiguration.first().environment
         }
     }
 
-    fun getConfigurationManager() = configManager
+    fun getConfigurationManager() =
+        configManager
 
     fun getIntent() = intent!!
 

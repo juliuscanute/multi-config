@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.juliuscanute.multiconfig.MultiConfig
+import com.juliuscanute.multiconfig.config.MultiConfig
 import com.juliuscanute.multiconfig.R
 import com.juliuscanute.multiconfig.base.observeMultiEvent
 import com.juliuscanute.multiconfig.ui.config.ConfigurationFragment

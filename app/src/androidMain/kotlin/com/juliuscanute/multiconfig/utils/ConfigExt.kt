@@ -3,8 +3,8 @@ package com.juliuscanute.multiconfig.utils
 import android.content.Intent
 import androidx.activity.ComponentActivity
 import androidx.lifecycle.ViewModel
-import com.juliuscanute.multiconfig.MultiConfig
-import com.juliuscanute.multiconfig.di.StartMultiConfig
+import com.juliuscanute.multiconfig.config.MultiConfig
+import com.juliuscanute.multiconfig.config.StartMultiConfig
 import com.juliuscanute.multiconfig.model.ConfigurationManager
 import kotlin.reflect.KProperty
 
