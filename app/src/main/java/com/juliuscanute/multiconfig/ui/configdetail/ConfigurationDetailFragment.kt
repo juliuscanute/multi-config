@@ -15,7 +15,7 @@ import com.juliuscanute.multiconfig.ui.ItemDivider
 import com.juliuscanute.multiconfig.ui.adapter.ConfigurationDetailAdapter
 import com.juliuscanute.multiconfig.utils.buildViewModel
 import kotlinx.android.synthetic.main.com_juliuscanute_multiconfig_configuration_detail_fragment.*
-import model.Item
+import com.juliuscanute.multiconfig.model.Item
 
 private const val ARG_ENV_ID = "environment_id"
 

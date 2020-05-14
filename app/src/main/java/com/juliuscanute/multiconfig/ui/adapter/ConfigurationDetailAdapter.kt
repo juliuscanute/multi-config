@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.juliuscanute.multiconfig.R
 import com.juliuscanute.multiconfig.ui.configdetail.ConfigurationDetailViewModel
-import model.Item
-import model.Projection
+import com.juliuscanute.multiconfig.model.Item
+import com.juliuscanute.multiconfig.model.Projection
 
 class ConfigurationDetailAdapter(private val viewModel: ConfigurationDetailViewModel) :
     ListAdapter<ItemState, RecyclerView.ViewHolder>(ConfigurationDetailDiffUtil()) {

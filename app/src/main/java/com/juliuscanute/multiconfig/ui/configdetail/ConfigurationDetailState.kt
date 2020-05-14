@@ -1,7 +1,7 @@
 package com.juliuscanute.multiconfig.ui.configdetail
 
 import com.juliuscanute.multiconfig.ui.adapter.ItemState
-import model.Item
+import com.juliuscanute.multiconfig.model.Item
 
 sealed class ConfigurationDetailState {
     data class LoadEnvironmentConfigurationState(val items: List<ItemState>) : ConfigurationDetailState()

@@ -3,14 +3,14 @@ package com.juliuscanute.multiconfig.ui.configdetail
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import builder.EnvironmentConfigurationImmutable
+import com.juliuscanute.multiconfig.builder.EnvironmentConfigurationImmutable
 import com.juliuscanute.multiconfig.base.SingleObserverEvent
 import com.juliuscanute.multiconfig.ui.adapter.ItemState
 import com.juliuscanute.multiconfig.utils.ConfigManagerInitializer
-import model.ConfigurationManager
-import model.ConfigurationRepository
-import model.Item
-import model.UiControlsModel
+import com.juliuscanute.multiconfig.model.ConfigurationManager
+import com.juliuscanute.multiconfig.model.ConfigurationRepository
+import com.juliuscanute.multiconfig.model.Item
+import com.juliuscanute.multiconfig.model.UiControlsModel
 
 class ConfigurationDetailViewModel : ViewModel() {
     private val configManager: ConfigurationManager by ConfigManagerInitializer()

@@ -1,13 +1,13 @@
 package com.juliuscanute.multiconfig.ui
 
-import builder.appConfig
+import com.juliuscanute.multiconfig.builder.appConfig
 import com.nhaarman.mockitokotlin2.mock
-import model.ConfigurationRepository
-import model.ImmutableConfigurationRepository
-import model.UiControlsModel
+import com.juliuscanute.multiconfig.model.ConfigurationRepository
+import com.juliuscanute.multiconfig.model.ImmutableConfigurationRepository
+import com.juliuscanute.multiconfig.model.UiControlsModel
 import org.junit.Assert
 import org.junit.Test
-import settings.Settings
+import com.juliuscanute.multiconfig.settings.Settings
 
 
 class ConfigurationBuilderTest {
