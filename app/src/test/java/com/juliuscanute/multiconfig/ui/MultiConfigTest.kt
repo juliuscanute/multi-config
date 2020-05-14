@@ -1,8 +1,8 @@
 package com.juliuscanute.multiconfig.ui
 
 import android.content.Context
-import com.juliuscanute.multiconfig.config.MultiConfig
 import com.juliuscanute.multiconfig.builder.appConfig
+import com.juliuscanute.multiconfig.config.MultiConfig
 import com.juliuscanute.multiconfig.config.startMultiConfig
 import com.juliuscanute.multiconfig.model.ConfigurationRepository
 import com.juliuscanute.multiconfig.model.ImmutableConfigurationRepository
@@ -70,7 +70,7 @@ class MultiConfigTest {
         val context: Context = mock()
         whenever(context.getSharedPreferences(any(), any())).doReturn(mock())
         startMultiConfig(context = context) {
-            multiConfig(configuration = config, intent = mock())
+            multiConfig(configuration = config, controller = mock())
         }
         val repository = MultiConfig.getConfig()
         assert(repository is ConfigurationRepository) { "Repository must be mutable with settings" }

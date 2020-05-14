@@ -4,9 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.juliuscanute.multiconfig.config.MultiConfig
 import com.juliuscanute.multiconfig.R
 import com.juliuscanute.multiconfig.base.observeMultiEvent
+import com.juliuscanute.multiconfig.config.MultiConfig
 import com.juliuscanute.multiconfig.ui.config.ConfigurationFragment
 import com.juliuscanute.multiconfig.ui.configdetail.ConfigurationDetailFragment
 import com.juliuscanute.multiconfig.utils.IntentInitializer
@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity(), ConfigurationFragment.Callbacks {
                     toolbar.title = getString(R.string.julius_multi_config_app_name_with, state.environment)
                 }
                 is CommonState.ButtonTapState -> {
-                    MultiConfig.environment = state.environment
+                    MultiConfig(environment = state.environment)
                     try {
                         startActivity(startIntent)
                         finish()
