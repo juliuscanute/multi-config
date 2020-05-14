@@ -33,10 +33,26 @@ android {
     buildFeatures {
         compose true
     }
+    flavorDimensions "environment"
+    productFlavors {
+        config {
+            dimension "environment"
+            applicationIdSuffix ".config"
+            versionNameSuffix "-config"
+        }
+        prod {
+            dimension "environment"
+            applicationIdSuffix ".prod"
+            versionNameSuffix "-prod"
+        }
+    }
 }
 
 dependencies {
-    implementation ('com.juliuscanute.multiconfig:multiconfig:1.0.38@aar'){
+    configImplementation ('com.juliuscanute.multiconfig:multiconfig:1.0.39@aar'){
+        transitive = true
+    }
+    prodImplementation ('com.juliuscanute.multiconfignoui:multiconfignoui:1.0.39@aar'){
         transitive = true
     }
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"

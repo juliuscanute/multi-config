@@ -13,10 +13,10 @@ apply plugin: 'com.github.dcendents.android-maven'
 
 ext {
     bintrayRepo = "multiconfig-no-ui"
-    bintrayName = "com.juliuscanute.multiconfignoui"
+    bintrayName = "com.juliuscanute.multiconfig"
     libraryName = "multiconfignoui"
 
-    publishedGroupId = "com.juliuscanute.multiconfignoui"
+    publishedGroupId = "com.juliuscanute.multiconfig"
     artifact = "multiconfignoui"
     libraryVersion = "${System.getenv('LIB_VERSION')?:'1.0.0'}"
 
