@@ -2,7 +2,7 @@ package com.juliuscanute.multiconfig.ui
 
 import android.content.Context
 import com.juliuscanute.multiconfig.builder.appConfig
-import com.juliuscanute.multiconfig.config.MultiConfig
+import com.juliuscanute.multiconfig.config.MultiConfigure
 import com.juliuscanute.multiconfig.config.startMultiConfig
 import com.juliuscanute.multiconfig.model.ConfigurationRepository
 import com.juliuscanute.multiconfig.model.ImmutableConfigurationRepository
@@ -60,7 +60,7 @@ class MultiConfigTest {
         startMultiConfig {
             multiConfig(configuration = config)
         }
-        val repository = MultiConfig.getConfig()
+        val repository = MultiConfigure.getConfig()
         assert(repository is ImmutableConfigurationRepository) { "Repository must be immutable without settings" }
         Assert.assertEquals(50, repository.getConfigInt("B"))
     }
@@ -72,7 +72,7 @@ class MultiConfigTest {
         startMultiConfig(context = context) {
             multiConfig(configuration = config, controller = mock())
         }
-        val repository = MultiConfig.getConfig()
+        val repository = MultiConfigure.getConfig()
         assert(repository is ConfigurationRepository) { "Repository must be mutable with settings" }
         Assert.assertEquals("C-V", repository.getConfigString("C"))
     }

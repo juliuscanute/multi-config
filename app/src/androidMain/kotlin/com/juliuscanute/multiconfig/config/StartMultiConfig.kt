@@ -7,11 +7,11 @@ import com.juliuscanute.multiconfig.settings.UserSettings
 fun startMultiConfig(context: Context, body: BaseMultiConfig<Intent>.() -> Unit) {
     val config = BaseMultiConfig<Intent>(settings = UserSettings().userSettings(context))
     config(body)
-    MultiConfig(config)
+    MultiConfigure(config)
 }
 
 fun startMultiConfig(body: BaseMultiConfig<Intent>.() -> Unit) {
     val config = BaseMultiConfig<Intent>()
     config(body)
-    MultiConfig(config)
+    MultiConfigure(config)
 }

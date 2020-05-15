@@ -5,7 +5,7 @@ import com.juliuscanute.multiconfig.model.ConfigurationManager
 import kotlin.native.concurrent.ThreadLocal
 
 @ThreadLocal
-object MultiConfig {
+object MultiConfigure {
     private var starter: Starter? = null
 
     fun getConfigurationManager(): ConfigurationManager {

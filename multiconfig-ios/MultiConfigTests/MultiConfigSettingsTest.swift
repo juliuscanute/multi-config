@@ -15,7 +15,7 @@ class MultiConfigSettingsTest: XCTestCase {
     var config: NSMutableArray!
     var controller: ApplicationLaunchController!
 
-    
+
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         super.setUp()
@@ -84,18 +84,19 @@ class MultiConfigSettingsTest: XCTestCase {
 
 
     func testWithLaunchController() throws {
-        startMultiConfig(rootGroup: "group.fake") {
+        let config = startMultiConfig(rootGroup: "group.fake") {
             $0.multiConfig(configuration: self.config, controller: self.controller)
         }
-        let configuration = MultiOSConfig.getConfig()
+        let configuration = config.getConfig()
         let value = configuration.getConfigBoolean(userKey: "AA")
         XCTAssertEqual(value, true, "value must match config")
         XCTAssert(configuration is ConfigurationRepository)
     }
-    
-    class LaunchStubController : ApplicationLaunchController {
-        func launchController(environment: String) -> UIViewController {
-            XCTAssertEqual(environment, "DEV","environment must match primary environment")
+
+    class LaunchStubController: ApplicationLaunchController {
+
+        func launchController(environment: String) -> Any? {
+            XCTAssertEqual(environment, "DEV", "environment must match primary environment")
             return UIViewController()
         }
     }

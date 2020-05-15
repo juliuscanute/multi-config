@@ -3,14 +3,14 @@ package com.juliuscanute.multiconfig.config
 import com.juliuscanute.multiconfig.settings.UserSettings
 import platform.UIKit.UIViewController
 
-fun startMultiConfig(rootGroup: String, body: BaseMultiConfig<UIViewController>.() -> Unit) {
+fun startMultiConfig(rootGroup: String, body: BaseMultiConfig<UIViewController>.() -> Unit): Starter {
     val config = BaseMultiConfig<UIViewController>(settings = UserSettings().userSettings(rootGroup))
     config(body)
-    MultiConfig(config)
+    return config
 }
 
-fun startMultiConfig(body: BaseMultiConfig<UIViewController>.() -> Unit) {
+fun startMultiConfig(body: BaseMultiConfig<UIViewController>.() -> Unit): Starter {
     val config = BaseMultiConfig<UIViewController>()
     config(body)
-    MultiConfig(config)
+    return config
 }

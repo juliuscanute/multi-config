@@ -13,7 +13,7 @@ import XCTest
 class MultiConfigTests: XCTestCase {
 
     var config: NSMutableArray!
-    
+
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         super.setUp()
@@ -79,10 +79,10 @@ class MultiConfigTests: XCTestCase {
     }
 
     func testWithoutLaunchController() throws {
-        startMultiConfig {
+        let config = startMultiConfig {
             $0.multiConfig(configuration: self.config)
         }
-        let configuration = MultiOSConfig.getConfig()
+        let configuration = config.getConfig()
         let value = configuration.getConfigInt(userKey: "AB")
         XCTAssertEqual(value, 50, "value must match config")
         XCTAssert(configuration is ImmutableConfigurationRepository)

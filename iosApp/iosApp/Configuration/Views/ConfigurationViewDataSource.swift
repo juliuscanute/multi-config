@@ -9,15 +9,14 @@ import Foundation
 import UIKit
 
 enum ConfigurationEnvironmentIdentifier: String {
-
-  case cell
+    case cell
 }
 
-extension ConfigurationRootView : UITableViewDataSource {
+extension ConfigurationRootView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.getAvailableConfigurationCount()
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ConfigurationEnvironmentIdentifier.cell.rawValue, for: indexPath)
         let config = viewModel.getConfigurationForIndex(index: indexPath.row)

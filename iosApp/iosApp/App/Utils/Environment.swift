@@ -8,20 +8,18 @@
 import Foundation
 import MultiConfigCommon
 
-public func startMultiConfig(rootGroup: String, apply closure: @escaping (StartMultiConfig) -> Void) {
-    StartMultiConfigKt.startMultiConfig(rootGroup: rootGroup, body: closure)
+public typealias ApplicationConfiguration = [Configuration]
+
+public func startMultiConfig(rootGroup: String, apply closure: @escaping (BaseMultiConfig) -> Void) -> MultiConfigure {
+    let starter = StartMultiConfigKt.startMultiConfig(rootGroup: rootGroup, body: closure)
+    return MultiConfigure(starter: starter)
 }
 
-public func startMultiConfig(apply closure: @escaping (StartMultiConfig) -> Void) {
-    StartMultiConfigKt.startMultiConfig(body: closure)
+public func startMultiConfig(apply closure: @escaping (BaseMultiConfig) -> Void) -> MultiConfigure {
+    let starter = StartMultiConfigKt.startMultiConfig(body: closure)
+    return MultiConfigure(starter: starter)
 }
 
 public func appConfig(apply closure: @escaping (AppConfigurationBuilder) -> Void) -> NSMutableArray {
-    return AppConfigurationBuilderKt.appConfig(config: closure)
-}
-
-class MultiOSConfig{
-    static func getConfig() -> ConfigurationGetter {
-        return StartMultiConfigKt.getConfig() 
-    }
+    AppConfigurationBuilderKt.appConfig(config: closure)
 }

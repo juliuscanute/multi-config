@@ -68,8 +68,12 @@ public class MainViewController: NiblessNavigationController {
     }
 
     func presentApplicationController(environment: String?) {
-        //TODO: Add launch controller
-//        pushViewController(ConfigInitializer.getStartController(environment: environment!), animated: true)
+        guard let env = environment else {
+            return
+        }
+        let starter = dependencyContainer.starter
+        let launcher = starter.getLaunchController()
+        pushViewController(launcher.launchController(environment: env) as! UIViewController, animated: true)
     }
 }
 
