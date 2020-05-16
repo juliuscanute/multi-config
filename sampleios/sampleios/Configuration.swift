@@ -16,7 +16,7 @@ public enum Environment {
     static func initConfig() {
         multiConfig = startMultiConfig(rootGroup: "group.julius.multiconfig", 
                                        controller: LaunchController(rootView: AnyView(ContentView()
-                                        .environmentObject(ConfigurationData(text: "String", visibility: true, color: .green, size: 16)))), apply: {
+                                        .environmentObject(Environment.configData))), apply: {
             $0.multiConfig(configuration: Environment.configuration())
         })
     }
@@ -148,4 +148,5 @@ public enum Environment {
 //    #endif
 
     static var multiConfig: MultiConfigure?
+    static var configData: ConfigurationData = ConfigurationData()
 }

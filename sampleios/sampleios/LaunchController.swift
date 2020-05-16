@@ -13,6 +13,7 @@ import MultiConfigCommon
 class LaunchController: UIHostingController<AnyView>, MultiConfigViewController {
     func setEnvironment(environment: String) {
         let config: ConfigurationGetter = Environment.multiConfig!.getConfig()
+        let configData:ConfigurationData = Environment.configData
         let text = config.getConfigString(userKey: "C")
         let visibility = config.getConfigBoolean(userKey: "A")
         let size = Int(config.getConfigInt(userKey: "B"))
@@ -27,6 +28,9 @@ class LaunchController: UIHostingController<AnyView>, MultiConfigViewController 
         default:
             color = .blue
         }
-        rootView = AnyView(rootView.environmentObject(ConfigurationData(text: text, visibility: visibility, color: color, size: size)))
+       configData.text = text
+       configData.color = color
+       configData.size = size
+       configData.visibility = visibility
     }
 }

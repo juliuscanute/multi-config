@@ -26,6 +26,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .environmentObject(ConfigurationData(text: "Hello World!", visibility: true, color: .green, size: 16))
+            .environmentObject(ConfigurationData())
     }
 }
