@@ -20,6 +20,6 @@ class ConfigManagerInitializer {
 class IntentInitializer {
     operator fun getValue(service: ComponentActivity, property: KProperty<*>): Intent {
         val environment = MultiConfigure.getEnvironment()
-        return MultiConfigure.getLaunchController().launchController(environment= environment) as Intent
+        return MultiConfigure.getLaunchController().launchController(environment = environment) as Intent
     }
 }

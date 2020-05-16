@@ -16,7 +16,7 @@ public func startMultiConfig(rootGroup: String, controller: MultiConfigViewContr
 }
 
 public func startMultiConfig(apply closure: @escaping (BaseMultiConfig) -> Void) -> MultiConfigure {
-    let starter = StartMultiConfigKt.startMultiConfig(body: closure)
+    let starter = BaseStartMultiConfigKt.startMultiConfig(body: closure)
     return MultiConfigure(starter: starter)
 }
 

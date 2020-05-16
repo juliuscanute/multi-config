@@ -11,12 +11,12 @@ import androidx.ui.layout.*
 import androidx.ui.material.MaterialTheme
 import androidx.ui.material.TopAppBar
 import androidx.ui.text.TextStyle
-import com.juliuscanute.multiconfig.MultiConfig
+import com.juliuscanute.multiconfig.config.MultiConfigure
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val config = MultiConfig.getConfig()
+        val config = MultiConfigure.getConfig()
         val colorConfig = config.getConfigPair("D")
         setContent {
             MaterialTheme {
@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
                     visibility = config.getConfigBoolean("A"),
                     style = TextStyle(
                         fontSize = Sp(config.getConfigInt("B").toFloat()),
-                        color = when(colorConfig.second){
+                        color = when (colorConfig.second) {
                             0 -> Color.Red
                             1 -> Color.Green
                             else -> Color.Blue

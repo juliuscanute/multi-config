@@ -5,7 +5,7 @@ import com.juliuscanute.multiconfig.model.ConfigurationGetter
 import com.juliuscanute.multiconfig.model.ConfigurationManager
 import com.juliuscanute.multiconfig.settings.Settings
 
-class BaseMultiConfig<T>(
+class BaseMultiConfig(
     private val settings: Settings? = null,
     private val startController: LaunchController<*>? = null
 ) : ConfigBase {
@@ -36,13 +36,12 @@ class BaseMultiConfig<T>(
     }
 
     override fun getLaunchController(): LaunchController<*> {
-        check(environment.isBlank()) { "environment must not be empty" }
         checkNotNull(startController) { "start controller is empty" }
         return startController
     }
 
     override fun getConfig(): ConfigurationGetter {
-        checkNotNull(environment.isNotBlank()) { "environment must not be empty" }
+        check(environment.isNotBlank()) { "environment must not be empty" }
         return when (configManager.isSettingsInitialized()) {
             true -> configManager.getConfiguration(
                 environment
@@ -62,7 +61,7 @@ class BaseMultiConfig<T>(
         return environment
     }
 
-    operator fun invoke(body: BaseMultiConfig<T>.() -> Unit) {
+    operator fun invoke(body: BaseMultiConfig.() -> Unit) {
         this.body()
     }
 }
