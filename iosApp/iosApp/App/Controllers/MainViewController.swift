@@ -74,7 +74,6 @@ public class MainViewController: NiblessNavigationController {
         let starter = dependencyContainer.starter
         let launcher = starter.getLaunchController()
         pushViewController(launcher.launchController(environment: env) as! UIViewController, animated: true)
-        starter.setEnvironment(environment: environment!)
     }
 }
 

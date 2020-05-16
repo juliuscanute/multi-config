@@ -9,16 +9,13 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var text: String = ""
-    @State var visibility: Bool = false
-    @State var color: Color = .black
-    @State var size: Int = 16
+    @EnvironmentObject var configData: ConfigurationData
     var body: some View {
         NavigationView{
             VStack {
-                Text(text)
-                    .font(.system(size: CGFloat(size)))
-                    .foregroundColor(color)
+                Text(configData.text)
+                    .font(.system(size: CGFloat(configData.size)))
+                    .foregroundColor(configData.color)
                     .lineLimit(nil)
             }
             .navigationBarTitle(Text("MultiConfig Sample"),displayMode: .inline)
@@ -28,6 +25,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(text: "MultiPlatform", visibility: true, color: .red, size: 16)
+        ContentView()
+            .environmentObject(ConfigurationData(text: "Hello World!", visibility: true, color: .green, size: 16))
     }
 }

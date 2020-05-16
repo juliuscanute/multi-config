@@ -7,13 +7,16 @@
 //
 
 import Foundation
+import SwiftUI
 import MultiConfig
 
 public enum Environment {
     // MARK: - Plist values
 //    #if DEVELOPMENT
     static func initConfig() {
-        multiConfig = startMultiConfig(rootGroup: "group.julius.multiconfig", controller: LaunchController(rootView: ContentView()), apply: {
+        multiConfig = startMultiConfig(rootGroup: "group.julius.multiconfig", 
+                                       controller: LaunchController(rootView: AnyView(ContentView()
+                                        .environmentObject(ConfigurationData(text: "String", visibility: true, color: .green, size: 16)))), apply: {
             $0.multiConfig(configuration: Environment.configuration())
         })
     }
@@ -94,6 +97,7 @@ public enum Environment {
             }
         }
     }
+
 //    #else
 //    static func initConfig() {
 //        multiConfig = startMultiConfig(apply: {
