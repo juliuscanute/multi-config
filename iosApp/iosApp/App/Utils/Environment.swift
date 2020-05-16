@@ -10,8 +10,8 @@ import MultiConfigCommon
 
 public typealias ApplicationConfiguration = [Configuration]
 
-public func startMultiConfig(rootGroup: String, apply closure: @escaping (BaseMultiConfig) -> Void) -> MultiConfigure {
-    let starter = StartMultiConfigKt.startMultiConfig(rootGroup: rootGroup, body: closure)
+public func startMultiConfig(rootGroup: String, controller: MultiConfigViewController, apply closure: @escaping (BaseMultiConfig) -> Void) -> MultiConfigure {
+    let starter = StartMultiConfigKt.startMultiConfig(rootGroup: rootGroup, configViewController: controller, body: closure)
     return MultiConfigure(starter: starter)
 }
 

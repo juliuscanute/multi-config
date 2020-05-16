@@ -12,9 +12,9 @@ public class ConfigurationDependencyContainer {
     let configurationManager: ConfigurationManager
     let sharedMainViewModel: NavigationViewModel
     let baseViewModel: BaseViewModel
-    let starter: Starter
+    let starter: ConfigBase
 
-    init(starter: Starter) {
+    init(starter: ConfigBase) {
         self.starter = starter
         self.configurationManager = starter.getConfigurationManager()
         sharedMainViewModel = NavigationViewModel()

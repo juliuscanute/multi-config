@@ -5,52 +5,49 @@ import com.juliuscanute.multiconfig.model.ConfigurationGetter
 import com.juliuscanute.multiconfig.model.ConfigurationManager
 import com.juliuscanute.multiconfig.settings.Settings
 
-class BaseMultiConfig<T>(private val settings: Settings? = null) : Starter {
-    private var startController: ApplicationLaunchController? = null
-    private var configManager: ConfigurationManager? = null
+class BaseMultiConfig<T>(
+    private val settings: Settings? = null,
+    private val startController: LaunchController<*>? = null
+) : ConfigBase {
+    private lateinit var configManager: ConfigurationManager
     private var environment: String = ""
 
-    fun multiConfig(configuration: ApplicationConfiguration, controller: ApplicationLaunchController?) {
-        checkNotNull(settings) { "Settings must not be empty" }
-        val configManager = ConfigurationManager(settings = settings, repository = configuration)
-        this.configManager = configManager
-        if (this.environment.isEmpty()) {
+    fun multiConfig(configuration: ApplicationConfiguration) {
+        var hasSettings = false
+        configManager = if (settings != null && startController != null) {
+            hasSettings = true
+            ConfigurationManager(settings = settings, repository = configuration)
+        } else {
+            ConfigurationManager(repository = configuration)
+        }
+        if (hasSettings && environment.isEmpty()) {
             val applicationConfiguration = configManager.getApplicationConfiguration()
             val selectedConfig = configManager.getConfig()
             val selectedIndex = if (selectedConfig < 0) 0 else selectedConfig
-            this.environment = applicationConfiguration[selectedIndex].environment
-        }
-        startController = controller
-    }
-
-    fun multiConfig(configuration: ApplicationConfiguration) {
-        val configManager = ConfigurationManager(repository = configuration)
-        this.configManager = configManager
-        if (this.environment.isEmpty()) {
+            environment = applicationConfiguration[selectedIndex].environment
+        } else if (environment.isEmpty()) {
             val applicationConfiguration = configManager.getApplicationConfiguration()
-            this.environment = applicationConfiguration.first().environment
+            environment = applicationConfiguration.first().environment
         }
     }
 
     override fun getConfigurationManager(): ConfigurationManager {
-        checkNotNull(configManager) { "configuration manager must not be empty" }
-        return configManager!!
+        return configManager
     }
 
-    override fun getLaunchController(): ApplicationLaunchController {
+    override fun getLaunchController(): LaunchController<*> {
         check(environment.isBlank()) { "environment must not be empty" }
-        checkNotNull(startController) {"start controller is empty"}
-        return startController!!
+        checkNotNull(startController) { "start controller is empty" }
+        return startController
     }
 
     override fun getConfig(): ConfigurationGetter {
         checkNotNull(environment.isNotBlank()) { "environment must not be empty" }
-        checkNotNull(configManager) { "configuration manager must not be empty" }
-        return when (configManager!!.isSettingsInitialized()) {
-            true -> configManager!!.getConfiguration(
+        return when (configManager.isSettingsInitialized()) {
+            true -> configManager.getConfiguration(
                 environment
             )
-            else -> configManager!!.getImmutableConfiguration(
+            else -> configManager.getImmutableConfiguration(
                 environment
             )
         }

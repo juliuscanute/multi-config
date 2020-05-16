@@ -13,7 +13,7 @@ import XCTest
 class MultiConfigSettingsTest: XCTestCase {
 
     var config: NSMutableArray!
-    var controller: ApplicationLaunchController!
+    var controller: MultiConfigViewController!
 
 
     override func setUp() {
@@ -84,8 +84,8 @@ class MultiConfigSettingsTest: XCTestCase {
 
 
     func testWithLaunchController() throws {
-        let config = startMultiConfig(rootGroup: "group.fake") {
-            $0.multiConfig(configuration: self.config, controller: self.controller)
+        let config = startMultiConfig(rootGroup: "group.fake", controller: controller) {
+            $0.multiConfig(configuration: self.config)
         }
         let configuration = config.getConfig()
         let value = configuration.getConfigBoolean(userKey: "AA")
@@ -93,11 +93,9 @@ class MultiConfigSettingsTest: XCTestCase {
         XCTAssert(configuration is ConfigurationRepository)
     }
 
-    class LaunchStubController: ApplicationLaunchController {
-
-        func launchController(environment: String) -> Any? {
+    class LaunchStubController: MultiConfigViewController {
+        func setEnvironment(environment: String) {
             XCTAssertEqual(environment, "DEV", "environment must match primary environment")
-            return UIViewController()
         }
     }
 

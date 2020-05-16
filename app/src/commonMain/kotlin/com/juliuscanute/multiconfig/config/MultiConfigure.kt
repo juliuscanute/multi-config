@@ -6,34 +6,29 @@ import kotlin.native.concurrent.ThreadLocal
 
 @ThreadLocal
 object MultiConfigure {
-    private var starter: Starter? = null
+    private lateinit var configBase: ConfigBase
 
     fun getConfigurationManager(): ConfigurationManager {
-        checkNotNull(starter) { "starter must not be null" }
-        return starter!!.getConfigurationManager()
+        return configBase.getConfigurationManager()
     }
 
     fun getConfig(): ConfigurationGetter {
-        checkNotNull(starter) { "starter must not be null" }
-        return starter!!.getConfig()
+        return configBase.getConfig()
     }
 
-    fun getLaunchController(): ApplicationLaunchController {
-        checkNotNull(starter) { "starter must not be null" }
-        return starter!!.getLaunchController()
+    fun getLaunchController(): LaunchController<*> {
+        return configBase.getLaunchController()
     }
 
     fun getEnvironment(): String {
-        checkNotNull(starter) { "starter must not be null" }
-        return starter!!.getEnvironment()
+        return configBase.getEnvironment()
     }
 
-    operator fun invoke(starter: Starter) {
-        this.starter = starter
+    operator fun invoke(configBase: ConfigBase) {
+        this.configBase = configBase
     }
 
     operator fun invoke(environment: String) {
-        checkNotNull(starter) { "starter must not be null" }
-        starter!!.setEnvironment(environment = environment)
+        configBase.setEnvironment(environment = environment)
     }
 }

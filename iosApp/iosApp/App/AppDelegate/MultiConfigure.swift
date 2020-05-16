@@ -8,10 +8,10 @@ import MultiConfigCommon
 import UIKit
 
 public class MultiConfigure {
-    let starter: Starter
+    let starter: ConfigBase
     let dependencyInjectionContainer: ConfigurationDependencyContainer
 
-    init(starter: Starter) {
+    init(starter: ConfigBase) {
         self.starter = starter
         self.dependencyInjectionContainer = ConfigurationDependencyContainer(starter: starter)
     }
@@ -24,7 +24,7 @@ public class MultiConfigure {
         starter.getConfig()
     }
 
-    func getLaunchController() -> ApplicationLaunchController {
+    func getLaunchController() -> LaunchController {
         starter.getLaunchController()
     }
 

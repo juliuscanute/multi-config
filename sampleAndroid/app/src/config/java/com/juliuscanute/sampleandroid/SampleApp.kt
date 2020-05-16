@@ -3,7 +3,7 @@ package com.juliuscanute.sampleandroid
 import android.app.Application
 import android.content.Intent
 import com.juliuscanute.multiconfig.builder.appConfig
-import com.juliuscanute.multiconfig.di.startMultiConfig
+import com.juliuscanute.multiconfig.config.startMultiConfig
 
 class SampleApp : Application() {
     override fun onCreate() {

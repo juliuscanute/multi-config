@@ -69,8 +69,8 @@ class MultiConfigTest {
     fun `when settings initialized must return mutable configuration`() {
         val context: Context = mock()
         whenever(context.getSharedPreferences(any(), any())).doReturn(mock())
-        startMultiConfig(context = context) {
-            multiConfig(configuration = config, controller = mock())
+        startMultiConfig(context = context, intent = mock()) {
+            multiConfig(configuration = config)
         }
         val repository = MultiConfigure.getConfig()
         assert(repository is ConfigurationRepository) { "Repository must be mutable with settings" }
