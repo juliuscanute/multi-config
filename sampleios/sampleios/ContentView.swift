@@ -9,10 +9,10 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var text: String
-    @State var visibility: Bool
-    @State var color: Color
-    @State var size: Int
+    @State var text: String = ""
+    @State var visibility: Bool = false
+    @State var color: Color = .black
+    @State var size: Int = 16
     var body: some View {
         NavigationView{
             VStack {

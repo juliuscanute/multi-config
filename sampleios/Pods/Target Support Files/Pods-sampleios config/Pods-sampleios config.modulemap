@@ -1,0 +1,6 @@
+framework module Pods_sampleios_config {
+  umbrella header "Pods-sampleios config-umbrella.h"
+
+  export *
+  module * { export * }
+}

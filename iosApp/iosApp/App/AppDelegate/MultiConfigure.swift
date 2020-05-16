@@ -16,27 +16,27 @@ public class MultiConfigure {
         self.dependencyInjectionContainer = ConfigurationDependencyContainer(starter: starter)
     }
 
-    func getConfigurationManager() -> ConfigurationManager {
+    public func getConfigurationManager() -> ConfigurationManager {
         starter.getConfigurationManager()
     }
 
-    func getConfig() -> ConfigurationGetter {
+    public func getConfig() -> ConfigurationGetter {
         starter.getConfig()
     }
 
-    func getLaunchController() -> LaunchController {
+    public func getLaunchController() -> LaunchController {
         starter.getLaunchController()
     }
 
-    func getEnvironment() -> String {
+    public func getEnvironment() -> String {
         starter.getEnvironment()
     }
 
-    func setEnvironment(environment: String) {
+    public func setEnvironment(environment: String) {
         starter.setEnvironment(environment: environment)
     }
 
-    func getRootViewController() -> UINavigationController {
+    public func getRootViewController() -> UINavigationController {
         dependencyInjectionContainer.makeMainViewController()
     }
 }

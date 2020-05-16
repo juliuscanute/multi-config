@@ -1,0 +1,11 @@
+framework module MultiConfig {
+  umbrella header "MultiConfig.h"
+
+  export *
+  module * { export * }
+}
+
+module MultiConfig.Swift {
+    header "MultiConfig-Swift.h"
+    requires objc
+}

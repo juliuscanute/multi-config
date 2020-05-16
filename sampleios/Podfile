@@ -1,0 +1,27 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'sampleios' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for sampleios
+  pod 'MultiConfigCommon', :configurations => ['Release']
+end
+
+target 'sampleios config' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for sampleios config
+  pod 'MultiConfig-Debug', :configurations => ['Debug']
+end
+
+target 'sampleios dev' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for sampleios dev
+  pod 'MultiConfig-Debug', :configurations => ['Debug']
+
+end
