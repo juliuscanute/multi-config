@@ -1,13 +1,13 @@
 package com.juliuscanute.sampleandroid
 
 import android.app.Application
-import com.juliuscanute.multiconfig.di.startMultiConfig
+import com.juliuscanute.multiconfig.config.startMultiConfig
 
 class SampleApp : Application() {
     override fun onCreate() {
         super.onCreate()
         startMultiConfig {
-            appConfig(
+            multiConfig(
                 configuration = configuration()
             )
         }
