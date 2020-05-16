@@ -1,6 +1,0 @@
-framework module MultiConfigCommon {
-    umbrella header "MultiConfigCommon.h"
-
-    export *
-    module * { export * }
-}

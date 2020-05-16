@@ -112,5 +112,11 @@ public protocol LaunchApplicationResponder {
   func launchConfiguration(environment: Swift.String?)
 }
 public class MultiConfigure {
+  public func getConfigurationManager() -> MultiConfigCommon.ConfigurationManager
+  public func getConfig() -> MultiConfigCommon.ConfigurationGetter
+  public func getLaunchController() -> MultiConfigCommon.LaunchController
+  public func getEnvironment() -> Swift.String
+  public func setEnvironment(environment: Swift.String)
+  public func getRootViewController() -> UIKit.UINavigationController
   @objc deinit
 }
