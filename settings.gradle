@@ -1,3 +1,4 @@
 rootProject.name = 'MultiConfig'
 
 include ':app'
+include ':multiconfignoui'
