@@ -49,10 +49,12 @@ android {
 }
 
 dependencies {
-    configImplementation ('com.juliuscanute.multiconfig:multiconfig:1.0.51@aar') {
+    configImplementation('com.juliuscanute.multiconfig:multiconfig:1.0.53@aar') {
         transitive = true
     }
-    prodImplementation 'com.juliuscanute.multiconfig:multiconfignoui:1.0.51@aar'
+    prodImplementation('com.juliuscanute.multiconfig:multiconfignoui:1.0.53@aar') {
+        transitive = true
+    }
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.2.0'
     implementation 'androidx.appcompat:appcompat:1.1.0'
