@@ -6,7 +6,7 @@ target 'sampleios' do
   use_frameworks!
 
   # Pods for sampleios
-  pod 'MultiConfig-Debug', '~> 1.0.48'
+  pod 'MultiConfig', '~> 1.0.48'
 end
 
 target 'sampleios config' do
@@ -14,7 +14,7 @@ target 'sampleios config' do
   use_frameworks!
 
   # Pods for sampleios config
-  pod 'MultiConfig-Debug', '~> 1.0.48'
+  pod 'MultiConfig', '~> 1.0.48'
 end
 
 target 'sampleios dev' do
@@ -22,6 +22,6 @@ target 'sampleios dev' do
   use_frameworks!
 
   # Pods for sampleios dev
-  pod 'MultiConfig-Debug', '~> 1.0.48'
+  pod 'MultiConfig', '~> 1.0.48'
 
 end

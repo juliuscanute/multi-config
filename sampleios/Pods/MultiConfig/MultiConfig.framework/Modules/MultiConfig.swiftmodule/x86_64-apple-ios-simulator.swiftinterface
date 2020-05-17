@@ -1,0 +1,122 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.1.3 (swiftlang-1100.0.282.1 clang-1100.0.33.15)
+// swift-module-flags: -target x86_64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name MultiConfig
+import Foundation
+@_exported import MultiConfig
+import MultiConfigCommon
+import RxCocoa
+import RxSwift
+import Swift
+import UIKit
+@objc open class NiblessNavigationController : UIKit.UINavigationController {
+  @objc dynamic public init()
+  @available(*, unavailable, message: "Loading this view controller from a nib is unsupported in favor of initializer dependency injection.")
+  @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @available(*, unavailable, message: "Loading this view controller from a nib is unsupported in favor of initializer dependency injection.")
+  @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @available(iOS 5.0, *)
+  @objc override dynamic public init(navigationBarClass: Swift.AnyClass?, toolbarClass: Swift.AnyClass?)
+  @objc override dynamic public init(rootViewController: UIKit.UIViewController)
+  @objc deinit
+}
+public class NavigationViewModel : MultiConfig.ConfigurationDetailResponder, MultiConfig.LaunchApplicationResponder {
+  public var view: RxSwift.Observable<MultiConfig.ConfigurationNavigationAction> {
+    get
+  }
+  public func selectConfiguration(environment: Swift.String)
+  public func launchConfiguration(environment: Swift.String?)
+  public func uiPresented(mainView: MultiConfig.MainViewType)
+  @objc deinit
+}
+@objc open class NiblessView : UIKit.UIView {
+  @objc override dynamic public init(frame: CoreGraphics.CGRect)
+  @available(*, unavailable, message: "Loading this view from a nib is unsupported in favor of initializer dependency injection.")
+  @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @objc deinit
+}
+public class ConfigurationDependencyContainer {
+  @objc deinit
+}
+@objc public class ConfigurationController : MultiConfig.NiblessViewController {
+  @objc override dynamic public func loadView()
+  @objc override dynamic public func viewWillAppear(_ animated: Swift.Bool)
+  override public init(viewModel: MultiConfig.BaseViewModel)
+  @objc deinit
+}
+public struct EditableState {
+}
+public struct ChoiceState {
+}
+@objc public class ConfigurationDetailController : MultiConfig.NiblessViewController {
+  @objc override dynamic public func loadView()
+  @objc override dynamic public func viewDidLoad()
+  @objc override dynamic public func viewWillAppear(_ animated: Swift.Bool)
+  override public init(viewModel: MultiConfig.BaseViewModel)
+  @objc deinit
+}
+public enum MainViewType : Swift.Equatable {
+  case configuration
+  case configurationDetail(environment: Swift.String)
+  case launchApplication(environment: Swift.String?)
+  public func hidesNavigationBar() -> Swift.Bool
+  public func hidesToolBar() -> Swift.Bool
+  public static func == (a: MultiConfig.MainViewType, b: MultiConfig.MainViewType) -> Swift.Bool
+}
+@objc public class MainViewController : MultiConfig.NiblessNavigationController {
+  public init(viewModel: MultiConfig.NavigationViewModel, dependencyContainer: MultiConfig.ConfigurationDependencyContainer)
+  @objc override dynamic public func viewDidLoad()
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension MainViewController : UIKit.UINavigationControllerDelegate {
+  @objc dynamic public func navigationController(_ navigationController: UIKit.UINavigationController, willShow viewController: UIKit.UIViewController, animated: Swift.Bool)
+  @objc dynamic public func navigationController(_ navigationController: UIKit.UINavigationController, didShow viewController: UIKit.UIViewController, animated: Swift.Bool)
+}
+public typealias ApplicationConfiguration = [MultiConfigCommon.Configuration]
+public func startMultiConfig(rootGroup: Swift.String, controller: MultiConfigCommon.MultiConfigViewController, apply closure: @escaping (MultiConfigCommon.BaseMultiConfig) -> Swift.Void) -> MultiConfig.MultiConfigure
+public func startMultiConfig(apply closure: @escaping (MultiConfigCommon.BaseMultiConfig) -> Swift.Void) -> MultiConfig.MultiConfigure
+public func appConfig(apply closure: @escaping (MultiConfigCommon.AppConfigurationBuilder) -> Swift.Void) -> Foundation.NSMutableArray
+public class ConfigurationViewModel {
+  @objc deinit
+}
+public class BaseViewModel {
+  @objc deinit
+}
+public typealias EnvironmentConfiguration = [MultiConfigCommon.UiControlsModel]
+public class ConfigurationDetailViewModel {
+  public var choice: RxSwift.Observable<MultiConfig.ChoiceState> {
+    get
+  }
+  public var editable: RxSwift.Observable<MultiConfig.EditableState> {
+    get
+  }
+  @objc deinit
+}
+public protocol ConfigurationDetailResponder {
+  func selectConfiguration(environment: Swift.String)
+}
+public enum NavigationAction<ViewModelType> : Swift.Equatable where ViewModelType : Swift.Equatable {
+  case present(view: ViewModelType)
+  case presented(view: ViewModelType)
+  public static func == (a: MultiConfig.NavigationAction<ViewModelType>, b: MultiConfig.NavigationAction<ViewModelType>) -> Swift.Bool
+}
+public typealias ConfigurationNavigationAction = MultiConfig.NavigationAction<MultiConfig.MainViewType>
+@objc open class NiblessViewController : UIKit.UIViewController {
+  public init(viewModel: MultiConfig.BaseViewModel)
+  @available(*, unavailable, message: "Loading this view controller from a nib is unsupported in favor of initializer dependency injection.")
+  @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @objc deinit
+}
+public protocol LaunchApplicationResponder {
+  func launchConfiguration(environment: Swift.String?)
+}
+public class MultiConfigure {
+  public func getConfigurationManager() -> MultiConfigCommon.ConfigurationManager
+  public func getConfig() -> MultiConfigCommon.ConfigurationGetter
+  public func getLaunchController() -> MultiConfigCommon.LaunchController
+  public func getEnvironment() -> Swift.String
+  public func setEnvironment(environment: Swift.String)
+  public func getRootViewController() -> UIKit.UINavigationController
+  @objc deinit
+}

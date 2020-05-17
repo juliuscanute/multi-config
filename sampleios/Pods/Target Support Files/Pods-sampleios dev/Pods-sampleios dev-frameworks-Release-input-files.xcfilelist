@@ -1,6 +1,6 @@
 ${PODS_ROOT}/Target Support Files/Pods-sampleios dev/Pods-sampleios dev-frameworks.sh
-${PODS_ROOT}/MultiConfig-Debug/MultiConfig.framework
-${PODS_ROOT}/MultiConfigCommon-Debug/MultiConfigCommon.framework
+${PODS_ROOT}/MultiConfig/MultiConfig.framework
+${PODS_ROOT}/MultiConfigCommon/MultiConfigCommon.framework
 ${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework
 ${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework
 ${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework

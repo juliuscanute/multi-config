@@ -15,6 +15,9 @@
 		8722379C24695ED9003AAA1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8722379B24695ED9003AAA1B /* Assets.xcassets */; };
 		8722379F24695ED9003AAA1B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8722379E24695ED9003AAA1B /* Preview Assets.xcassets */; };
 		872237A224695ED9003AAA1B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 872237A024695ED9003AAA1B /* LaunchScreen.storyboard */; };
+		879643CB2470B86B00128AEC /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D6585A246FC0CE0098799E /* Configuration.swift */; };
+		879643CC2470B88100128AEC /* ConfigurationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1FF4C24C55794C475C2CCD /* ConfigurationData.swift */; };
+		879643CD2470B88500128AEC /* LaunchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D6585D246FC8620098799E /* LaunchController.swift */; };
 		87D6583C246FB5260098799E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8722379524695ED7003AAA1B /* AppDelegate.swift */; };
 		87D6583D246FB5260098799E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8722379724695ED7003AAA1B /* SceneDelegate.swift */; };
 		87D6583E246FB5260098799E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8722379924695ED7003AAA1B /* ContentView.swift */; };
@@ -420,6 +423,9 @@
 			files = (
 				8722379624695ED7003AAA1B /* AppDelegate.swift in Sources */,
 				8722379824695ED7003AAA1B /* SceneDelegate.swift in Sources */,
+				879643CB2470B86B00128AEC /* Configuration.swift in Sources */,
+				879643CC2470B88100128AEC /* ConfigurationData.swift in Sources */,
+				879643CD2470B88500128AEC /* LaunchController.swift in Sources */,
 				8722379A24695ED7003AAA1B /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -637,6 +643,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.juliuscanute.sampleios.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEVELOPMENT;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -659,6 +666,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.juliuscanute.sampleios.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEVELOPMENT;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -674,6 +682,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"sampleios/Preview Content\"";
 				DEVELOPMENT_TEAM = W5L5PDU89L;
 				ENABLE_PREVIEWS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				INFOPLIST_FILE = ConfigInfo.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -681,6 +690,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.juliuscanute.sampleios.config;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEVELOPMENT CONFIG";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -703,6 +713,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.juliuscanute.sampleios.config;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEVELOPMENT CONFIG";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

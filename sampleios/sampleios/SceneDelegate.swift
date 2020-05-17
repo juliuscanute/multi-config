@@ -20,11 +20,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         
         // Create the SwiftUI view that provides the window contents.
-//        let contentView = ContentView(text: "Hello Android!", visibility: true, color: .red, size: 72)
-        let controller = Environment.multiConfig?.getRootViewController()
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = controller!
+            if Environment.isConfigApp {
+                window.rootViewController = Environment.multiConfig!.getRootViewController()
+            } else {
+                window.rootViewController = Environment.getLaunchController() as? UIViewController
+            }
             self.window = window
             window.makeKeyAndVisible()
         }

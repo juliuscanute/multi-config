@@ -4,14 +4,14 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>MultiConfig-Debug.xcscheme</key>
+		<key>MultiConfig.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
-		<key>MultiConfigCommon-Debug.xcscheme</key>
+		<key>MultiConfigCommon.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -23,21 +23,21 @@
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>4</integer>
+			<integer>5</integer>
 		</dict>
 		<key>Pods-sampleios dev.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>5</integer>
+			<integer>6</integer>
 		</dict>
 		<key>Pods-sampleios.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>6</integer>
+			<integer>4</integer>
 		</dict>
 		<key>RxCocoa.xcscheme</key>
 		<dict>
