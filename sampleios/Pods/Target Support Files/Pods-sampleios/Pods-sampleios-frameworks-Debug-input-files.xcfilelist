@@ -1,5 +1,4 @@
 ${PODS_ROOT}/Target Support Files/Pods-sampleios/Pods-sampleios-frameworks.sh
-${PODS_ROOT}/MultiConfig/MultiConfig.framework
 ${PODS_ROOT}/MultiConfigCommon/MultiConfigCommon.framework
 ${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework
 ${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework
