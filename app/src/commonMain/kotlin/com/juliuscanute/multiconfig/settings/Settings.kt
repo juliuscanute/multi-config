@@ -1,6 +1,6 @@
 package com.juliuscanute.multiconfig.settings
 
-interface Settings {
+expect class Settings {
 
     fun hasKey(key: String): Boolean
 
@@ -16,7 +16,4 @@ interface Settings {
 
     fun putString(key: String, value: String)
 
-    interface Factory {
-        fun create(): Settings
-    }
 }

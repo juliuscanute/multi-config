@@ -1,6 +1,6 @@
 package com.juliuscanute.multiconfig.config
 
-import com.juliuscanute.multiconfig.settings.UserSettings
+import com.juliuscanute.multiconfig.settings.Settings
 
 fun startMultiConfig(
     rootGroup: String,
@@ -9,7 +9,7 @@ fun startMultiConfig(
 ): ConfigBase {
     val launch = ApplicationLaunchController().setLaunchIntent(controller = configViewController)
     val config =
-        BaseMultiConfig(settings = UserSettings().userSettings(rootGroup), startController = launch)
+        BaseMultiConfig(settings = Settings(rootGroup), startController = launch)
     config(body)
     return config
 }
