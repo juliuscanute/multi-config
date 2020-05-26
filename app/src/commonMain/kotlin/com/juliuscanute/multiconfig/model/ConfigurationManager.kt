@@ -44,7 +44,7 @@ class ConfigurationManager {
 
     fun getConfig(): Int {
         checkNotNull(settings) { "settings must not be empty" }
-        return settings.getInt(KEY, defaultValue = 0)
+        return settings.getInt(KEY, 0)
     }
 
     fun isSettingsInitialized() = settings != null
