@@ -7,10 +7,20 @@ import com.juliuscanute.multiconfig.settings.Settings
 class ImmutableConfigurationRepository(
     private val configs: EnvironmentConfiguration,
     private val environment: String
-) : ConfigurationGetterImplementation(configs, null, environment) {
-    fun getEnvironmentConfiguration(): EnvironmentConfigurationImmutable = loadConfiguration(configs = configs, environment = environment)
+) : ConfigurationGetterImplementation(environment) {
 
-    override fun loadConfiguration(configs: EnvironmentConfiguration, settings: Settings?, environment: String): List<UiControlsModel> =
+    init {
+        loadConfiguration(configs, null, environment)
+    }
+
+    fun getEnvironmentConfiguration(): EnvironmentConfigurationImmutable =
+        loadConfiguration(configs = configs, environment = environment)
+
+    override fun loadConfiguration(
+        configs: EnvironmentConfiguration,
+        settings: Settings?,
+        environment: String
+    ): List<UiControlsModel> =
         configs.map {
             when (it) {
                 is UiControlsModel.Switch -> {
