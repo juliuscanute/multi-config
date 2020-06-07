@@ -22,14 +22,14 @@ public enum Environment {
     static func initConfig() {
         multiConfig = startMultiConfig(rootGroup: "group.julius.multiconfig",
                 controller: getLaunchController(), apply: {
-            $0.multiConfig(configuration: Environment.configuration())
+            $0.multiConfig(configuration: configuration())
         })
         Environment.configData.setData()
     }
 
     static func configuration() -> NSMutableArray {
         appConfig {
-            $0.config(environment: "SIT") {
+            $0.config(environment: "FREE") {
                 $0.switch {
                     $0.key = "A"
                     $0.description = "Set text visibility"
@@ -65,7 +65,7 @@ public enum Environment {
                     }
                 }
             }
-            $0.config(environment: "UAT") {
+            $0.config(environment: "PREMIUM") {
                 $0.switch {
                     $0.key = "A"
                     $0.description = "Set text visibility"
@@ -114,7 +114,7 @@ public enum Environment {
 
     static func configuration() -> NSMutableArray {
         appConfig {
-            $0.config(environment: "PROD") {
+            $0.config(environment: "PREMIUM") {
                 $0.switch {
                     $0.key = "A"
                     $0.description = "Set text visibility"

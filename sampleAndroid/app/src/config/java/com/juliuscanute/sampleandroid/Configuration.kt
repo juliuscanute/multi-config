@@ -3,7 +3,7 @@ package com.juliuscanute.sampleandroid
 import com.juliuscanute.multiconfig.builder.appConfig
 
 fun configuration() = appConfig {
-    config("SIT") {
+    config("FREE") {
         switch {
             key = "A"
             description = "Set text visibility"
@@ -39,7 +39,7 @@ fun configuration() = appConfig {
             }
         }
     }
-    config("UAT") {
+    config("PREMIUM") {
         switch {
             key = "A"
             description = "Set text visibility"

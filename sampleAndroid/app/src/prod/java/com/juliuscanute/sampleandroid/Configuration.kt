@@ -3,7 +3,7 @@ package com.juliuscanute.sampleandroid
 import com.juliuscanute.multiconfig.builder.appConfig
 
 fun configuration() = appConfig {
-    config("PROD") {
+    config("PREMIUM") {
         switch {
             key = "A"
             description = "Set text visibility"
@@ -21,13 +21,13 @@ fun configuration() = appConfig {
         editable {
             key = "C"
             description = "Set current text"
-            currentValue = "Hello MultiConfig!"
+            currentValue = "Hello iOS!"
         }
 
         choice {
             key = "D"
             description = "Set text color"
-            currentChoiceIndex = 1
+            currentChoiceIndex = 0
             item {
                 description = "RED"
             }

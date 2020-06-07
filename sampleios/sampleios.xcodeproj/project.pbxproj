@@ -52,9 +52,9 @@
 		8722379E24695ED9003AAA1B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		872237A124695ED9003AAA1B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		872237A324695ED9003AAA1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		87D65847246FB5260098799E /* sampleios dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "sampleios dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		87D65847246FB5260098799E /* Test App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Test App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		87D65848246FB5270098799E /* DevInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = DevInfo.plist; path = /Users/juliuscanute/Desktop/Projects/MultiConfig/sampleios/DevInfo.plist; sourceTree = "<absolute>"; };
-		87D65856246FB52F0098799E /* sampleios config.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "sampleios config.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		87D65856246FB52F0098799E /* Configuration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Configuration.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87D65857246FB52F0098799E /* ConfigInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = ConfigInfo.plist; path = /Users/juliuscanute/Desktop/Projects/MultiConfig/sampleios/ConfigInfo.plist; sourceTree = "<absolute>"; };
 		87D65858246FBA510098799E /* sampleios dev.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "sampleios dev.entitlements"; sourceTree = "<group>"; };
 		87D65859246FBA5F0098799E /* sampleios config.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "sampleios config.entitlements"; sourceTree = "<group>"; };
@@ -125,8 +125,8 @@
 			isa = PBXGroup;
 			children = (
 				8722379224695ED7003AAA1B /* sampleios.app */,
-				87D65847246FB5260098799E /* sampleios dev.app */,
-				87D65856246FB52F0098799E /* sampleios config.app */,
+				87D65847246FB5260098799E /* Test App.app */,
+				87D65856246FB52F0098799E /* Configuration.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -206,7 +206,7 @@
 			);
 			name = "sampleios dev";
 			productName = sampleios;
-			productReference = 87D65847246FB5260098799E /* sampleios dev.app */;
+			productReference = 87D65847246FB5260098799E /* Test App.app */;
 			productType = "com.apple.product-type.application";
 		};
 		87D65849246FB52F0098799E /* sampleios config */ = {
@@ -225,7 +225,7 @@
 			);
 			name = "sampleios config";
 			productName = sampleios;
-			productReference = 87D65856246FB52F0098799E /* sampleios config.app */;
+			productReference = 87D65856246FB52F0098799E /* Configuration.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -642,7 +642,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.juliuscanute.sampleios.dev;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Test App";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEVELOPMENT;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -665,7 +665,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.juliuscanute.sampleios.dev;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Test App";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEVELOPMENT;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -689,7 +689,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.juliuscanute.sampleios.config;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Configuration;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEVELOPMENT CONFIG";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -712,7 +712,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.juliuscanute.sampleios.config;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Configuration;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEVELOPMENT CONFIG";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
